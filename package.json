@@ -1,0 +1,27 @@
+{
+  "name": "cloudcritic1",
+  "version": "1.0.0",
+  "description": "My fantabulous Nuxt.js project",
+  "author": "crypt0box",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/dotenv": "^1.4.0",
+    "firebase": "^7.14.6",
+    "moment": "^2.26.0",
+    "nuxt": "^2.0.0",
+    "vuexfire": "^3.2.2"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.0.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1"
+  }
+}
