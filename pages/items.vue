@@ -1,8 +1,12 @@
 <template>
   <section class="container">
     <div>
+      <input v-model="name">
+      <button @click="search">add</button>
+    </div>
+    <div>
       <ul class="resultItems">
-        <li class="resultItem" v-for="item in results" :key="item.id">
+        <li class="resultItem" v-for="item in $store.getters['items/getResults']" :key="item.id">
           <img :src="item.Item.mediumImageUrls[0].imageUrl" class="imgStyle">
           <dl class="dataStyle">
             <dt>
@@ -24,17 +28,13 @@
 export default {
   data() {
     return {
+      name: 'あああ',
       results: []
     }
   },
-  async asyncData({ app }) {
-    const baseUrl = 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?'
-    const appId = 'applicationId=1061213804419554354'
-    const keyword = '&keyword=カービィ' // カービィ以外認めません
-    const getUrl = encodeURI(baseUrl + appId + keyword)
-    const response = await app.$axios.$get(getUrl)
-    return {
-      results: response.Items
+  methods: {
+    search() {
+      this.$store.dispatch('items/search', this.name)
     }
   }
 }
