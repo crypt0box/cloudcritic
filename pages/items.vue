@@ -1,6 +1,9 @@
 <template>
   <section class="container">
     <div>
+      <nuxt-link :to="'users/' + $store.getters['auth/getUserUid']">user</nuxt-link>
+    </div>
+    <div>
       <input v-model="name">
       <v-btn @click="search">search</v-btn>
     </div>
