@@ -2,7 +2,7 @@
   <section class="container">
     <div>
       <input v-model="name">
-      <button @click="search">add</button>
+      <v-btn @click="search">search</v-btn>
     </div>
     <div>
       <ul class="resultItems">
@@ -28,7 +28,7 @@
 export default {
   data() {
     return {
-      name: 'あああ',
+      name: '',
       results: []
     }
   },

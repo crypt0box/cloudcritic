@@ -105,6 +105,16 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire'
+        },
+        {
+          icon: 'mdi-format-align-justify',
+          title: 'Todos',
+          to: '/todos'
+        },
+        {
+          icon: 'mdi-amazon',
+          title: 'Items',
+          to: '/items'
         }
       ],
       miniVariant: false,
