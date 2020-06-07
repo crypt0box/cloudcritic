@@ -22,7 +22,6 @@
         <v-card-actions>
           <v-btn class="info" @click="login">ログイン</v-btn>
         </v-card-actions>
-        <p>{{ $store.getters['auth/getIdToken'] }}</p>
       </v-form>
     </v-card-text>
   </v-card>

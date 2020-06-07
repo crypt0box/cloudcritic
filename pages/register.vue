@@ -45,6 +45,7 @@ export default {
       this.$store.dispatch('auth/updateIdToken')
       this.email = "";
       this.password = "";
+      this.$router.push('items')
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div>
     a
-    {{ $store.getters['auth/getUserUid'].length }}
+    {{ $store.getters['auth/getUserUid'] }}
   </div>
 </template>
 
