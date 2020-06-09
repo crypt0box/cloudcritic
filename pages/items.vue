@@ -2,6 +2,11 @@
   <section class="container">
     <div>
       <nuxt-link :to="'users/' + $store.getters['auth/getUserUid']">user</nuxt-link>
+      <button @click="show">クリックする</button>
+
+      <modal name="modal-content">
+          <p>モーダルウィンドウで表示されるコンテンツ</p>
+      </modal>
     </div>
     <div>
       <input v-model="name">
@@ -40,6 +45,12 @@ export default {
   methods: {
     search() {
       this.$store.dispatch('items/search', this.name)
+    },
+    show() {
+      this.$modal.show("modal-content");
+    },
+    hide() {
+      this.$modal.hide("modal-content");
     }
   }
 }

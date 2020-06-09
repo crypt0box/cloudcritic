@@ -3,7 +3,7 @@ import colors from 'vuetify/es5/util/colors'
 const webpack = require('webpack')
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
   /*
    ** Headers of the page
    */
@@ -32,7 +32,9 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/modal.js'}
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -81,7 +83,7 @@ export default {
     extend(config, ctx) {},
     plugins: [
       new webpack.ProvidePlugin({
-        '_': 'lodash'
+        '_': 'lodash',
       })
     ]
   },
