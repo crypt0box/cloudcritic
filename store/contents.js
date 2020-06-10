@@ -1,10 +1,14 @@
 export const state = () => ({
-  results: []
+  results: [],
+  item: []
 })
 
 export const mutations = {
   setResults(state, results) {
     state.results = results
+  },
+  setItem(state, item) {
+    state.item = item
   }
 }
 
@@ -16,11 +20,17 @@ export const actions = {
     const response = await this.$axios.$get(getUrl)
     console.log(response)
     commit('setResults', response.items)
+  },
+  update({ commit }, item) {
+    commit('setItem', item)
   }
 }
 
 export const getters = {
   getResults(state) {
     return state.results
+  },
+  getItem(state) {
+    return state.item
   }
 }

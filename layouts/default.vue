@@ -113,8 +113,8 @@ export default {
         },
         {
           icon: 'mdi-amazon',
-          title: 'Items',
-          to: '/items'
+          title: 'Contents',
+          to: '/contents'
         }
       ],
       miniVariant: false,

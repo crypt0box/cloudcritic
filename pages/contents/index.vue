@@ -2,8 +2,8 @@
   <section class="container">
     <div>
       <nuxt-link :to="'users/' + $store.getters['auth/getUserUid']">user</nuxt-link>
+      <nuxt-link :to="'contents/CreateContent'">作成</nuxt-link>
       <button @click="show">クリックする</button>
-
       <modal name="modal-content" height="80%" width="80%" :scrollable="true">
         <create-content />
       </modal>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import CreateContent from '~/components/CreateContent.vue'
+import CreateContent from '~/components/SelectImage.vue'
 
 export default {
   components: {
@@ -21,13 +21,9 @@ export default {
   data() {
     return {
       name: '',
-      results: []
     }
   },
   methods: {
-    search() {
-      this.$store.dispatch('items/search', this.name)
-    },
     show() {
       this.$modal.show("modal-content");
     },
