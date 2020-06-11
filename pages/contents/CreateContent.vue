@@ -23,14 +23,42 @@
         </div>
       </v-list-item-content>
     </v-list-item>
+    <v-list-item two-line>
+      <v-list-item-content>
+        <v-row>
+          <v-col
+            v-for="(tag, index) in tags"
+            :key="tag.index"
+          >
+          <v-chip
+            class="ma-2"
+            color="pink"
+            label
+            close
+            text-color="white"
+            @click:close="removeTag(index)"
+          >
+            <v-icon left>mdi-label</v-icon>
+            {{ tag }}
+          </v-chip>
+          </v-col>
+        </v-row>
+      </v-list-item-content>
+    </v-list-item>
     <v-card-text>
       <v-form>
         <v-text-field v-model="name"></v-text-field>
         <v-card-actions>
-          <v-btn @click="search(); show()">search</v-btn>
+          <v-btn @click="search(); show()">書籍検索</v-btn>
           <modal name="modal-content" height="auto" :scrollable="true">
             <select-image />
           </modal>
+        </v-card-actions>
+      </v-form>
+      <v-form>
+        <v-text-field v-model="tagName"></v-text-field>
+        <v-card-actions>
+          <v-btn @click="addTag">タグを追加</v-btn>
         </v-card-actions>
       </v-form>
     </v-card-text>
@@ -48,6 +76,8 @@ export default {
   data() {
     return {
       name: '',
+      tagName: '',
+      tags: []
     }
   },
   created() {
@@ -57,10 +87,14 @@ export default {
       this.$store.dispatch('contents/search', this.name)
     },
     show() {
-      this.$modal.show("modal-content");
+      this.$modal.show('modal-content');
     },
-    hide() {
-      this.$modal.hide("modal-content");
+    addTag() {
+      this.tags.push(this.tagName)
+      this.tagName = ''
+    },
+    removeTag(index) {
+      this.tags.splice(index, 1)
     }
   }
 }
