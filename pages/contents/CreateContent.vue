@@ -80,8 +80,6 @@ export default {
       tags: []
     }
   },
-  created() {
-  },
   methods: {
     search() {
       this.$store.dispatch('contents/search', this.name)
