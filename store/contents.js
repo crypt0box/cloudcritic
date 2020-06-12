@@ -1,36 +1,31 @@
+import { firestoreAction } from 'vuexfire'
+import firebase from '~/plugins/firebase'
+
+const db = firebase.firestore()
+const contentsRef = db.collection('contents')
+
 export const state = () => ({
-  results: [],
-  item: []
+  contents: []
 })
 
-export const mutations = {
-  setResults(state, results) {
-    state.results = results
-  },
-  setItem(state, item) {
-    state.item = item
-  }
+export const actions = {
+  init: firestoreAction(({ bindFirestoreRef }) => {
+    bindFirestoreRef('contents', contentsRef)
+  }),
+  add: firestoreAction((context, {title, author, thumbnailUrl, tags}) => {
+    contentsRef.add({
+      title: title,
+      author: author,
+      thumbnailUrl: thumbnailUrl,
+      tags: tags,
+      category: 'book'
+    })
+  })
 }
 
-export const actions = {
-  async search({ commit }, itemName) {
-    const baseUrl = 'https://www.googleapis.com/books/v1/volumes?q='
-    let keyword = `${itemName}`
-    const getUrl = baseUrl + keyword
-    const response = await this.$axios.$get(getUrl)
-    console.log(response)
-    commit('setResults', response.items)
-  },
-  update({ commit }, item) {
-    commit('setItem', item)
-  }
-}
 
 export const getters = {
-  getResults(state) {
-    return state.results
-  },
-  getItem(state) {
-    return state.item
+  getContents(state) {
+    return state.contents
   }
 }

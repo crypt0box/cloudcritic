@@ -3,7 +3,7 @@
   <v-container>
     <v-row>
       <v-col
-        v-for="item in $store.getters['contents/getResults']"
+        v-for="item in $store.getters['contentsAPI/getResults']"
         :key="item.id"
       >
       <a @click="selectItem(item); hide()">
@@ -26,7 +26,7 @@
 export default {
   methods: {
     selectItem(item) {
-      this.$store.dispatch("contents/update", item)
+      this.$store.dispatch("contentsAPI/update", item)
     },
     hide() {
       this.$modal.hide("modal-content");

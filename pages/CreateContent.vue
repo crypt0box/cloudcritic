@@ -4,10 +4,10 @@
     <v-card-title>
       <h1 class="display-1">コンテンツ登録</h1>
     </v-card-title>
-    <v-list-item v-if="$store.getters['contents/getItem'].volumeInfo != undefined">
+    <v-list-item v-if="$store.getters['contentsAPI/getItem'].volumeInfo != undefined">
       <v-list-item-content>
         <v-img
-          :src="$store.getters['contents/getItem'].volumeInfo.imageLinks.thumbnail"
+          :src="$store.getters['contentsAPI/getItem'].volumeInfo.imageLinks.thumbnail"
           maxWidth="100"
           maxHeight="140"
           class="white--text align-end"
@@ -16,10 +16,10 @@
       </v-list-item-content>
       <v-list-item-content>
         <p>タイトル：</p>
-        <p>{{ $store.getters['contents/getItem'].volumeInfo.title }}</p>
+        <p>{{ $store.getters['contentsAPI/getItem'].volumeInfo.title }}</p>
         <p>著者：</p>
-        <div v-if="$store.getters['contents/getItem'].volumeInfo.authors">
-          <p>{{ $store.getters['contents/getItem'].volumeInfo.authors[0] }}</p>
+        <div v-if="$store.getters['contentsAPI/getItem'].volumeInfo.authors">
+          <p>{{ $store.getters['contentsAPI/getItem'].volumeInfo.authors[0] }}</p>
         </div>
       </v-list-item-content>
     </v-list-item>
@@ -27,7 +27,7 @@
       <v-list-item-content>
         <v-row>
           <v-col
-            v-for="(tag, index) in tags"
+            v-for="tag in Object.keys(tags)"
             :key="tag.index"
           >
           <v-chip
@@ -36,7 +36,7 @@
             label
             close
             text-color="white"
-            @click:close="removeTag(index)"
+            @click:close="removeTag(tag)"
           >
             <v-icon left>mdi-label</v-icon>
             {{ tag }}
@@ -51,7 +51,7 @@
         <v-card-actions>
           <v-btn @click="search(); show()">書籍検索</v-btn>
           <modal name="modal-content" height="auto" :scrollable="true">
-            <select-image />
+            <select-image></select-image>
           </modal>
         </v-card-actions>
       </v-form>
@@ -61,6 +61,9 @@
           <v-btn @click="addTag">タグを追加</v-btn>
         </v-card-actions>
       </v-form>
+      <v-card-actions>
+        <v-btn @click="register">登録</v-btn>
+      </v-card-actions>
     </v-card-text>
   </v-card>
 </v-app>
@@ -76,23 +79,38 @@ export default {
   data() {
     return {
       name: '',
+      title: '',
+      author: '',
+      thumbnailUrl: '',
       tagName: '',
-      tags: []
+      tags: {}
     }
   },
   methods: {
     search() {
-      this.$store.dispatch('contents/search', this.name)
+      this.$store.dispatch('contentsAPI/search', this.name)
     },
     show() {
       this.$modal.show('modal-content');
     },
     addTag() {
-      this.tags.push(this.tagName)
+      this.tags[this.tagName] = 0
       this.tagName = ''
     },
-    removeTag(index) {
-      this.tags.splice(index, 1)
+    removeTag(tag) {
+      this.$delete(this.tags, tag)
+    },
+    register() {
+      this.title = this.$store.getters['contentsAPI/getItem'].volumeInfo.title
+      this.author = this.$store.getters['contentsAPI/getItem'].volumeInfo.authors[0]
+      this.thumbnailUrl = this.$store.getters['contentsAPI/getItem'].volumeInfo.imageLinks.thumbnail
+      this.$store.dispatch('contents/add', {
+        title: this.title,
+        author: this.author,
+        thumbnailUrl: this.thumbnailUrl,
+        tags: this.tags,
+      }),
+      this.$router.push('/')
     }
   }
 }
