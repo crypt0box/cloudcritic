@@ -15,7 +15,7 @@
             v-for="content in contents"
             :key="content.id"
           >
-          <a >
+          <nuxt-link :to="'content/' + content.id">
             <v-img
               :src="content.thumbnailUrl"
               maxWidth="100"
@@ -23,7 +23,7 @@
               class="white--text align-end"
             >
             </v-img>
-          </a>
+          </nuxt-link>
           </v-col>
         </v-row>
       </v-container>
