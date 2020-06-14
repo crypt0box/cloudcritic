@@ -5,7 +5,7 @@
       <nuxt-link :to="'CreateContent'">作成</nuxt-link>
       <button @click="show">クリックする</button>
       <modal name="modal-content" height="80%" width="80%" :scrollable="true">
-        <create-content />
+        <select-image />
       </modal>
     </header>
     <body>
@@ -32,11 +32,11 @@
 </template>
 
 <script>
-import CreateContent from '~/components/SelectImage.vue'
+import SelectImage from '~/components/SelectImage.vue'
 
 export default {
   components: {
-    CreateContent
+    SelectImage
   },
   data() {
     return {
