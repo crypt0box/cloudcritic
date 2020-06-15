@@ -1,7 +1,46 @@
 <template>
   <div>
     {{content}}
-    <p>{{title}}{{tags}}</p>
+    <v-container class="content-detail">
+      <v-row>
+        <v-col>
+          <v-row>
+            <v-col>
+                <h1>{{ title }}</h1>
+              <v-img
+                :src="thumbnailUrl"
+                maxWidth="240px"
+                class="white--text align-end"
+              >
+              </v-img>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-btn class="ma-2" tile outlined color="success">
+              <v-icon center>mdi-pencil</v-icon>
+            </v-btn>
+            <v-btn class="ma-2" tile outlined>
+              <v-icon center>mdi-thumb-up</v-icon> 110
+            </v-btn>
+            <v-btn class="ma-2" tile outlined color="pink">
+              <v-icon center>mdi-heart</v-icon>
+            </v-btn>
+          </v-row>
+        </v-col>
+        <v-col>
+          ワードクラウド
+        </v-col>
+      </v-row>
+      <v-divider/>
+      <v-row>
+        <v-col>
+          コメント
+        </v-col>
+        <v-col>
+          タグ
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 

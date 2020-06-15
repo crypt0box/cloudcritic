@@ -94,7 +94,9 @@ export default {
       this.$modal.show('modal-content');
     },
     addTag() {
-      this.tags[this.tagName] = 0
+      if (this.tagName != '') {
+        this.tags[this.tagName] = 0
+      }
       this.tagName = ''
     },
     removeTag(tag) {
