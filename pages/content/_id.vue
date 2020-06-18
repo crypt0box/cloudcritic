@@ -19,8 +19,8 @@
             <v-btn class="ma-2" tile outlined color="success">
               <v-icon center>mdi-pencil</v-icon>
             </v-btn>
-            <v-btn class="ma-2" tile outlined>
-              <v-icon center>mdi-thumb-up</v-icon> 110
+            <v-btn class="ma-2" tile outlined @click="goodjob">
+              <v-icon center>mdi-thumb-up</v-icon> {{ totalGoodjob }}
             </v-btn>
             <v-btn class="ma-2" tile outlined color="pink">
               <v-icon center>mdi-heart</v-icon>
@@ -54,7 +54,8 @@ export default {
       title: '',
       author: '',
       thumbnailUrl: '',
-      tags: {}
+      tags: {},
+      totalGoodjob: 0
     }
   },
   created() {
@@ -67,7 +68,17 @@ export default {
         this.author = this.$store.getters['contents/getContent'].author
         this.thumbnailUrl = this.$store.getters['contents/getContent'].thumbnailUrl
         this.tags = this.$store.getters['contents/getContent'].tags
+        this.totalGoodjob = this.$store.getters['contents/getContent'].totalGoodjob
       }
+    }
+  },
+  methods: {
+    goodjob() {
+      this.totalGoodjob += 1
+      this.$store.dispatch('contents/updateTotalGoodjob', {
+        id: this.$route.params.id,
+        goodjob: this.totalGoodjob,
+      })
     }
   }
 }

@@ -22,7 +22,13 @@ export const actions = {
       author: author,
       thumbnailUrl: thumbnailUrl,
       tags: tags,
+      totalGoodjob: 0,
       category: 'book'
+    })
+  }),
+  updateTotalGoodjob: firestoreAction((context, { id, goodjob }) => {
+    contentsRef.doc(id).update({
+      totalGoodjob: goodjob,
     })
   })
 }
