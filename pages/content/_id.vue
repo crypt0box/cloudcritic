@@ -37,7 +37,14 @@
           コメント
         </v-col>
         <v-col>
-          タグ
+          <v-list-item
+            v-for="(name, index) in tags"
+            :key="index"
+          >
+           <v-list-item-content>
+             {{ index }}
+           </v-list-item-content>>
+          </v-list-item>
         </v-col>
       </v-row>
     </v-container>

@@ -27,7 +27,7 @@
       <v-list-item-content>
         <v-row>
           <v-col
-            v-for="tag in Object.keys(tags)"
+            v-for="tag in tags"
             :key="tag.index"
           >
           <v-chip
@@ -39,7 +39,7 @@
             @click:close="removeTag(tag)"
           >
             <v-icon left>mdi-label</v-icon>
-            {{ tag }}
+            {{ tag.name }}
           </v-chip>
           </v-col>
         </v-row>
@@ -83,7 +83,7 @@ export default {
       author: '',
       thumbnailUrl: '',
       tagName: '',
-      tags: {}
+      tags: []
     }
   },
   methods: {
@@ -95,7 +95,7 @@ export default {
     },
     addTag() {
       if (this.tagName != '') {
-        this.tags[this.tagName] = 0
+        this.tags.push({name: this.tagName, goodjob: 0})
       }
       this.tagName = ''
     },
