@@ -22,15 +22,15 @@ export const actions = {
       author: author,
       thumbnailUrl: thumbnailUrl,
       tags: tags,
-      totalGoodjob: 0,
+      totalLike: 0,
       category: 'book'
     })
   }),
-  updateTotalGoodjob: firestoreAction((context, { id, goodjob }) => {
+  updateTotalLike: firestoreAction((context, { id, like }) => {
     contentsRef.doc(id).update({
-      totalGoodjob: goodjob,
+      totalLike: like,
     })
-  })
+  }),
 }
 
 export const getters = {

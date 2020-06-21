@@ -19,11 +19,22 @@
             <v-btn class="ma-2" tile outlined color="success">
               <v-icon center>mdi-pencil</v-icon>
             </v-btn>
-            <v-btn class="ma-2" tile outlined @click="goodjob">
-              <v-icon center>mdi-thumb-up</v-icon> {{ totalGoodjob }}
+            <v-btn class="ma-2" tile outlined @click="countTotalLike">
+              <v-icon center>mdi-thumb-up</v-icon> {{ totalLike }}
             </v-btn>
-            <v-btn class="ma-2" tile outlined color="pink">
-              <v-icon center>mdi-heart</v-icon>
+            <v-btn class="ma-2" tile outlined color="pink" @click="registerFavorite = !registerFavorite">
+              <v-icon 
+                center
+                v-if="registerFavorite"
+              >
+              mdi-heart
+              </v-icon>
+              <v-icon 
+                center
+                v-else
+              >
+              mdi-heart-outline
+              </v-icon>
             </v-btn>
           </v-row>
         </v-col>
@@ -37,14 +48,21 @@
           コメント
         </v-col>
         <v-col>
-          <v-list-item
-            v-for="(name, index) in tags"
-            :key="index"
-          >
-           <v-list-item-content>
-             {{ index }}
-           </v-list-item-content>>
-          </v-list-item>
+          <v-subheader>タグ</v-subheader>
+          <v-list-item-group color="primary">
+            <v-list-item
+              v-for="(tag, index) in tags"
+              :key="index"
+            >
+            <v-list-item-content>
+              {{ tag.name }}
+            </v-list-item-content>
+            <v-list-item-icon>
+              <v-icon>mdi-thumb-up</v-icon>
+            </v-list-item-icon>
+            {{ tag.like }}
+            </v-list-item>
+          </v-list-item-group>
         </v-col>
       </v-row>
     </v-container>
@@ -62,7 +80,8 @@ export default {
       author: '',
       thumbnailUrl: '',
       tags: {},
-      totalGoodjob: 0
+      totalLike: 0,
+      registerFavorite: false
     }
   },
   created() {
@@ -75,18 +94,18 @@ export default {
         this.author = this.$store.getters['contents/getContent'].author
         this.thumbnailUrl = this.$store.getters['contents/getContent'].thumbnailUrl
         this.tags = this.$store.getters['contents/getContent'].tags
-        this.totalGoodjob = this.$store.getters['contents/getContent'].totalGoodjob
+        this.totalLike = this.$store.getters['contents/getContent'].totalLike
       }
     }
   },
   methods: {
-    goodjob() {
-      this.totalGoodjob += 1
-      this.$store.dispatch('contents/updateTotalGoodjob', {
+    countTotalLike() {
+      this.totalLike += 1
+      this.$store.dispatch('contents/updateTotalLike', {
         id: this.$route.params.id,
-        goodjob: this.totalGoodjob,
+        like: this.totalLike,
       })
-    }
+    },
   }
 }
 </script>

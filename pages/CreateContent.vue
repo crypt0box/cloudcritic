@@ -95,7 +95,7 @@ export default {
     },
     addTag() {
       if (this.tagName != '') {
-        this.tags.push({name: this.tagName, goodjob: 0})
+        this.tags.push({name: this.tagName, like: 0})
       }
       this.tagName = ''
     },
