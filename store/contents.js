@@ -6,7 +6,7 @@ const contentsRef = db.collection('contents')
 
 export const state = () => ({
   contents: [],
-  content: {}
+  content: {},
 })
 
 export const actions = {
@@ -16,14 +16,13 @@ export const actions = {
   initContent: firestoreAction(({ bindFirestoreRef }, id) => {
     bindFirestoreRef('content', contentsRef.doc(id))
   }),
-  add: firestoreAction((context, {title, author, thumbnailUrl, tags}) => {
+  add: firestoreAction((context, {title, author, thumbnailUrl}) => {
     contentsRef.add({
       title: title,
       author: author,
       thumbnailUrl: thumbnailUrl,
-      tags: tags,
       totalLike: 0,
-      category: 'book'
+      category: 'book',
     })
   }),
   updateTotalLike: firestoreAction((context, { id, like }) => {
