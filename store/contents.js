@@ -7,7 +7,14 @@ const contentsRef = db.collection('contents')
 export const state = () => ({
   contents: [],
   content: {},
+  contentId: ''
 })
+
+export const mutations = {
+  setContentId(state, id) {
+    state.contentId = id
+  }
+}
 
 export const actions = {
   init: firestoreAction(({ bindFirestoreRef }) => {
@@ -24,6 +31,9 @@ export const actions = {
       totalLike: 0,
       category: 'book',
     })
+    .then(response => {
+      $nuxt.$router.push('/content/' + response.id)
+    })
   }),
   updateTotalLike: firestoreAction((context, { id, like }) => {
     contentsRef.doc(id).update({
@@ -39,4 +49,7 @@ export const getters = {
   getContent(state) {
     return state.content
   },
+  getContentId(state) {
+    return state.contentId
+  }
 }

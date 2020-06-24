@@ -52,7 +52,6 @@ export default {
         author: this.author,
         thumbnailUrl: this.thumbnailUrl,
       })
-      this.$router.push('/')
     }
   }
 }
