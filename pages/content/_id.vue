@@ -39,20 +39,14 @@
           </v-row>
         </v-col>
         <v-col>
-          ワードクラウド
-        </v-col>
-      </v-row>
-      <v-divider/>
-      <v-row>
-        <v-col>
-          コメント
-        </v-col>
-        <v-col>
-          <v-subheader>タグ</v-subheader>
+          <button @click="show">タグを編集</button>
+          <modal name="modal-content" height="80%" width="80%">
+            <edit-tag />
+          </modal>
           <v-list-item-group color="primary">
             <v-list-item
-              v-for="(tag, index) in tags"
-              :key="index"
+              v-for="tag in tags"
+              :key="tag.index"
             >
             <v-list-item-content>
               {{ tag.name }}
@@ -65,6 +59,15 @@
           </v-list-item-group>
         </v-col>
       </v-row>
+      <v-divider/>
+      <v-row>
+        <v-col>
+          ワードクラウド
+        </v-col>
+        <v-col>
+          コメント
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -72,20 +75,25 @@
 <script>
 import { firestoreAction, firestoreOptions } from 'vuexfire'
 import firebase from '~/plugins/firebase'
+import EditTag from '~/components/EditTag.vue'
 
 export default {
+  components: {
+    EditTag
+  },
   data() {
     return {
       title: '',
       author: '',
       thumbnailUrl: '',
-      tags: {},
+      tags: [],
       totalLike: 0,
       registerFavorite: false
     }
   },
   created() {
     this.$store.dispatch('contents/initContent', this.$route.params.id)
+    this.$store.dispatch('contents/initTags', this.$route.params.id)
   },
   computed: {
     content() {
@@ -93,12 +101,15 @@ export default {
         this.title = this.$store.getters['contents/getContent'].title
         this.author = this.$store.getters['contents/getContent'].author
         this.thumbnailUrl = this.$store.getters['contents/getContent'].thumbnailUrl
-        this.tags = this.$store.getters['contents/getContent'].tags
+        this.tags = this.$store.getters['contents/getTags']
         this.totalLike = this.$store.getters['contents/getContent'].totalLike
       }
     }
   },
   methods: {
+    show() {
+      this.$modal.show('modal-content')
+    },
     countTotalLike() {
       this.totalLike += 1
       this.$store.dispatch('contents/updateTotalLike', {
