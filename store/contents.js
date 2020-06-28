@@ -7,15 +7,9 @@ const contentsRef = db.collection('contents')
 export const state = () => ({
   contents: [],
   content: {},
-  contentId: '',
   tags: []
 })
 
-export const mutations = {
-  setContentId(state, id) {
-    state.contentId = id
-  }
-}
 
 export const actions = {
   init: firestoreAction(({ bindFirestoreRef }) => {
@@ -47,7 +41,12 @@ export const actions = {
   addTag: ((context, { id, tag }) => {
     contentsRef.doc(id).collection('tags').add(tag)
     $nuxt.$router.push('/content/' + id)
-  })
+  }),
+  updateLike: firestoreAction((context, { contentId, tagId　}) => {
+    contentsRef.doc(contentId).collection('tags').doc(tagId).update({
+      like: firebase.firestore.FieldValue.increment(1)
+    })
+  }),
 }
 
 export const getters = {
@@ -60,7 +59,4 @@ export const getters = {
   getTags(state) {
     return state.tags
   },
-  getContentId(state) {
-    return state.contentId
-  }
 }

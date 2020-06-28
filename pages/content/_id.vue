@@ -43,10 +43,13 @@
           <modal name="modal-content" height="80%" width="80%">
             <edit-tag />
           </modal>
-          <v-list-item-group color="primary">
+          <v-list-item-group 
+            color="primary"
+          >
             <v-list-item
               v-for="tag in tags"
               :key="tag.index"
+              @click="countLike(tag.id); countTotalLike()"
             >
             <v-list-item-content>
               {{ tag.name }}
@@ -117,6 +120,12 @@ export default {
         like: this.totalLike,
       })
     },
+    countLike(id) {
+      this.$store.dispatch('contents/updateLike', {
+        contentId: this.$route.params.id,
+        tagId: id,
+      })
+    }
   }
 }
 </script>
