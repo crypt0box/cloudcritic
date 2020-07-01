@@ -33,7 +33,13 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: '~/plugins/modal.js'}
+    { 
+      src: '~/plugins/modal.js'
+    },
+    {
+      src: '~/plugins/wordcloud.js',
+      mode: 'client'
+    }
   ],
   /*
    ** Nuxt.js dev-modules

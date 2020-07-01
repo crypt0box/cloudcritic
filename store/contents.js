@@ -7,9 +7,12 @@ const contentsRef = db.collection('contents')
 export const state = () => ({
   contents: [],
   content: {},
-  tags: []
+  tags: [],
+  defaultWords: []
 })
 
+export const mutations = {
+}
 
 export const actions = {
   init: firestoreAction(({ bindFirestoreRef }) => {

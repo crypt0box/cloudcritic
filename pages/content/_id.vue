@@ -65,7 +65,14 @@
       <v-divider/>
       <v-row>
         <v-col>
-          ワードクラウド
+          wordcloud
+          <wordcloud
+          :data="defaultWords"
+          name-key="name"
+          value-key="like"
+          :color="myColors"
+          :show-tooltip="false"
+        />
         </v-col>
         <v-col>
           コメント
@@ -91,7 +98,9 @@ export default {
       thumbnailUrl: '',
       tags: [],
       totalLike: 0,
-      registerFavorite: false
+      registerFavorite: false,
+      myColors: ['#38b508', '#76ed47', '#a8e88f', '#39c900'],
+      defaultWords: []
     }
   },
   created() {
@@ -104,10 +113,10 @@ export default {
         this.title = this.$store.getters['contents/getContent'].title
         this.author = this.$store.getters['contents/getContent'].author
         this.thumbnailUrl = this.$store.getters['contents/getContent'].thumbnailUrl
-        this.tags = this.$store.getters['contents/getTags']
         this.totalLike = this.$store.getters['contents/getContent'].totalLike
+        this.tags = this.$store.getters['contents/getTags']
       }
-    }
+    },
   },
   methods: {
     show() {
@@ -125,7 +134,7 @@ export default {
         contentId: this.$route.params.id,
         tagId: id,
       })
-    }
+    },
   }
 }
 </script>
