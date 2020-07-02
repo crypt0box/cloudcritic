@@ -108,8 +108,8 @@ export default {
         },
         {
           icon: 'mdi-format-align-justify',
-          title: 'Todos',
-          to: '/todos'
+          title: 'Login',
+          to: '/login'
         },
         {
           icon: 'mdi-amazon',

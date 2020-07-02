@@ -3,20 +3,16 @@ import firebase from '~/plugins/firebase'
 const db = firebase.firestore()
 
 export const state = () => ({
-  userUid: '',
-  userEmail: '',
-  idToken: null,
+  user: {},
+  status: false
 })
 
 export const mutations = {
-  setUserUid(state, userUid) {
-  state.userUid = userUid
+  onAuthStateChanged(state, user) {
+    state.user = user; //firebaseが返したユーザー情報
   },
-  setUserEmail(state, userEmail) {
-  state.userEmail = userEmail
-  },
-  setIdToken(state, idToken) {
-  state.idToken = idToken
+  onUserStatusChanged(state, status) {
+    state.status = status; //ログインしてるかどうか true or false
   }
 }
 
@@ -35,31 +31,21 @@ export const actions = {
       authData.email,
       authData.password,
     )
-    .then(response => {
-      const user = response.user;
-      commit('setUserUid', user.uid)
-      commit('setUserEmail', user.email)
-      },
-    )
   },
-  updateIdToken({ commit }) {
-    firebase.auth().onAuthStateChanged(async currentUser => {
-      if(currentUser) {
-      const idToken = await currentUser.getIdToken();
-      commit('setIdToken', idToken)
-      }
+  onAuth({ commit }) {
+    firebase.auth().onAuthStateChanged(user => {
+      user = user ? user: {}
+      commit('onAuthStateChanged', user)
+      commit('onUserStatusChanged', user.uid ? true : false)
     })
   }
 }
 
 export const getters = {
-  getUserUid(state) {
-    return state.userUid
+  user(state) {
+    return state.user;
   },
-  getUserEmail(state) {
-    return state.userEmail
-  },
-  getIdToken(state) {
-    return state.idToken
+  isSignedIn(state) {
+    return state.status;
   }
-}
+};

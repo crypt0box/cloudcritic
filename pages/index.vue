@@ -1,7 +1,6 @@
 <template>
   <section>
     <header>
-      <nuxt-link :to="'users/' + $store.getters['auth/getUserUid']">user</nuxt-link>
       <nuxt-link :to="'CreateContent'">作成</nuxt-link>
       <button @click="show">クリックする</button>
       <modal name="modal-content" height="80%" width="80%" :scrollable="true">
@@ -57,7 +56,7 @@ export default {
   computed:{
     contents() {
       return this.$store.getters['contents/getContents']
-    }
+    },
   }
 }
 </script>
