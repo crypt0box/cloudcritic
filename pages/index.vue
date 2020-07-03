@@ -6,6 +6,7 @@
       <modal name="modal-content" height="80%" width="80%" :scrollable="true">
         <select-image />
       </modal>
+      {{user}}
     </header>
     <body>
       <v-container>
@@ -43,20 +44,25 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('contents/init');
+    this.$store.dispatch('contents/init')
+    this.$store.dispatch('auth/onAuth')
   },
   methods: {
     show() {
-      this.$modal.show("modal-content");
+      this.$modal.show("modal-content")
     },
     hide() {
-      this.$modal.hide("modal-content");
+      this.$modal.hide("modal-content")
     }
   },
   computed:{
     contents() {
       return this.$store.getters['contents/getContents']
     },
+    user() {
+      console.log(this.$store.getters['auth/userId'])
+      return this.$store.getters['auth/userId']
+    }
   }
 }
 </script>
