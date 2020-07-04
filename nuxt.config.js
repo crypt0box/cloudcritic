@@ -39,7 +39,10 @@ export default {
     {
       src: '~/plugins/wordcloud.js',
       mode: 'client'
-    }
+    },
+    { src: '@/plugins/persistedstate.js', 
+      ssr: false 
+    },
   ],
   /*
    ** Nuxt.js dev-modules
