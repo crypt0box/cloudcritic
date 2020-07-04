@@ -1,9 +1,13 @@
 <template>
   <v-app>
     <v-container>
-      <v-form>
-        <v-text-field v-model="name"></v-text-field>
-        <v-btn @click="search">書籍検索</v-btn>
+      <v-form @submit.prevent="search">
+        <v-text-field 
+          v-model="name"
+          placeholder="作品名または作者で検索"
+          append-icon="mdi-magnify"
+        >
+        </v-text-field>
       </v-form>
     </v-container>
     <v-row>
