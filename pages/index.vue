@@ -2,11 +2,11 @@
   <section>
     <header>
       <nuxt-link :to="'CreateContent'">作成</nuxt-link>
+      <nuxt-link :to="'users/' + $store.getters['auth/getUserId']">マイページ</nuxt-link>
       <button @click="show">クリックする</button>
       <modal name="modal-content" height="80%" width="80%" :scrollable="true">
         <select-image />
       </modal>
-      {{user}}
     </header>
     <body>
       <v-container>
@@ -38,11 +38,6 @@ export default {
   components: {
     SelectImage
   },
-  data() {
-    return {
-      name: '',
-    }
-  },
   created() {
     this.$store.dispatch('contents/init')
     this.$store.dispatch('auth/onAuth')
@@ -59,10 +54,6 @@ export default {
     contents() {
       return this.$store.getters['contents/getContents']
     },
-    user() {
-      console.log(this.$store.getters['auth/userId'])
-      return this.$store.getters['auth/userId']
-    }
   }
 }
 </script>

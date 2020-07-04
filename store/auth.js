@@ -3,13 +3,15 @@ import firebase from '~/plugins/firebase'
 const db = firebase.firestore()
 
 export const state = () => ({
-  userId: {},
+  id: '',
+  email: '',
   status: false
 })
 
 export const mutations = {
-  onAuthStateChanged(state, userId) {
-    state.userId = userId; //firebaseが返したユーザー情報
+  onAuthStateChanged(state, {id, email}) {
+    state.id = id  //firebaseが返したユーザー情報
+    state.email = email
   },
   onUserStatusChanged(state, status) {
     state.status = status; //ログインしてるかどうか true or false
@@ -31,22 +33,29 @@ export const actions = {
       authData.email,
       authData.password,
     )
-    .then(res => {
-      commit('onAuthStateChanged', res.user.uid);
-      commit('onUserStatusChanged', res.user.uid ? true : false);
-    })
   },
   onAuth({ commit }) {
     firebase.auth().onAuthStateChanged(user => {
+      user = user ? user : {}
+      if(user) {
+        const { uid, email } = user
+        commit('onAuthStateChanged', {id: uid, email: email})
+        commit('onUserStatusChanged', uid ? true : false)
+      } else {
+        console.log('user inai')
+      }
     })
   }
 }
 
 export const getters = {
-  userId(state) {
-    return state.userId;
+  getUserId(state) {
+    return state.id
+  },
+  getUserEmail(state) {
+    return state.email
   },
   isSignedIn(state) {
-    return state.status;
+    return state.status
   }
 };
