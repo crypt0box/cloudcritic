@@ -126,11 +126,7 @@ export default {
       this.$modal.show('modal-content')
     },
     countTotalLike() {
-      this.totalLike += 1
-      this.$store.dispatch('contents/updateTotalLike', {
-        id: this.$route.params.id,
-        like: this.totalLike,
-      })
+      this.$store.dispatch('contents/updateTotalLike', this.$route.params.id)
     },
     countLike(id) {
       this.$store.dispatch('contents/updateLike', {

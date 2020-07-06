@@ -36,9 +36,9 @@ export const actions = {
       $nuxt.$router.push('/content/' + response.id)
     })
   }),
-  updateTotalLike: firestoreAction((context, { id, like }) => {
+  updateTotalLike: firestoreAction((context, id) => {
     contentsRef.doc(id).update({
-      totalLike: like,
+      totalLike: firebase.firestore.FieldValue.increment(1)
     })
   }),
   addTag: ((context, { id, tag }) => {
