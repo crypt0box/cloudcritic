@@ -22,7 +22,7 @@ export const actions = {
     bindFirestoreRef('content', contentsRef.doc(id))
   }),
   initTags: firestoreAction(({ bindFirestoreRef }, id) => {
-    bindFirestoreRef('tags', contentsRef.doc(id).collection('tags'))
+    bindFirestoreRef('tags', contentsRef.doc(id).collection('tags').orderBy('like', 'desc'))
   }),
   add: firestoreAction((context, {title, author, thumbnailUrl}) => {
     contentsRef.add({
