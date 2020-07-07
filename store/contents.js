@@ -8,7 +8,6 @@ export const state = () => ({
   contents: [],
   content: {},
   tags: [],
-  defaultWords: []
 })
 
 export const mutations = {
