@@ -4,7 +4,7 @@
       <v-form>
         <v-text-field v-model="tagName"></v-text-field>
         <v-btn @click="add">タグを追加</v-btn>
-        <v-btn @click="register">登録</v-btn>
+        <v-btn @click="register(); hide()">登録</v-btn>
       </v-form>
     </v-container>
     <v-row>
