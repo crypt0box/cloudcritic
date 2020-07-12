@@ -30,12 +30,13 @@
 
 <script>
 export default {
-  name: 'App',
-  data: () => ({
-    email: "",
-    password: "",
-    showPassword: false,
-  }),
+  data() {
+    return {
+      email: "",
+      password: "",
+      showPassword: false,
+    }
+  },
   methods: {
     register() {
       this.$store.dispatch('auth/register', {
@@ -45,7 +46,7 @@ export default {
       this.$store.dispatch('auth/updateIdToken')
       this.email = "";
       this.password = "";
-      this.$router.push('items')
+      this.$router.push('/')
     }
   }
 }
