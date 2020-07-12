@@ -1,9 +1,18 @@
 <template>
-  <div>
-    id:{{ $store.getters['auth/getUserId'] }}
-    email:{{ $store.getters['auth/getUserEmail'] }}
-    name:{{ $store.getters['auth/getUserName'] }}
-  </div>
+  <v-container>
+    <v-row>
+      <v-col cols="12" md="4">
+        <div>
+          id:{{ $store.getters['auth/getUserId'] }}
+          email:{{ $store.getters['auth/getUserEmail'] }}
+          name:{{ $store.getters['auth/getUserName'] }}
+        </div>
+      </v-col>
+      <v-col cols="12" md="8">
+        favorite card
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

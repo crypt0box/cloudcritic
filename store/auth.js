@@ -1,6 +1,7 @@
 import firebase from '~/plugins/firebase'
 
 const db = firebase.firestore()
+const userRef = db.collection('user')
 
 export const state = () => ({
   id: '',
@@ -26,8 +27,8 @@ export const actions = {
       authData.email,
       authData.password,
     )
-    .then(response => {
-      response.user.updateProfile({
+    .then(res => {
+      res.user.updateProfile({
         displayName: authData.displayName
       })
     })
@@ -45,6 +46,11 @@ export const actions = {
         const { uid, email, displayName } = user
         commit('onAuthStateChanged', {id: uid, email: email, username: displayName})
         commit('onUserStatusChanged', uid ? true : false)
+        userRef.doc(uid).set({
+          username: displayName,
+          uid: uid,
+          created: firebase.firestore.FieldValue.serverTimestamp()
+        })
       } else {
         console.log('user inai')
       }
