@@ -5,13 +5,15 @@ const db = firebase.firestore()
 export const state = () => ({
   id: '',
   email: '',
+  username: '',
   status: false
 })
 
 export const mutations = {
-  onAuthStateChanged(state, {id, email}) {
+  onAuthStateChanged(state, {id, email, username}) {
     state.id = id  //firebaseが返したユーザー情報
     state.email = email
+    state.username = username
   },
   onUserStatusChanged(state, status) {
     state.status = status; //ログインしてるかどうか true or false
@@ -25,7 +27,9 @@ export const actions = {
       authData.password,
     )
     .then(response => {
-      console.log(response)
+      response.user.updateProfile({
+        displayName: authData.displayName
+      })
     })
   },
   login({ commit }, authData) {
@@ -38,8 +42,8 @@ export const actions = {
     firebase.auth().onAuthStateChanged(user => {
       user = user ? user : {}
       if(user) {
-        const { uid, email } = user
-        commit('onAuthStateChanged', {id: uid, email: email})
+        const { uid, email, displayName } = user
+        commit('onAuthStateChanged', {id: uid, email: email, username: displayName})
         commit('onUserStatusChanged', uid ? true : false)
       } else {
         console.log('user inai')
@@ -54,6 +58,9 @@ export const getters = {
   },
   getUserEmail(state) {
     return state.email
+  },
+  getUserName(state) {
+    return state.username
   },
   isSignedIn(state) {
     return state.status

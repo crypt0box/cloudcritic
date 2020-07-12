@@ -13,6 +13,10 @@
           v-model="email"
         />
         <v-text-field
+          label="ユーザー名"
+          v-model="displayName"
+        />
+        <v-text-field
           :type="showPassword ? 'text' : 'password'" prepend-icon="mdi-lock"
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           label="パスワード"
@@ -34,6 +38,7 @@ export default {
     return {
       email: "",
       password: "",
+      displayName: "",
       showPassword: false,
     }
   },
@@ -42,6 +47,7 @@ export default {
       this.$store.dispatch('auth/register', {
         email: this.email,
         password: this.password,
+        displayName: this.displayName
       }),
       this.$store.dispatch('auth/updateIdToken')
       this.email = "";

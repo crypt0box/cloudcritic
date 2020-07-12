@@ -2,6 +2,7 @@
   <div>
     id:{{ $store.getters['auth/getUserId'] }}
     email:{{ $store.getters['auth/getUserEmail'] }}
+    name:{{ $store.getters['auth/getUserName'] }}
   </div>
 </template>
 
