@@ -44,7 +44,6 @@
             <edit-tag />
           </modal>
           <v-list-item-group 
-            color="primary"
           >
             <v-list-item
               v-for="tag in tags"
@@ -84,6 +83,7 @@
 
 <script>
 import { firestoreAction, firestoreOptions } from 'vuexfire'
+import { mapGetters } from 'vuex'
 import firebase from '~/plugins/firebase'
 import EditTag from '~/components/EditTag.vue'
 
@@ -106,6 +106,7 @@ export default {
   created() {
     this.$store.dispatch('contents/initContent', this.$route.params.id)
     this.$store.dispatch('contents/initTags', this.$route.params.id)
+    this.$store.dispatch('auth/onAuth')
   },
   computed: {
     content() {

@@ -7,6 +7,7 @@ export const state = () => ({
   id: '',
   email: '',
   username: '',
+  favorite: [],
   status: false
 })
 
@@ -49,7 +50,7 @@ export const actions = {
         userRef.doc(uid).set({
           username: displayName,
           uid: uid,
-          created: firebase.firestore.FieldValue.serverTimestamp()
+          created: firebase.firestore.FieldValue.serverTimestamp(),
         })
       } else {
         console.log('user inai')
@@ -67,6 +68,9 @@ export const getters = {
   },
   getUserName(state) {
     return state.username
+  },
+  getFavorite(state) {
+    return state.favorite
   },
   isSignedIn(state) {
     return state.status

@@ -3,6 +3,7 @@ import firebase from '~/plugins/firebase'
 
 const db = firebase.firestore()
 const contentsRef = db.collection('contents')
+const userRef = db.collection('user')
 
 export const state = () => ({
   contents: [],
@@ -40,7 +41,7 @@ export const actions = {
       totalLike: firebase.firestore.FieldValue.increment(1)
     })
   }),
-  addTag: ((context, { id, tag }) => {
+  addTag: firestoreAction((context, { id, tag }) => {
     contentsRef.doc(id).collection('tags').add(tag)
     $nuxt.$router.push('/content/' + id)
   }),
