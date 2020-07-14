@@ -41,6 +41,9 @@ export const actions = {
       authData.password,
     )
   },
+  logout() {
+    firebase.auth().signOut()
+  },
   onAuth({ commit }) {
     firebase.auth().onAuthStateChanged(user => {
       user = user ? user : {}
