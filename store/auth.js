@@ -32,7 +32,13 @@ export const actions = {
       res.user.updateProfile({
         displayName: authData.displayName
       })
-     
+      console.log('1:', res)
+      userRef.doc(res.user.uid).set({
+        username: res.user.displayName,
+        favorite: firebase.firestore.FieldValue.arrayUnion('test'),
+        uid: res.user.uid,
+        created: firebase.firestore.FieldValue.serverTimestamp(),
+      })
     })
   },
   login({ commit }, authData) {
@@ -49,13 +55,11 @@ export const actions = {
       user = user ? user : {}
       if(user) {
         const { uid, email, displayName } = user
+        userRef.doc(uid).update({
+          username: displayName,
+        })
         commit('onAuthStateChanged', {id: uid, email: email, username: displayName})
         commit('onUserStatusChanged', uid ? true : false)
-        userRef.doc(uid).set({
-          username: displayName,
-          uid: uid,
-          created: firebase.firestore.FieldValue.serverTimestamp(),
-        })
       } else {
         console.log('user inai')
       }
