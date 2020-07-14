@@ -22,16 +22,16 @@
             <v-btn class="ma-2" tile outlined @click="countTotalLike">
               <v-icon center>mdi-thumb-up</v-icon> {{ totalLike }}
             </v-btn>
-            <v-btn class="ma-2" tile outlined color="pink" @click="registerFavorite = !registerFavorite">
+            <v-btn class="ma-2" tile outlined color="pink" @click="registerFavorite = !registerFavorite; removeFavorite()" v-if="registerFavorite">
               <v-icon 
                 center
-                v-if="registerFavorite"
               >
               mdi-heart
               </v-icon>
+            </v-btn>
+            <v-btn class="ma-2" tile outlined color="pink" @click="registerFavorite = !registerFavorite; addFavorite()" v-else>
               <v-icon 
                 center
-                v-else
               >
               mdi-heart-outline
               </v-icon>
@@ -135,6 +135,12 @@ export default {
         tagId: id,
       })
     },
+    addFavorite() {
+      this.$store.dispatch('contents/addFavorite', this.$route.params.id)
+    },
+    removeFavorite() {
+      this.$store.dispatch('contents/removeFavorite', this.$route.params.id)
+    }
   }
 }
 </script>

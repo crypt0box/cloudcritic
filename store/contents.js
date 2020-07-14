@@ -50,6 +50,17 @@ export const actions = {
       like: firebase.firestore.FieldValue.increment(1)
     })
   }),
+  addFavorite: firestoreAction((context, contentId) => {
+    const user = firebase.auth().currentUser
+    userRef.doc(user.uid).update({
+      favorite: firebase.firestore.FieldValue.arrayUnion(contentId)
+    })
+  }),
+  removeFavorite: firestoreAction((context, contentId) => {
+    const user = firebase.auth().currentUser
+    console.log('waiya')
+    userRef.doc(user.uid).collection('favorite').doc(contentId).delete()
+  }),
 }
 
 export const getters = {

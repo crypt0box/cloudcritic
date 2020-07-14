@@ -32,6 +32,7 @@ export const actions = {
       res.user.updateProfile({
         displayName: authData.displayName
       })
+     
     })
   },
   login({ commit }, authData) {
