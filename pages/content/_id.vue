@@ -98,6 +98,7 @@ export default {
       thumbnailUrl: '',
       tags: [],
       totalLike: 0,
+      favorite: [],
       registerFavorite: false,
       myColors: ['#38b508', '#76ed47', '#a8e88f', '#39c900'],
       words: []
@@ -107,6 +108,13 @@ export default {
     this.$store.dispatch('contents/initContent', this.$route.params.id)
     this.$store.dispatch('contents/initTags', this.$route.params.id)
     this.$store.dispatch('auth/onAuth')
+  },
+  mounted() {
+    this.$store.getters['auth/getFavorite'].forEach(e => {
+      if (e === this.$route.params.id) {
+        this.registerFavorite = true
+      }
+    })
   },
   computed: {
     content() {

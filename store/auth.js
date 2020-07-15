@@ -19,6 +19,9 @@ export const mutations = {
   },
   onUserStatusChanged(state, status) {
     state.status = status; //ログインしてるかどうか true or false
+  },
+  onUserFavoriteChanged(state, favorite) {
+    state.favorite = favorite;
   }
 }
 
@@ -60,6 +63,9 @@ export const actions = {
         })
         commit('onAuthStateChanged', {id: uid, email: email, username: displayName})
         commit('onUserStatusChanged', uid ? true : false)
+        userRef.doc(uid).get().then(res => {
+          commit('onUserFavoriteChanged', res.data().favorite)
+        })
       } else {
         console.log('user inai')
       }
