@@ -58,8 +58,9 @@ export const actions = {
   }),
   removeFavorite: firestoreAction((context, contentId) => {
     const user = firebase.auth().currentUser
-    console.log('waiya')
-    userRef.doc(user.uid).collection('favorite').doc(contentId).delete()
+    userRef.doc(user.uid).update({
+      favorite: firebase.firestore.FieldValue.arrayRemove(contentId)
+    })
   }),
 }
 
