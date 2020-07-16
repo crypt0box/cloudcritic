@@ -77,7 +77,29 @@
         />
         </v-col>
         <v-col>
-          コメント
+          <v-list three-line>
+            <template v-for="(comment, index) in comments">
+              <v-list-item
+                  :key="index"
+                  avatar
+              >
+                <v-list-item-avatar>
+                  <img :src="comment.avatar">
+                </v-list-item-avatar>
+
+                <v-list-item-content>
+                  <v-list-item-subtitle class="text--primary subheading">{{comment.comment}}</v-list-item-subtitle>
+                  <v-list-item-subtitle>
+                    {{comment.createdAt.toDate().toLocaleString()}}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+
+                <v-list-item-action>
+                </v-list-item-action>
+              </v-list-item>
+              <v-divider :key="comment.id"></v-divider>
+            </template>
+          </v-list>
         </v-col>
       </v-row>
     </v-container>
@@ -106,12 +128,14 @@ export default {
       favorite: [],
       registerFavorite: false,
       myColors: ['#38b508', '#76ed47', '#a8e88f', '#39c900'],
-      words: []
+      words: [],
+      comments: []
     }
   },
   created() {
     this.$store.dispatch('contents/initContent', this.$route.params.id)
     this.$store.dispatch('contents/initTags', this.$route.params.id)
+    this.$store.dispatch('contents/initComments', this.$route.params.id)
     this.$store.dispatch('auth/onAuth')
   },
   mounted() {
@@ -129,6 +153,7 @@ export default {
         this.thumbnailUrl = this.$store.getters['contents/getContent'].thumbnailUrl
         this.totalLike = this.$store.getters['contents/getContent'].totalLike
         this.tags = this.$store.getters['contents/getTags']
+        this.comments = this.$store.getters['contents/getComments']
         // wordcloud: :data="this.getters"を使うとエラーが出る
         // 下記にするとstateの値をwordsにコピーできるためvuexを経由しない
         this.words = JSON.parse(JSON.stringify(this.$store.getters['contents/getTags']))

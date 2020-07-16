@@ -9,6 +9,7 @@ export const state = () => ({
   contents: [],
   content: {},
   tags: [],
+  comments: [],
 })
 
 export const mutations = {
@@ -23,6 +24,9 @@ export const actions = {
   }),
   initTags: firestoreAction(({ bindFirestoreRef }, id) => {
     bindFirestoreRef('tags', contentsRef.doc(id).collection('tags').orderBy('like', 'desc'))
+  }),
+  initComments: firestoreAction(({ bindFirestoreRef }, id) => {
+    bindFirestoreRef('comments', contentsRef.doc(id).collection('comment').orderBy('createdAt'))
   }),
   add: firestoreAction((context, {title, author, thumbnailUrl}) => {
     contentsRef.add({
@@ -62,6 +66,11 @@ export const actions = {
       favorite: firebase.firestore.FieldValue.arrayRemove(contentId)
     })
   }),
+  addComment: firestoreAction((context, commentData) => {
+    console.log(commentData)
+    contentsRef.doc(commentData.contentId).collection('comment').add(commentData)
+    $nuxt.$router.push('/content/' + commentData.contentId)
+  })
 }
 
 export const getters = {
@@ -74,4 +83,7 @@ export const getters = {
   getTags(state) {
     return state.tags
   },
+  getComments(state) {
+    return state.comments
+  }
 }

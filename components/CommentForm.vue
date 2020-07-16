@@ -22,41 +22,31 @@
 </template>
 
 <script>
-  import {db} from '../plugins/firebase';
+import firebase from '~/plugins/firebase'
 
   export default {
     name: 'CreateForm',
-    data: () => ({
-      // form入力データ
-      inputComment: "",
-      // バリデーション
-      valid: true,
-      commentRules: [
-        v => !!v || 'コメントは必須項目です',
-      ],
-    }),
+    data() {
+      return {
+        // form入力データ
+        inputComment: "",
+        // バリデーション
+        valid: true,
+        commentRules: [
+          v => !!v || 'コメントは必須項目です',
+        ],
+      }
+    },
     methods: {
       // コメント追加
       addComment() {
         const now = new Date()
-        // コメントをFirestoreへ登録
-        db.collection('comments').add({
-          content: this.inputComment,
-          avatar: 'https://picsum.photos/50?image=' + (Math.floor(Math.random() * 400) + 1),
-          createdAt: now
+        this.$store.dispatch('contents/addComment', {
+          user: firebase.auth().currentUser.displayName,
+          comment: this.inputComment,
+          createdAt: now,
+          contentId: this.$route.params.id,
         })
-        // ダイアログを閉じる
-        this.hideCreateForm()
-      },
-      // Formの初期化
-      clear() {
-        this.$refs.form.reset()
-      },
-      //
-      // Formダイアログの非表示
-      hideCreateForm() {
-        this.clear()
-        this.displayForm = false
       },
     },
   }
