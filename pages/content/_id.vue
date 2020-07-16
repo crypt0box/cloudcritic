@@ -16,9 +16,12 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-btn class="ma-2" tile outlined color="success">
+            <v-btn class="ma-2" tile outlined color="success" @click="showFormModal">
               <v-icon center>mdi-pencil</v-icon>
             </v-btn>
+            <modal name="modal-form" height="auto">
+              <comment-form />
+            </modal>
             <v-btn class="ma-2" tile outlined @click="countTotalLike">
               <v-icon center>mdi-thumb-up</v-icon> {{ totalLike }}
             </v-btn>
@@ -39,8 +42,8 @@
           </v-row>
         </v-col>
         <v-col>
-          <button @click="show">タグを編集</button>
-          <modal name="modal-content" height="80%" width="80%">
+          <button @click="showTagModal">タグを編集</button>
+          <modal name="modal-tag">
             <edit-tag />
           </modal>
           <v-list-item-group 
@@ -86,10 +89,12 @@ import { firestoreAction, firestoreOptions } from 'vuexfire'
 import { mapGetters } from 'vuex'
 import firebase from '~/plugins/firebase'
 import EditTag from '~/components/EditTag.vue'
+import CommentForm from '~/components/CommentForm.vue'
 
 export default {
   components: {
-    EditTag
+    EditTag,
+    CommentForm,
   },
   data() {
     return {
@@ -131,8 +136,11 @@ export default {
     },
   },
   methods: {
-    show() {
-      this.$modal.show('modal-content')
+    showTagModal() {
+      this.$modal.show('modal-tag')
+    },
+    showFormModal() {
+      this.$modal.show('modal-form')
     },
     countTotalLike() {
       this.$store.dispatch('contents/updateTotalLike', this.$route.params.id)
