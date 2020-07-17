@@ -19,9 +19,7 @@
             <v-btn class="ma-2" tile outlined color="success" @click="showFormModal">
               <v-icon center>mdi-pencil</v-icon>
             </v-btn>
-            <modal name="modal-form" height="auto">
               <comment-form />
-            </modal>
             <v-btn class="ma-2" tile outlined @click="countTotalLike">
               <v-icon center>mdi-thumb-up</v-icon> {{ totalLike }}
             </v-btn>
