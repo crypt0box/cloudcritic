@@ -50,7 +50,12 @@
           >
           <v-icon left>mdi-cloud</v-icon>ワードクラウド
           </v-chip>
-          <modal name="modal-wordcloud" height="auto">
+          <modal 
+            name="modal-wordcloud"
+            :scrollable="true"
+            :resizable="true"
+            :adaptive="true"
+          >
             <word-cloud />
           </modal>
           <v-list-item-group 
