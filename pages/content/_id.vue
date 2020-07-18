@@ -63,20 +63,13 @@
       <v-row>
         <v-col>
           wordcloud
-          <wordcloud
-          :data="words"
-          name-key="name"
-          value-key="like"
-          :color="myColors"
-          :show-tooltip="false"
-        />
+          <word-cloud />
         </v-col>
         <v-col>
           <v-list three-line>
             <template v-for="(comment, index) in comments">
               <v-list-item
                   :key="index"
-                  avatar
               >
                 <v-list-item-avatar>
                   <img :src="comment.avatar">
@@ -107,11 +100,13 @@ import { mapGetters } from 'vuex'
 import firebase from '~/plugins/firebase'
 import EditTag from '~/components/EditTag.vue'
 import CommentForm from '~/components/CommentForm.vue'
+import WordCloud from '~/components/WordCloud.vue'
 
 export default {
   components: {
     EditTag,
     CommentForm,
+    WordCloud,
   },
   data() {
     return {
@@ -122,8 +117,6 @@ export default {
       totalLike: 0,
       favorite: [],
       registerFavorite: false,
-      myColors: ['#38b508', '#76ed47', '#a8e88f', '#39c900'],
-      words: [],
       comments: []
     }
   },
@@ -149,9 +142,6 @@ export default {
         this.totalLike = this.$store.getters['contents/getContent'].totalLike
         this.tags = this.$store.getters['contents/getTags']
         this.comments = this.$store.getters['contents/getComments']
-        // wordcloud: :data="this.getters"を使うとエラーが出る
-        // 下記にするとstateの値をwordsにコピーできるためvuexを経由しない
-        this.words = JSON.parse(JSON.stringify(this.$store.getters['contents/getTags']))
       }
     },
   },
