@@ -2,7 +2,7 @@
   <div>
     {{content}}
     <v-container class="content-detail">
-      <v-row>
+      <v-row cols="12" md="6">
         <v-col>
           <v-row>
             <v-col>
@@ -36,7 +36,7 @@
             </v-btn>
           </v-row>
         </v-col>
-        <v-col>
+        <v-col cols="12" md="6">
           <button @click="showTagModal">タグを編集</button>
           <modal name="modal-tag">
             <edit-tag />
@@ -77,7 +77,9 @@
         </v-col>
       </v-row>
       <v-divider/>
-      <comment />
+      <v-col cols="12">
+        <comment />
+      </v-col>
     </v-container>
   </div>
 </template>
