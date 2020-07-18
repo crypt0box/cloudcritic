@@ -41,6 +41,18 @@
           <modal name="modal-tag">
             <edit-tag />
           </modal>
+          <v-chip
+            class="ma-2"
+            color="teal"
+            label
+            text-color="white"
+            @click="showWordcloudModal"
+          >
+          <v-icon left>mdi-cloud</v-icon>ワードクラウド
+          </v-chip>
+          <modal name="modal-wordcloud" height="auto">
+            <word-cloud />
+          </modal>
           <v-list-item-group 
           >
             <v-list-item
@@ -63,7 +75,6 @@
       <v-row>
         <v-col>
           wordcloud
-          <word-cloud />
         </v-col>
         <v-col>
           <v-list three-line>
@@ -149,8 +160,8 @@ export default {
     showTagModal() {
       this.$modal.show('modal-tag')
     },
-    showFormModal() {
-      this.$modal.show('modal-form')
+    showWordcloudModal() {
+      this.$modal.show('modal-wordcloud')
     },
     countTotalLike() {
       this.$store.dispatch('contents/updateTotalLike', this.$route.params.id)
