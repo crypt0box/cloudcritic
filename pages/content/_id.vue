@@ -77,35 +77,7 @@
         </v-col>
       </v-row>
       <v-divider/>
-      <v-row>
-        <v-col>
-          wordcloud
-        </v-col>
-        <v-col>
-          <v-list three-line>
-            <template v-for="(comment, index) in comments">
-              <v-list-item
-                  :key="index"
-              >
-                <v-list-item-avatar>
-                  <img :src="comment.avatar">
-                </v-list-item-avatar>
-
-                <v-list-item-content>
-                  <v-list-item-subtitle class="text--primary subheading">{{comment.comment}}</v-list-item-subtitle>
-                  <v-list-item-subtitle>
-                    {{comment.createdAt.toDate().toLocaleString()}}
-                  </v-list-item-subtitle>
-                </v-list-item-content>
-
-                <v-list-item-action>
-                </v-list-item-action>
-              </v-list-item>
-              <v-divider :key="comment.id"></v-divider>
-            </template>
-          </v-list>
-        </v-col>
-      </v-row>
+      <comment />
     </v-container>
   </div>
 </template>
@@ -117,12 +89,14 @@ import firebase from '~/plugins/firebase'
 import EditTag from '~/components/EditTag.vue'
 import CommentForm from '~/components/CommentForm.vue'
 import WordCloud from '~/components/WordCloud.vue'
+import Comment from '~/components/Comment.vue'
 
 export default {
   components: {
     EditTag,
     CommentForm,
     WordCloud,
+    Comment,
   },
   data() {
     return {
@@ -133,7 +107,6 @@ export default {
       totalLike: 0,
       favorite: [],
       registerFavorite: false,
-      comments: []
     }
   },
   created() {
@@ -157,7 +130,6 @@ export default {
         this.thumbnailUrl = this.$store.getters['contents/getContent'].thumbnailUrl
         this.totalLike = this.$store.getters['contents/getContent'].totalLike
         this.tags = this.$store.getters['contents/getTags']
-        this.comments = this.$store.getters['contents/getComments']
       }
     },
   },
