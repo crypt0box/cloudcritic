@@ -16,10 +16,7 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-btn class="ma-2" tile outlined color="success" @click="showFormModal">
-              <v-icon center>mdi-pencil</v-icon>
-            </v-btn>
-              <comment-form />
+            <comment-form />
             <v-btn class="ma-2" tile outlined @click="countTotalLike">
               <v-icon center>mdi-thumb-up</v-icon> {{ totalLike }}
             </v-btn>
