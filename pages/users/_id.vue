@@ -2,12 +2,22 @@
   <v-container>
     <v-row>
       <v-col cols="12" md="4">
-        <div>
-          id:{{ $store.getters['auth/getUserId'] }}
-          email:{{ $store.getters['auth/getUserEmail'] }}
-          name:{{ $store.getters['auth/getUserName'] }}
-        </div>
-        <upload-icon />
+        <v-card 
+        >
+          <v-avatar
+            class="ma-3"
+            size="125"
+            tile
+          >
+          <v-img :src="$store.getters['auth/getIconUrl']" />
+          </v-avatar>
+          <v-card-title>
+            {{ $store.getters['auth/getUserName'] }}
+          </v-card-title>
+        </v-card>
+        <v-col>
+          <upload-icon />
+        </v-col>
       </v-col>
       <v-col cols="12" md="8">
         favorite card
