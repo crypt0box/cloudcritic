@@ -16,27 +16,42 @@
             </v-col>
           </v-row>
           <v-row>
-            <comment-form />
-            <v-btn class="ma-2" tile outlined @click="countTotalLike">
-              <v-icon center>mdi-thumb-up</v-icon> {{ totalLike }}
-            </v-btn>
-            <v-btn class="ma-2" tile outlined color="pink" @click="registerFavorite = !registerFavorite; removeFavorite()" v-if="registerFavorite">
-              <v-icon 
-                center
+            <v-col>
+              <comment-form />
+              <v-btn
+                class="ma-2"
+                tile
+                outlined 
+                @click="countTotalLike"
               >
-              mdi-heart
-              </v-icon>
-            </v-btn>
-            <v-btn class="ma-2" tile outlined color="pink" @click="registerFavorite = !registerFavorite; addFavorite()" v-else>
-              <v-icon 
-                center
+                <v-icon center>mdi-thumb-up</v-icon> {{ totalLike }}
+              </v-btn>
+              <v-btn
+                class="ma-2"
+                tile
+                outlined
+                color="pink"
+                @click="registerFavorite = !registerFavorite; removeFavorite()"
+                v-if="registerFavorite"
               >
-              mdi-heart-outline
-              </v-icon>
-            </v-btn>
+                <v-icon 
+                  center
+                >
+                mdi-heart
+                </v-icon>
+              </v-btn>
+              <v-btn class="ma-2" tile outlined color="pink" @click="registerFavorite = !registerFavorite; addFavorite()" v-else>
+                <v-icon 
+                  center
+                >
+                mdi-heart-outline
+                </v-icon>
+              </v-btn>
+            </v-col>
           </v-row>
         </v-col>
         <v-col cols="12" md="6">
+          <v-divider />
           <button @click="showTagModal">タグを編集</button>
           <modal name="modal-tag">
             <edit-tag />

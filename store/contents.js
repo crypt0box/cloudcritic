@@ -26,7 +26,7 @@ export const actions = {
     bindFirestoreRef('tags', contentsRef.doc(id).collection('tags').orderBy('like', 'desc'))
   }),
   initComments: firestoreAction(({ bindFirestoreRef }, id) => {
-    bindFirestoreRef('comments', contentsRef.doc(id).collection('comment').orderBy('createdAt'))
+    bindFirestoreRef('comments', contentsRef.doc(id).collection('comment').orderBy('createdAt', 'desc'))
   }),
   add: firestoreAction((context, {title, author, thumbnailUrl}) => {
     contentsRef.add({
