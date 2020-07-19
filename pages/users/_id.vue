@@ -7,6 +7,7 @@
           email:{{ $store.getters['auth/getUserEmail'] }}
           name:{{ $store.getters['auth/getUserName'] }}
         </div>
+        <upload-icon />
       </v-col>
       <v-col cols="12" md="8">
         favorite card
@@ -16,7 +17,12 @@
 </template>
 
 <script>
+import UploadIcon from '~/components/UploadIcon.vue'
+
   export default {
+    components: {
+      UploadIcon,
+    },
     validate ({ params }) {
       return /^([a-zA-Z0-9]{28})$/.test(params.id)
     },

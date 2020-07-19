@@ -8,6 +8,8 @@ export const state = () => ({
   email: '',
   username: '',
   favorite: [],
+  iconName: '',
+  iconUrl: '',
   status: false
 })
 
@@ -22,6 +24,10 @@ export const mutations = {
   },
   onUserFavoriteChanged(state, favorite) {
     state.favorite = favorite;
+  },
+  onUserIconChanged(state, {iconName, iconUrl}) {
+    state.iconName = iconName,
+    state.iconUrl = iconUrl
   }
 }
 
@@ -40,7 +46,8 @@ export const actions = {
         username: res.user.displayName,
         favorite: firebase.firestore.FieldValue.arrayUnion('test'),
         uid: res.user.uid,
-        created: firebase.firestore.FieldValue.serverTimestamp(),
+        icon: res.user.uid,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       })
     })
   },
@@ -70,6 +77,13 @@ export const actions = {
         console.log('user inai')
       }
     })
+  },
+  uploadIcon({ commit }, { uid, iconName, iconUrl}) {
+    userRef.doc(uid).update({
+      iconName: iconName,
+      iconUrl: iconUrl
+    })
+    commit('onUserIconChanged', {iconName: iconName, iconUrl: iconUrl})
   }
 }
 
@@ -85,6 +99,12 @@ export const getters = {
   },
   getFavorite(state) {
     return state.favorite
+  },
+  getIconName(state) {
+    return state.iconName
+  },
+  getIconUrl(state) {
+    return state.iconUrl
   },
   isSignedIn(state) {
     return state.status

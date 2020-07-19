@@ -67,7 +67,6 @@ export const actions = {
     })
   }),
   addComment: firestoreAction((context, commentData) => {
-    console.log(commentData)
     contentsRef.doc(commentData.contentId).collection('comment').add(commentData)
     $nuxt.$router.push('/content/' + commentData.contentId)
   })
