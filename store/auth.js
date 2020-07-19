@@ -78,12 +78,19 @@ export const actions = {
       }
     })
   },
-  uploadIcon({ commit }, { uid, iconName, iconUrl}) {
+  uploadIcon({ commit }, { uid, iconName, iconUrl }) {
     userRef.doc(uid).update({
       iconName: iconName,
       iconUrl: iconUrl
     })
     commit('onUserIconChanged', {iconName: iconName, iconUrl: iconUrl})
+  },
+  deleteIcon({ commit }, uid) {
+    userRef.doc(uid).update({
+      iconName: '',
+      iconUrl: '',
+    })
+    commit('onUserIconChanged', {iconName: '', iconUrl: ''})
   }
 }
 
