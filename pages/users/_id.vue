@@ -20,7 +20,7 @@
         </v-col>
       </v-col>
       <v-col cols="12" md="8">
-        favorite card
+        <favorite-card />
       </v-col>
     </v-row>
   </v-container>
@@ -28,10 +28,12 @@
 
 <script>
 import UploadIcon from '~/components/UploadIcon.vue'
+import FavoriteCard from '~/components/FavoriteCard.vue'
 
   export default {
     components: {
       UploadIcon,
+      FavoriteCard
     },
     validate ({ params }) {
       return /^([a-zA-Z0-9]{28})$/.test(params.id)
