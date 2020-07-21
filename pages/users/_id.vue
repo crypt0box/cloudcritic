@@ -15,9 +15,6 @@
             {{ $store.getters['auth/getUserName'] }}
           </v-card-title>
         </v-card>
-        <v-col>
-          <upload-icon />
-        </v-col>
       </v-col>
       <v-col cols="12" md="8">
         <favorite-card />
@@ -27,12 +24,10 @@
 </template>
 
 <script>
-import UploadIcon from '~/components/UploadIcon.vue'
 import FavoriteCard from '~/components/FavoriteCard.vue'
 
   export default {
     components: {
-      UploadIcon,
       FavoriteCard
     },
     validate ({ params }) {

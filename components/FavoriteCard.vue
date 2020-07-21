@@ -4,7 +4,8 @@
       <v-col
         v-for="content in contents"
         :key="content.id"
-        cols="3"
+        cols="2"
+        md="4"
       >
         <v-card
           maxWidth="150"
