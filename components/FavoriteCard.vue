@@ -4,8 +4,8 @@
       <v-col
         v-for="content in contents"
         :key="content.id"
-        cols="2"
-        md="4"
+        cols="6"
+        md="3"
       >
         <v-card
           maxWidth="150"
@@ -14,6 +14,7 @@
           height="270"
         >
           <v-row justify="center">
+            <nuxt-link :to="{path: `../content/${content.id}`, params: { contentID: content.id }}">
             <v-img
               :src="content.thumbnailUrl"
               maxWidth="150"
@@ -21,6 +22,7 @@
               width="150"
               height="220"
             />
+            </nuxt-link>
           </v-row>
           <v-row ustify="center">
             <v-col>
