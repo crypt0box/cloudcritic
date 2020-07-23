@@ -7,10 +7,10 @@
       md="3"
     >
       <v-card
-        maxWidth="150"
-        maxHeight="270"
-        width="150"
-        height="270"
+        maxWidth="160"
+        maxHeight="280"
+        width="160"
+        height="280"
       >
         <v-row justify="center">
           <nuxt-link :to="{path: `../content/${content.id}`, params: { contentID: content.id }}">
@@ -23,13 +23,24 @@
           />
           </nuxt-link>
         </v-row>
-        <v-row>
-          <v-col>
-            <v-icon center>mdi-thumb-up</v-icon> {{ content.totalLike }}
-          </v-col>
-          <v-col>
-            <v-icon center>mdi-heart</v-icon>
-          </v-col>
+        <v-row justify="center">
+          <v-card-actions>
+            <v-btn
+              class="ma-2"
+              tile
+              outlined 
+            >
+              <v-icon center>mdi-thumb-up</v-icon> {{ content.totalLike }}
+            </v-btn>
+            <v-btn
+              class="ma-2"
+              tile
+              outlined
+              color="pink"
+            >
+              <v-icon center>mdi-heart</v-icon>
+            </v-btn>
+          </v-card-actions>
         </v-row>
       </v-card>
     </v-col>
@@ -39,6 +50,12 @@
 <script>
 export default {
   name: 'FavoriteCard',
+  data() {
+    return {
+      registerFavorite: false,
+
+    }
+  },
   created() {
     this.$store.dispatch('contents/init')
     this.$store.dispatch('auth/onAuth')
@@ -48,6 +65,6 @@ export default {
       return this.$store.getters['contents/getContents']
         .filter(content => this.$store.getters['auth/getFavorite'].includes(content.id))
     },
-  }
+  },
 }
 </script>
