@@ -58,12 +58,14 @@ export default {
   },
   created() {
     this.$store.dispatch('contents/init')
-    this.$store.dispatch('auth/onAuth')
   },
   computed: {
     filterContents() {
-      return this.$store.getters['contents/getContents']
-        .filter(content => this.$store.getters['auth/getFavorite'].includes(content.id))
+      const favorite = this.$store.getters['auth/getFavorite']
+      if (favorite) {
+        return this.$store.getters['contents/getContents']
+        .filter(content => favorite.includes(content.id))
+      }
     },
   },
 }

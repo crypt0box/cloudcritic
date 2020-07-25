@@ -133,11 +133,14 @@ export default {
     this.$store.dispatch('auth/onAuth')
   },
   mounted() {
-    this.$store.getters['auth/getFavorite'].forEach(e => {
+    const favorite = this.$store.getters['auth/getFavorite']
+    if (favorite) {
+      favorite.forEach(e => {
       if (e === this.$route.params.id) {
         this.registerFavorite = true
       }
     })
+    }
   },
   computed: {
     content() {

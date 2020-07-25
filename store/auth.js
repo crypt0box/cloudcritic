@@ -8,6 +8,7 @@ export const state = () => ({
   email: '',
   photoUrl: '',
   uid: '',
+  favorite: '',
 })
 
 export const getDefaultState = () => ({
@@ -15,6 +16,7 @@ export const getDefaultState = () => ({
   email: '',
   photoUrl: '',
   uid: '',
+  favorite: '',
 })
 
 export const mutations = {
