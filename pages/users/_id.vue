@@ -7,7 +7,7 @@
             class="ma-3"
             size="125"
           >
-          <v-img :src="$store.getters['auth/getIconUrl']" />
+          <v-img :src="$store.getters['auth/getUserPhotoUrl']" />
           </v-avatar>
           <v-card-title>
             {{ $store.getters['auth/getUserName'] }}

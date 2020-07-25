@@ -4,33 +4,25 @@ const db = firebase.firestore()
 const userRef = db.collection('user')
 
 export const state = () => ({
-  id: '',
+  name: '',
   email: '',
-  username: '',
-  favorite: [],
-  iconName: '',
-  iconUrl: '',
-  status: false
+  photoUrl: '',
+  uid: '',
 })
 
 export const getDefaultState = () => ({
-  id: '',
+  name: '',
   email: '',
-  username: '',
-  favorite: [],
-  iconName: '',
-  iconUrl: '',
-  status: false
+  photoUrl: '',
+  uid: '',
 })
 
 export const mutations = {
-  onAuthStateChanged(state, {id, email, username}) {
-    state.id = id  //firebaseが返したユーザー情報
+  onAuthStateChanged(state, {name, email, photoUrl, uid}) {
+    state.name = name
     state.email = email
-    state.username = username
-  },
-  onUserStatusChanged(state, status) {
-    state.status = status; //ログインしてるかどうか true or false
+    state.photoUrl = photoUrl
+    state.uid = uid
   },
   onUserFavoriteChanged(state, favorite) {
     state.favorite = favorite;
@@ -45,50 +37,34 @@ export const mutations = {
 }
 
 export const actions = {
-  register({}, authData) {
-    firebase.auth().createUserWithEmailAndPassword(
-      authData.email,
-      authData.password,
-    )
-    .then(res => {
-      res.user.updateProfile({
-        displayName: authData.displayName
-      })
-      userRef.doc(res.user.uid).set({
-        username: '',
-        uid: res.user.uid,
-        icon: '',
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      })
-    })
-  },
-  login({ commit }, authData) {
-    firebase.auth().signInWithEmailAndPassword(
-      authData.email,
-      authData.password,
-    )
-  },
   logout({ commit }) {
     firebase.auth().signOut().then(
       commit('resetState')
     )
   },
   onAuth({ commit }) {
-    firebase.auth().onAuthStateChanged(user => {
-      user = user ? user : {}
-      if(user) {
-        const { uid, email, displayName } = user
-        userRef.doc(uid).update({
-          username: displayName,
-        })
-        commit('onAuthStateChanged', {id: uid, email: email, username: displayName})
-        commit('onUserStatusChanged', uid ? true : false)
-        userRef.doc(uid).get().then(res => {
-          commit('onUserFavoriteChanged', res.data().favorite)
-        })
-      } else {
-        console.log('user inai')
-      }
+    return new Promise((resolve, reject) => {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          // ** ログイン済のユーザー
+          console.log('ok!!Login User!!')
+          var name, email, photoUrl, uid,
+          name = user.displayName
+          email = user.email
+          photoUrl = user.photoURL
+          uid = user.uid
+          commit('onAuthStateChanged', {
+            name: name,
+            email: email,
+            photoUrl : photoUrl,
+            uid: uid,
+          })
+          resolve(user)
+        } else {
+          // ** ログインしていないユーザーもしくは認証が切れている
+          resolve(false)
+        }
+      })
     })
   },
   uploadIcon({ commit }, { uid, iconName, iconUrl }) {
@@ -109,24 +85,18 @@ export const actions = {
 
 export const getters = {
   getUserId(state) {
-    return state.id
+    return state.uid
   },
   getUserEmail(state) {
     return state.email
   },
   getUserName(state) {
-    return state.username
+    return state.name
   },
   getFavorite(state) {
     return state.favorite
   },
-  getIconName(state) {
-    return state.iconName
+  getUserPhotoUrl(state) {
+    return state.photoUrl
   },
-  getIconUrl(state) {
-    return state.iconUrl
-  },
-  isSignedIn(state) {
-    return state.status
-  }
 };
