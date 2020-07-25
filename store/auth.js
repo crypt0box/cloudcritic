@@ -13,6 +13,16 @@ export const state = () => ({
   status: false
 })
 
+export const getDefaultState = () => ({
+  id: '',
+  email: '',
+  username: '',
+  favorite: [],
+  iconName: '',
+  iconUrl: '',
+  status: false
+})
+
 export const mutations = {
   onAuthStateChanged(state, {id, email, username}) {
     state.id = id  //firebaseが返したユーザー情報
@@ -28,6 +38,9 @@ export const mutations = {
   onUserIconChanged(state, {iconName, iconUrl}) {
     state.iconName = iconName,
     state.iconUrl = iconUrl
+  },
+  resetState(state) {
+    Object.assign(state, getDefaultState())
   }
 }
 
@@ -41,12 +54,10 @@ export const actions = {
       res.user.updateProfile({
         displayName: authData.displayName
       })
-      console.log('1:', res)
       userRef.doc(res.user.uid).set({
-        username: res.user.displayName,
-        favorite: firebase.firestore.FieldValue.arrayUnion('test'),
+        username: '',
         uid: res.user.uid,
-        icon: res.user.uid,
+        icon: '',
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       })
     })
@@ -57,8 +68,10 @@ export const actions = {
       authData.password,
     )
   },
-  logout() {
-    firebase.auth().signOut()
+  logout({ commit }) {
+    firebase.auth().signOut().then(
+      commit('resetState')
+    )
   },
   onAuth({ commit }) {
     firebase.auth().onAuthStateChanged(user => {

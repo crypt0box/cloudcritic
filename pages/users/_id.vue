@@ -2,12 +2,10 @@
   <v-container>
     <v-row>
       <v-col cols="12" md="4">
-        <v-card 
-        >
+        <v-card>
           <v-avatar
             class="ma-3"
             size="125"
-            tile
           >
           <v-img :src="$store.getters['auth/getIconUrl']" />
           </v-avatar>
