@@ -3,7 +3,7 @@ import firebase from '~/plugins/firebase'
 
 const db = firebase.firestore()
 const contentsRef = db.collection('contents')
-const userRef = db.collection('user')
+const userRef = db.collection('users')
 
 export const state = () => ({
   contents: [],
@@ -56,8 +56,11 @@ export const actions = {
   }),
   addFavorite: firestoreAction((context, contentId) => {
     const user = firebase.auth().currentUser
-    userRef.doc(user.uid).update({
+    userRef.doc(user.uid).set({
       favorite: firebase.firestore.FieldValue.arrayUnion(contentId)
+    },
+    {
+      merge: true
     })
   }),
   removeFavorite: firestoreAction((context, contentId) => {

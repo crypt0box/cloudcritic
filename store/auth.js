@@ -1,7 +1,7 @@
 import firebase from '~/plugins/firebase'
 
 const db = firebase.firestore()
-const userRef = db.collection('user')
+const userRef = db.collection('users')
 
 export const state = () => ({
   name: '',
@@ -59,6 +59,14 @@ export const actions = {
             photoUrl : photoUrl,
             uid: uid,
           })
+          userRef.doc(uid).get()
+            .then(doc => {
+              if (doc.exists) {
+                commit('onUserFavoriteChanged', doc.data().favorite)
+              } else {
+                  console.log("No such document!");
+              }
+            })
           resolve(user)
         } else {
           // ** ログインしていないユーザーもしくは認証が切れている
