@@ -55,10 +55,12 @@ import firebase from '~/plugins/firebase'
       addComment() {
         const now = new Date()
         this.$store.dispatch('contents/addComment', {
-          user: firebase.auth().currentUser.displayName,
+          displayName: firebase.auth().currentUser.displayName,
+          uid: firebase.auth().currentUser.uid,
           comment: this.inputComment,
           createdAt: now,
           contentId: this.$route.params.id,
+          photoUrl: firebase.auth().currentUser.photoURL
         })
         this.inputComment = ''
       },
