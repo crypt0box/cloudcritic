@@ -73,6 +73,12 @@ export const actions = {
     contentsRef.doc(commentData.contentId).collection('comment').add(commentData)
     $nuxt.$router.push('/content/' + commentData.contentId)
   }),
+  editComment: firestoreAction((context, commentData) => {
+    contentsRef.doc(commentData.contentId).collection('comment').doc(commentData.commentId).update({
+      comment: commentData.comment,
+      createdAt: commentData.createdAt
+    })
+  }),
   removeComment: firestoreAction((context, {contentId, commentId}) => {
     contentsRef.doc(contentId).collection('comment').doc(commentId).delete()
   })

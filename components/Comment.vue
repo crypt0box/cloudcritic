@@ -20,7 +20,7 @@
           </v-list-item-content>
           <v-list-item-action>
             <v-list-item-icon>
-              <v-icon>mdi-message-text</v-icon>
+              <edit-comment　:commentId="comment.id" />
               <v-btn icon @click="removeComment(comment.id)">
                 <v-icon>mdi-delete</v-icon>
               </v-btn>
@@ -35,7 +35,12 @@
 </template>
 
 <script>
+import EditComment from '~/components/EditComment.vue'
+
 export default {
+  components: {
+    EditComment
+  },
   data() {
     return {
       comments: this.$store.getters['contents/getComments']
