@@ -18,7 +18,9 @@
               {{comment.createdAt.toDate().toLocaleString()}}
             </v-list-item-subtitle>
           </v-list-item-content>
-          <v-list-item-action>
+          <v-list-item-action
+            v-if="comment.uid == userId"
+          >
             <v-list-item-icon>
               <edit-comment　:commentId="comment.id" />
               <v-btn icon @click="removeComment(comment.id)">
@@ -35,6 +37,7 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase'
 import EditComment from '~/components/EditComment.vue'
 
 export default {
@@ -43,7 +46,8 @@ export default {
   },
   data() {
     return {
-      comments: this.$store.getters['contents/getComments']
+      comments: this.$store.getters['contents/getComments'],
+      userId: firebase.auth().currentUser.uid
     }
   },
   methods: {
