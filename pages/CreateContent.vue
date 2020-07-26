@@ -35,10 +35,7 @@
 export default {
   data() {
     return {
-      name: '',
-      title: '',
-      author: '',
-      thumbnailUrl: '',
+      name: ''
     }
   },
   methods: {
@@ -49,12 +46,11 @@ export default {
       if (item.volumeInfo.authors) {
         this.author = item.volumeInfo.authors[0]
       }
-      this.title = item.volumeInfo.title
-      this.thumbnailUrl = item.volumeInfo.imageLinks.thumbnail
       this.$store.dispatch('contents/add', {
-        title: this.title,
-        author: this.author,
-        thumbnailUrl: this.thumbnailUrl,
+        title: item.volumeInfo.title || '',
+        author: item.volumeInfo.authors[0] || '',
+        thumbnailUrl: item.volumeInfo.imageLinks.thumbnail || '',
+        id: item.id
       })
     }
   }

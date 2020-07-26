@@ -28,16 +28,16 @@ export const actions = {
   initComments: firestoreAction(({ bindFirestoreRef }, id) => {
     bindFirestoreRef('comments', contentsRef.doc(id).collection('comment').orderBy('createdAt', 'desc'))
   }),
-  add: firestoreAction((context, {title, author, thumbnailUrl}) => {
-    contentsRef.add({
+  add: firestoreAction((context, {title, author, thumbnailUrl, id}) => {
+    contentsRef.doc(id).set({
       title: title,
       author: author,
       thumbnailUrl: thumbnailUrl,
       totalLike: 0,
       category: 'book',
     })
-    .then(response => {
-      $nuxt.$router.push('/content/' + response.id)
+    .then(() => {
+      $nuxt.$router.push('/content/' + id)
     })
   }),
   updateTotalLike: firestoreAction((context, id) => {
