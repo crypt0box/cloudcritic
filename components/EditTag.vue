@@ -1,61 +1,84 @@
 <template>
-  <v-app>
-    <v-container>
-      <v-form>
-        <v-text-field v-model="tagName"></v-text-field>
-        <v-btn @click="add">タグを追加</v-btn>
-        <v-btn @click="register(); hide()">登録</v-btn>
-      </v-form>
-    </v-container>
-    <v-row>
-      <v-col
-        v-for="tag in tags"
-        :key="tag.name"
-      >
+  <v-dialog 
+    scrollable 
+    v-model="dialog"
+  >
+    <template v-slot:activator="{ on, attrs }">
       <v-chip
         class="ma-2"
         color="pink"
         label
-        close
         text-color="white"
-        @click:close="removeTag(tag)"
+        v-bind="attrs"
+        v-on="on"
       >
-      <v-icon left>mdi-label</v-icon>
-      {{ tag.name }}
+        <v-icon center>mdi-pencil</v-icon>タグを編集
       </v-chip>
-      </v-col>
-    </v-row>
-  </v-app>
+    </template>
+    <v-card>
+      <v-card-title>タグ編集</v-card-title>
+      <v-divider />
+      <v-card-text>
+        <v-list-item-group>
+          <v-list-item
+            v-for="tag in tags"
+            :key="tag.index"
+          >
+            <v-list-item-content>
+              {{ tag.name }}
+            </v-list-item-content>
+            <v-list-item-action>
+              <v-btn 
+                icon
+                @click="removeTag(tag.id)"
+              >
+                <v-icon>mdi-delete</v-icon>
+              </v-btn>
+            </v-list-item-action>
+          </v-list-item>
+        </v-list-item-group>
+        <v-form @submit.prevent="addTag">
+          <v-text-field 
+            v-model="tagName"
+            placeholder="この作品の好きなトコロを登録しよう！"
+            append-icon="mdi-pencil"
+          >
+          </v-text-field>
+        </v-form>
+      </v-card-text>
+      <v-divider />
+      <v-card-actions>
+        <v-btn color="green darken-1" text @click="dialog = false">キャンセル</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>
 export default {
+  props: ['tags'],
   data() {
     return {
+      dialog: false,
       tagName: '',
-      tags: []
     }
   },
   methods: {
-    add() {
-      if(this.tagName != '') {
-        this.tags.push({name: this.tagName, like: 0})
-      }
+    addTag() {
+      this.$store.dispatch('contents/addTag', {
+        contentId: this.$route.params.id,
+        tag: {
+          name: this.tagName,
+          like: 0
+        }
+      })
       this.tagName = ''
     },
-    removeTag(tag) {
-      this.tags = this.tags.filter(n => n !== tag)
-    },
-    register() {
-      for (let i = 0; i < this.tags.length; i++) {
-        this.$store.dispatch('contents/addTag', {
-          id: this.$route.params.id,
-          tag: this.tags[i]
-        })
-      }
-    },
-    hide() {
-      this.$modal.hide("modal-content")
+    removeTag(tagId) {
+      this.$store.dispatch('contents/removeTag', {
+        contentId: this.$route.params.id,
+        tagId: tagId
+      })
     }
   }
 }

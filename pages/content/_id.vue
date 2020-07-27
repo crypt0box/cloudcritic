@@ -52,10 +52,7 @@
         </v-col>
         <v-col cols="12" md="6">
           <v-divider />
-          <button @click="showTagModal">タグを編集</button>
-          <modal name="modal-tag">
-            <edit-tag />
-          </modal>
+          <edit-tag :tags="tags" />
           <v-chip
             class="ma-2"
             color="teal"
@@ -63,7 +60,7 @@
             text-color="white"
             @click="showWordcloudModal"
           >
-          <v-icon left>mdi-cloud</v-icon>ワードクラウド
+            <v-icon left>mdi-cloud</v-icon>ワードクラウド
           </v-chip>
           <modal 
             name="modal-wordcloud"
@@ -154,9 +151,6 @@ export default {
     },
   },
   methods: {
-    showTagModal() {
-      this.$modal.show('modal-tag')
-    },
     showWordcloudModal() {
       this.$modal.show('modal-wordcloud')
     },

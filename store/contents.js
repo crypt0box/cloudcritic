@@ -45,9 +45,11 @@ export const actions = {
       totalLike: firebase.firestore.FieldValue.increment(1)
     })
   }),
-  addTag: firestoreAction((context, { id, tag }) => {
-    contentsRef.doc(id).collection('tags').add(tag)
-    $nuxt.$router.push('/content/' + id)
+  addTag: firestoreAction((context, { contentId, tag }) => {
+    contentsRef.doc(contentId).collection('tags').add(tag)
+  }),
+  removeTag: firestoreAction((context, { contentId, tagId}) => {
+    contentsRef.doc(contentId).collection('tags').doc(tagId).delete()
   }),
   updateLike: firestoreAction((context, { contentId, tagId　}) => {
     contentsRef.doc(contentId).collection('tags').doc(tagId).update({
