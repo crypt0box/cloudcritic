@@ -29,6 +29,7 @@
               class="ma-2"
               tile
               outlined 
+              @click="countTotalLike(content.id)"
             >
               <v-icon center>mdi-thumb-up</v-icon> {{ content.totalLike }}
             </v-btn>
@@ -58,6 +59,11 @@ export default {
   },
   created() {
     this.$store.dispatch('contents/init')
+  },
+  methods: {
+    countTotalLike(contentId) {
+      this.$store.dispatch('contents/updateTotalLike', contentId)
+    },
   },
   computed: {
     filterContents() {
