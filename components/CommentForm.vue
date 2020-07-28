@@ -13,15 +13,16 @@
       </v-btn>
     </template>
     <v-card>
-      <v-card-title class="headline">コメント投稿</v-card-title>
+      <v-card-title class="headline">コメント</v-card-title>
       <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="dialog = false; addComment()">
         <v-card-text>
-            <v-text-field
-                v-model="inputComment"
-                :rules="commentRules"
-                label="コメント"
-                required
-            ></v-text-field>
+          <v-textarea
+              v-model="inputComment"
+              :rules="commentRules"
+              outlined
+              auto-grow
+              required
+          ></v-textarea>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
