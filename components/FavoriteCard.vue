@@ -33,14 +33,7 @@
             >
               <v-icon center>mdi-thumb-up</v-icon> {{ content.totalLike }}
             </v-btn>
-            <v-btn
-              class="ma-2"
-              tile
-              outlined
-              color="pink"
-            >
-              <v-icon center>mdi-heart</v-icon>
-            </v-btn>
+            <favorite-button :contentId="content.id"/>
           </v-card-actions>
         </v-row>
       </v-card>
@@ -49,13 +42,12 @@
 </template>
 
 <script>
+import FavoriteButton from '~/components/FavoriteButton.vue'
+
 export default {
   name: 'FavoriteCard',
-  data() {
-    return {
-      registerFavorite: false,
-
-    }
+  components: {
+    FavoriteButton
   },
   created() {
     this.$store.dispatch('contents/init')

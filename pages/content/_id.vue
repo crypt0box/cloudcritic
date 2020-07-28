@@ -135,10 +135,10 @@ export default {
     const favorite = this.$store.getters['auth/getFavorite']
     if (favorite) {
       favorite.forEach(e => {
-      if (e === this.$route.params.id) {
-        this.registerFavorite = true
-      }
-    })
+        if (e === this.$route.params.id) {
+          this.registerFavorite = true
+        }
+      })
     }
   },
   computed: {
