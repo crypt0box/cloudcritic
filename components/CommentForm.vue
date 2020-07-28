@@ -19,7 +19,7 @@
           <v-textarea
               v-model="inputComment"
               :rules="commentRules"
-              label="作品の好きな部分を語ろう！"
+              label="作品の好きな部分を共有しよう！"
               outlined
               auto-grow
               required
