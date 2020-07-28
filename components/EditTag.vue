@@ -48,7 +48,7 @@
       </v-card-text>
       <v-divider />
       <v-card-actions>
-        <v-btn color="green darken-1" text @click="dialog = false">キャンセル</v-btn>
+        <v-btn color="green darken-1" text @click="dialog = false">閉じる</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
