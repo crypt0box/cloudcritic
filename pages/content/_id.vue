@@ -52,6 +52,7 @@
         </v-col>
         <v-col cols="12" md="6">
           <v-divider />
+          <br><h3>タグ</h3>
           <edit-tag :tags="tags" />
           <v-chip
             class="ma-2"
@@ -89,6 +90,7 @@
         </v-col>
       </v-row>
       <v-divider/>
+      <br><h3>コメント</h3>
       <v-col cols="12">
         <comment />
       </v-col>
