@@ -39,6 +39,12 @@ export const mutations = {
 }
 
 export const actions = {
+  login({ commit }, authData) {
+    firebase.auth().signInWithEmailAndPassword(
+      authData.email,
+      authData.password,
+    )
+  },
   logout({ commit }) {
     firebase.auth().signOut().then(
       commit('resetState')
