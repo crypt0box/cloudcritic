@@ -59,6 +59,7 @@
               depressed
               height="48px"
               tile
+              @click="register"
             >
               会員登録
             </v-btn>
@@ -139,7 +140,52 @@ export default {
     }
   },
   methods: {
-    // ** テストユーザーとしてログイン
+    // 新規会員登録
+    register() {
+      // 認証
+      const auth = () => {
+        return new Promise((resolve, reject) => {
+          firebase
+            .auth()
+            .createUserWithEmailAndPassword(this.email, this.password)
+            .then((result) => {
+              console.log(result)
+              resolve(result)
+            })
+            .catch((error) => {
+              console.log('登録に失敗しました', error)
+            })
+        })
+      }
+      // ユーザー情報登録
+      const getAccountData = (result) => {
+        return new Promise((resolve, reject) => {
+          let userObject = {}
+          let user = result.user
+          userObject.refreshToken = user.refreshToken
+          userObject.uid = user.uid
+          userObject.displayName = user.displayName || ''
+          userObject.photoURL = user.photoURL || ''
+          userObject.uid = user.uid
+          userObject.email = user.email
+          userObject.isNewUser = result.additionalUserInfo.isNewUser
+          userObject.providerId = result.additionalUserInfo.providerId
+          // userObject.profile = result.additionalUserInfo.profile.bio
+          // userObject.screenName = result.additionalUserInfo.profile.login
+          // ** TODO - firestoreに登録
+          resolve(userObject)
+        })
+      }
+      Promise.resolve()
+        .then(this.setPersistence)
+        .then(auth)
+        .then(getAccountData)
+        .then((userObject) => this.createPhotoURL(userObject))
+        .then((userObject) => this.setPublicUserData(userObject))
+        .then((userObject) => this.setPrivateUserData(userObject))
+        .then((userObject) => this.setLocalUserData(userObject))
+        .catch((error) => this.onRejectted(error))
+    },
     twitter() {
       // 認証
       const auth = () => {
@@ -354,7 +400,6 @@ export default {
     setPublicUserData(userObject) {
       return new Promise((resolve, reject) => {
         let publicUser = firestore.collection('users').doc(userObject.uid)
-        debugger
         // ** usersに登録するObjのみを登録する
         publicUser
           .set(this.createPublicObj(userObject), { merge: true })
