@@ -18,6 +18,7 @@
               outlined
               style="border-color:#979797;"
               tile
+              @click="test"
             >
               <img
                 class="button-logo-img mr-4"
@@ -140,6 +141,14 @@ export default {
     }
   },
   methods: {
+    // テストユーザーとしてログイン
+    test() {
+      firebase.auth().signInWithEmailAndPassword('test@test.com', 'cloudcritic@testuser')
+      .catch((error) => {
+        console.log('テストユーザーのログインに失敗したよ', error)
+      });
+      this.$router.push('/')
+    },
     // 新規会員登録
     register() {
       // 認証
