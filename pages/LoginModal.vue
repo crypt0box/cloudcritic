@@ -61,7 +61,7 @@
               tile
               @click="register"
             >
-              会員登録
+              会員登録をつづける
             </v-btn>
           </div>
           <div class="separator separator_login_page">
@@ -164,8 +164,6 @@ export default {
           let user = result.user
           userObject.refreshToken = user.refreshToken
           userObject.uid = user.uid
-          userObject.displayName = user.displayName || ''
-          userObject.photoURL = user.photoURL || ''
           userObject.uid = user.uid
           userObject.email = user.email
           userObject.isNewUser = result.additionalUserInfo.isNewUser
