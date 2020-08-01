@@ -8,11 +8,10 @@
       label="画像ファイルをアップロードしてください"
       prepend-icon="mdi-image"
       :clearable="false"
-      @change="upload"
+      @change="onFileChange"
     />
   </v-form>
     <v-card 
-      v-if="$store.getters['auth/getIconUrl']"
       max-width="300"
     >
       <v-avatar
@@ -20,10 +19,12 @@
         size="125"
         tile
       >
-      <v-img :src="$store.getters['auth/getIconUrl']" />
+      <v-img 
+        v-show="uploadedImage"
+        :src="uploadedImage" 
+      />
       </v-avatar>
       <v-card-text>
-        {{ $store.getters['auth/getIconName'] }}
         <v-btn icon>
           <v-icon @click="deleteIcon">mdi-close</v-icon>
         </v-btn>
@@ -39,12 +40,25 @@ export default {
   name: 'UploadIcon',
   data() {
     return {
+      uploadedImage: '',
       id: this.$route.params.id,
       inputImage: null,
       iconUrl: '',
     }
   },
   methods: {
+    onFileChange(e) {
+      let files = e.target.files || e.dataTransfer.files;
+      this.createImage(files[0]);
+    },
+    // アップロードした画像を表示
+    createImage(file) {
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        this.uploadedImage = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
     upload (file) {
       if (file) {
         const storageRef = firebase.storage().ref('users/' + this.id + '/images/' + file.name)

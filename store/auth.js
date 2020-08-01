@@ -29,9 +29,11 @@ export const mutations = {
   onUserFavoriteChanged(state, favorite) {
     state.favorite = favorite;
   },
-  onUserIconChanged(state, {iconName, iconUrl}) {
-    state.iconName = iconName,
-    state.iconUrl = iconUrl
+  onUserNameChanged(state, displayName) {
+    state.name = displayName
+  },
+  onUserPhotoChanged(state, photoUrl) {
+    state.photoUrl = photoUrl
   },
   resetState(state) {
     Object.assign(state, getDefaultState())
@@ -83,20 +85,32 @@ export const actions = {
       })
     })
   },
-  uploadIcon({ commit }, { uid, iconName, iconUrl }) {
-    userRef.doc(uid).update({
-      iconName: iconName,
-      iconUrl: iconUrl
-    })
-    commit('onUserIconChanged', {iconName: iconName, iconUrl: iconUrl})
+  updateDisplayName({ commit }, { uid, displayName}) {
+    var user = firebase.auth().currentUser;
+    user.updateProfile({displayName: displayName}
+    ).then(() => {
+      // Update successful.
+      console.log('ユーザー名の更新に成功したよ')
+    }).catch((error) => {
+      // An error happened.
+      console.log('ユーザー名の更新に失敗', error)
+    });
+    userRef.doc(uid).update({displayName: displayName})
+    commit('onUserNameChanged', displayName)
   },
-  deleteIcon({ commit }, uid) {
-    userRef.doc(uid).update({
-      iconName: '',
-      iconUrl: '',
-    })
-    commit('onUserIconChanged', {iconName: '', iconUrl: ''})
-  }
+  updatePhotoUrl({ commit }, { uid, photoUrl}) {
+    var user = firebase.auth().currentUser;
+    user.updateProfile({photoURL: photoUrl}
+    ).then(() => {
+      // Update successful.
+      console.log('photoUrlの更新に成功したよ')
+    }).catch((error) => {
+      // An error happened.
+      console.log('photoUrlの更新に失敗', error)
+    });
+    userRef.doc(uid).update({photoURL: photoUrl})
+    commit('onUserPhotoChanged', photoUrl)
+  },
 }
 
 export const getters = {

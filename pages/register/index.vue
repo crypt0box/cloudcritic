@@ -162,10 +162,13 @@ export default {
         return new Promise((resolve, reject) => {
           let userObject = {}
           let user = result.user
+          userObject.token = 'token'
           userObject.refreshToken = user.refreshToken
           userObject.uid = user.uid
+          userObject.displayName = user.displayName
+          userObject.photoURL = user.photoURL
           userObject.uid = user.uid
-          userObject.email = user.email
+          userObject.email = user.email // null
           userObject.isNewUser = result.additionalUserInfo.isNewUser
           userObject.providerId = result.additionalUserInfo.providerId
           // userObject.profile = result.additionalUserInfo.profile.bio
@@ -182,7 +185,7 @@ export default {
         .then((userObject) => this.setPublicUserData(userObject))
         .then((userObject) => this.setPrivateUserData(userObject))
         .then((userObject) => this.setLocalUserData(userObject))
-        .catch((error) => this.onRejectted(error))
+        .catch(this.$router.push('register/RegisterUserInfo'))
     },
     twitter() {
       // 認証
@@ -356,8 +359,8 @@ export default {
       publicObj.uid = obj.uid
       publicObj.providerId = obj.providerId
       publicObj.isNewUser = obj.isNewUser
-      // publicObj.photoURL = obj.photoURL
-      // publicObj.displayName = obj.displayName
+      publicObj.photoURL = obj.photoURL
+      publicObj.displayName = obj.displayName
       if (obj.isNewUser) {
         publicObj.photoURL = obj.photoURL
         publicObj.displayName = obj.displayName
@@ -446,8 +449,6 @@ export default {
     // ** ④ 取得したアイコンのURLをFirestorageに登録して、そのURLをFirestoreに登録する準備
     createPhotoURL(userObject) {
       return new Promise((resolve, reject) => {
-        // ** TODO - 初めてじゃない場合は処理しない対応が必要
-        console.log(userObject)
         // This can be downloaded directly:
         let url = userObject.photoURL
         let xhr = new XMLHttpRequest()
