@@ -95,7 +95,7 @@
               >
                 <img
                   class="button-logo-img mr-4"
-                  src="https://madeby.google.com/static/images/google_g_logo.svg"
+                  src="~/static/twitter.png"
                   style="height:24px;"
                 />
                 Twitterでログイン
@@ -110,7 +110,7 @@
               >
                 <img
                   class="button-logo-img mr-4"
-                  src="https://madeby.google.com/static/images/google_g_logo.svg"
+                  src="~/static/github.png"
                   style="height:24px;"
                 />
                 githubでログイン
