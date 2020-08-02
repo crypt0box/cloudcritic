@@ -9,6 +9,7 @@ export const state = () => ({
   photoUrl: '',
   uid: '',
   favorite: '',
+  status: false,
 })
 
 export const getDefaultState = () => ({
@@ -17,14 +18,16 @@ export const getDefaultState = () => ({
   photoUrl: '',
   uid: '',
   favorite: '',
+  status: false,
 })
 
 export const mutations = {
-  onAuthStateChanged(state, {name, email, photoUrl, uid}) {
+  onAuthStateChanged(state, {name, email, photoUrl, uid, status}) {
     state.name = name
     state.email = email
     state.photoUrl = photoUrl
     state.uid = uid
+    state.status = status
   },
   onUserFavoriteChanged(state, favorite) {
     state.favorite = favorite;
@@ -68,6 +71,7 @@ export const actions = {
             email: email,
             photoUrl : photoUrl,
             uid: uid,
+            status: true
           })
           userRef.doc(uid).get()
             .then(doc => {
