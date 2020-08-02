@@ -81,9 +81,14 @@
     </v-navigation-drawer>
     <v-footer
       :fixed="fixed"
+      height="40"
+      absolute
+      padless
       app
     >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <v-col class="text-center">
+        &copy; {{ new Date().getFullYear() }} CloudCritic
+      </v-col>
     </v-footer>
   </v-app>
 </template>
