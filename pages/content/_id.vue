@@ -108,6 +108,7 @@ import WordCloud from '~/components/WordCloud.vue'
 import Comment from '~/components/Comment.vue'
 
 export default {
+  middleware: 'authenticated',
   components: {
     EditTag,
     CommentForm,
