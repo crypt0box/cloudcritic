@@ -109,7 +109,7 @@ export default {
         {
           icon: 'mdi-format-align-justify',
           title: 'Login',
-          to: '/LoginModal'
+          to: '/login'
         },
         {
           icon: 'mdi-amazon',

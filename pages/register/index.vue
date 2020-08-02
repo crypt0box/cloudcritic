@@ -144,10 +144,10 @@ export default {
     // テストユーザーとしてログイン
     test() {
       firebase.auth().signInWithEmailAndPassword('test@test.com', 'cloudcritic@testuser')
+      .then(() => {this.$router.push('/')})
       .catch((error) => {
         console.log('テストユーザーのログインに失敗したよ', error)
       });
-      this.$router.push('/')
     },
     // 新規会員登録
     register() {
