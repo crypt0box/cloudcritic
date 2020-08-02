@@ -113,8 +113,15 @@ export default {
               console.log('エラー', error)
           })
         })
+      } else {
+        this.$store.dispatch('auth/updatePhotoUrl', {
+          uid: uid,
+          photoUrl: 'https://firebasestorage.googleapis.com/v0/b/cloud-critic.appspot.com/o/user%2Fdefault_icon%2Fdefault_user.png?alt=media&token=62ee1e9a-ee6b-475f-b0af-3e845ff9f885'
+        })
       }
-      this.$router.push('/')
+      Promise.resolve()
+      .then(this.$router.push('/'))
+      .then(this.reload())
     },
   }
 }
