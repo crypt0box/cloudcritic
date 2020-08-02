@@ -50,6 +50,7 @@
               depressed
               height="48px"
               tile
+              :disabled="!displayName"
               @click="updateUserInfo"
             >
               登録
@@ -113,6 +114,7 @@ export default {
           })
         })
       }
+      this.$router.push('/')
     },
   }
 }
