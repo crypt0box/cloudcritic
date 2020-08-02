@@ -25,6 +25,7 @@
 import FavoriteCard from '~/components/FavoriteCard.vue'
 
   export default {
+    middleware: 'authenticated',
     components: {
       FavoriteCard
     },
