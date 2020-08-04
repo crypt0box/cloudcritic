@@ -30,12 +30,18 @@
       app
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-        <v-avatar :tile="true" size="180">
+      <nuxt-link :to="'/'">
+        <v-avatar :tile="true" width="180" height="80">
           <img  
             src="~/static/cloudcritic_logo.png"
             alt="logo"
           >
         </v-avatar>
+      </nuxt-link>
+      <v-spacer />
+      <v-btn icon to="search" nuxt>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
     </v-app-bar>
     <v-content>
       <v-container>
