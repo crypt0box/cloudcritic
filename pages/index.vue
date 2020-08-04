@@ -1,14 +1,5 @@
 <template>
   <section>
-    <header>
-      <nuxt-link :to="'CreateContent'">作成</nuxt-link>
-      <nuxt-link :to="'users/' + $store.getters['auth/getUserId']">マイページ</nuxt-link>
-      <button @click="show">クリックする</button>
-      <button @click="logout">ログアウト</button>
-      <modal name="modal-content" height="80%" width="80%" :scrollable="true">
-        <select-image />
-      </modal>
-    </header>
     <body>
       <v-container>
         <v-row>
@@ -50,9 +41,6 @@ export default {
     hide() {
       this.$modal.hide("modal-content")
     },
-    logout() {
-      this.$store.dispatch('auth/logout')
-    }
   },
   computed:{
     contents() {

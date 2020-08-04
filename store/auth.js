@@ -51,9 +51,9 @@ export const actions = {
     )
   },
   logout({ commit }) {
-    firebase.auth().signOut().then(
-      commit('resetState')
-    )
+    firebase.auth().signOut()
+    .then(commit('resetState'))
+    .then(this.$router.push('/login'))
   },
   onAuth({ commit }) {
     return new Promise((resolve, reject) => {
