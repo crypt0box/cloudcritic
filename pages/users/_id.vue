@@ -16,12 +16,7 @@
                 </v-card-text>
               </v-row>
               <v-card-actions>
-                <v-btn
-                  class="fill-width"
-                  depressed
-                >
-                  プロフィールの編集
-                </v-btn>
+                <edit-profile />
               </v-card-actions>
             </div>
           </div>
@@ -36,11 +31,13 @@
 
 <script>
 import FavoriteCard from '~/components/FavoriteCard.vue'
+import EditProfile from '~/components/EditProfile.vue'
 
   export default {
     middleware: 'authenticated',
     components: {
-      FavoriteCard
+      FavoriteCard,
+      EditProfile
     },
     validate ({ params }) {
       return /^([a-zA-Z0-9]{28})$/.test(params.id)
@@ -50,9 +47,3 @@ import FavoriteCard from '~/components/FavoriteCard.vue'
     }
   }
 </script>
-
-<style scoped>
-.fill-width {
-  width: 100%;
-}
-</style>
