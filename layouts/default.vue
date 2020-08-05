@@ -39,7 +39,7 @@
         </v-avatar>
       </nuxt-link>
       <v-spacer />
-      <v-btn icon to="search" nuxt>
+      <v-btn icon :to="'/search'" nuxt>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
       <v-menu v-if="$store.getters['auth/getUserId']">
