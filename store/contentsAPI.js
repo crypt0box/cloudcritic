@@ -17,7 +17,11 @@ export const actions = {
     const baseUrl = 'https://www.googleapis.com/books/v1/volumes?q='
     let keyword = `${itemName}`
     const getUrl = baseUrl + keyword
-    const response = await this.$axios.$get(getUrl)
+    const params = {
+      Country: 'JP',
+      maxResults: 30,
+    }
+    const response = await this.$axios.$get(getUrl, { params: params })
     console.log(response)
     commit('setResults', response.items)
   },

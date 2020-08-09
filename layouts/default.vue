@@ -57,7 +57,7 @@
         <v-list>
           <v-list-item>
             <v-btn 
-              :to="'users/' + $store.getters['auth/getUserId']"
+              :to="'/users/' + $store.getters['auth/getUserId']"
               text
               nuxt
             >

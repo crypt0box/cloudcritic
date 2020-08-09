@@ -39,6 +39,9 @@ export default {
       name: ''
     }
   },
+  created() {
+    
+  },
   methods: {
     search() {
       this.$store.dispatch('contentsAPI/search', this.name)
