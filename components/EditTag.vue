@@ -15,6 +15,7 @@
         <v-icon center>mdi-pencil</v-icon>タグを編集
       </v-chip>
     </template>
+    <div>
     <v-card>
       <v-card-title>タグ編集</v-card-title>
       <v-divider />
@@ -51,6 +52,7 @@
         <v-btn color="green darken-1" text @click="dialog = false">閉じる</v-btn>
       </v-card-actions>
     </v-card>
+    </div>
   </v-dialog>
 </template>
 
