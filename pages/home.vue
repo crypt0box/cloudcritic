@@ -1,17 +1,38 @@
 <template>
-  <div class="header-img">
-    <div class="header-text">
-      <h1>CloudCritic</h1><br>
-      <h3>「いいね」するだけでブックレビューができるサイトです</h3>
+  <div>
+    <div class="header-img">
+      <div class="header-text">
+        <h1>CloudCritic</h1><br>
+        <h3>「いいね」するだけでブックレビューができるサイトです</h3>
+      </div>
+      <div class="header-form">
+        <v-form>
+          <v-text-field
+            solo
+            label="search"
+            append-icon="mdi-magnify"
+          />
+        </v-form>
+      </div>
     </div>
-    <div class="header-form">
-      <v-form>
-        <v-text-field
-          solo
-          label="search"
-          append-icon="mdi-magnify"
-        />
-      </v-form>
+    <div>
+      <h2>人気のコンテンツ</h2>
+      <v-slide-group show-arrows>
+        <v-row>
+          <v-col
+            v-for="content in contents"
+            :key="content.id"
+          >
+            <v-slide-item>
+              <v-img
+                :src="content.thumbnailUrl"
+                maxWidth="100"
+                maxHeight="140"
+              />
+            </v-slide-item>
+          </v-col>
+        </v-row>
+      </v-slide-group>
     </div>
   </div>
 </template>
@@ -19,6 +40,14 @@
 <script>
 export default {
   layout: 'home',
+  created() {
+    this.$store.dispatch('contents/init')
+  },
+  computed:{
+    contents() {
+      return this.$store.getters['contents/getContents']
+    },
+  }
 }
 </script>
 
