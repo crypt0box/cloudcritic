@@ -5,11 +5,13 @@
       <h3>「いいね」するだけでブックレビューができるサイトです</h3>
     </div>
     <div class="header-form">
-      <v-text-field
-        solo
-        label="search"
-        append-icon="mdi-magnify"
-      />
+      <v-form>
+        <v-text-field
+          solo
+          label="search"
+          append-icon="mdi-magnify"
+        />
+      </v-form>
     </div>
   </div>
 </template>
@@ -45,13 +47,13 @@ export default {
   }
   .header-text {
     padding: 5%;
+    padding-top: 2%;
     text-align: center;
     color: white;
     text-shadow: 1px 1px 10px gray;
   }
   .header-form {
-    padding-left: 5%;
-    padding-right: 5%;
+    padding: 5%;
   }
 }
 </style>
