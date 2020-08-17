@@ -1,6 +1,29 @@
 <template>
   <div>
-    <div :style="{height: height * 0.7 + 'px'}" class="header-img">
+    <div
+      class="header-img"
+      :style="{height: height * 0.7 + 'px'}"
+      v-if="innerWidth > 480"
+    >
+      <div class="header-text">
+        <h1>CloudCritic</h1><br>
+        <h3>「いいね」するだけでブックレビューができるサイトです</h3>
+      </div>
+      <div class="header-form">
+        <v-form>
+          <v-text-field
+            solo
+            label="search"
+            append-icon="mdi-magnify"
+          />
+        </v-form>
+      </div>
+    </div>
+    <div
+      class="header-img"
+      :style="{height: height * 0.6 + 'px'}"
+      v-else
+    >
       <div class="header-text">
         <h1>CloudCritic</h1><br>
         <h3>「いいね」するだけでブックレビューができるサイトです</h3>
@@ -44,6 +67,7 @@ export default {
   data() {
     return {
       height: 0,
+      innerWidth: window.innerWidth
     }
   },
   methods: {
