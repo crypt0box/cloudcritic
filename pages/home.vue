@@ -17,31 +17,20 @@
     </div>
     <div>
       <h2>人気のコンテンツ</h2>
-      <v-slide-group show-arrows>
-        <v-row>
-          <v-col
-            v-for="content in contents"
-            :key="content.id"
-          >
-            <v-slide-item>
-              <v-img
-                :src="content.thumbnailUrl"
-                maxWidth="100"
-                maxHeight="140"
-              />
-            </v-slide-item>
-          </v-col>
-        </v-row>
-      </v-slide-group>
+      <contents-slider />
     </div>
   </div>
 </template>
 
 <script>
+import ContentsSlider from '~/components/ContentsSlider'
+
 export default {
   layout: 'home',
+  components: {
+    ContentsSlider,
+  },
   created() {
-    this.$store.dispatch('contents/init')
     if (process.client) {
       window.addEventListener('resize', this.handleResize)
       this.handleResize()
@@ -56,11 +45,6 @@ export default {
     return {
       height: 0,
     }
-  },
-  computed:{
-    contents() {
-      return this.$store.getters['contents/getContents']
-    },
   },
   methods: {
     handleResize () {
