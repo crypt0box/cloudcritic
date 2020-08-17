@@ -21,7 +21,7 @@
     </div>
     <div
       class="header-img"
-      :style="{height: height * 0.6 + 'px'}"
+      :style="{height: height * 0.4 + 'px'}"
       v-else
     >
       <div class="header-text">
@@ -94,8 +94,6 @@ export default {
   }
 @media screen and (max-width: 480px) {
   .header-img {
-    height: 300px;
-    width: 100%;
     background-image: url("../static/home_image.jpg");
     background-size: cover;
   }
