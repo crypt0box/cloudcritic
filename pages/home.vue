@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="header-img">
+    <div :style="{height: height * 0.7 + 'px'}" class="header-img">
       <div class="header-text">
         <h1>CloudCritic</h1><br>
         <h3>「いいね」するだけでブックレビューができるサイトです</h3>
@@ -42,19 +42,36 @@ export default {
   layout: 'home',
   created() {
     this.$store.dispatch('contents/init')
+    if (process.client) {
+      window.addEventListener('resize', this.handleResize)
+      this.handleResize()
+    }
+  },
+  destroyed () {
+    if (process.client) {
+      window.removeEventListener('resize', this.handleResize)
+    }
+  },
+  data() {
+    return {
+      height: 0,
+    }
   },
   computed:{
     contents() {
       return this.$store.getters['contents/getContents']
     },
+  },
+  methods: {
+    handleResize () {
+      this.height = window.innerHeight
+    }
   }
 }
 </script>
 
 <style scoped>
 .header-img {
-  height: 300px;
-  width: 100%;
   background-image: url("../static/home_image.jpg");
   background-size: cover;
 }
