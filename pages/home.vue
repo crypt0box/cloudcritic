@@ -40,18 +40,20 @@
     </div>
     <div>
       <h2>人気のコンテンツ</h2>
-      <contents-slider />
+      <v-container>
+        <contents-carousel />
+      </v-container>
     </div>
   </div>
 </template>
 
 <script>
-import ContentsSlider from '~/components/ContentsSlider'
+import ContentsCarousel from '~/components/ContentsCarousel'
 
 export default {
   layout: 'home',
   components: {
-    ContentsSlider,
+    ContentsCarousel,
   },
   created() {
     if (process.client) {

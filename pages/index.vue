@@ -28,7 +28,7 @@ import SelectImage from '~/components/SelectImage.vue'
 
 export default {
   components: {
-    SelectImage
+    SelectImage,
   },
   created() {
     this.$store.dispatch('contents/init')
