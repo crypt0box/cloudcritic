@@ -26,13 +26,9 @@
             />
           </v-col>
           <v-col cols="6">
-            <wordcloud
-              :data="tags"
-              name-key="name"
-              value-key="like"
-              :color="myColors"
-              :show-tooltip="false"
-            />
+            <div v-for="tag in tags" :key="tag.id">
+              <p>{{ tag.name }}</p>
+            </div>
           </v-col>
         </v-row>
       </v-sheet>
@@ -42,12 +38,10 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
       contents: [],
-      tags: [],
       model: 0,
       myColors: ['#38b508', '#76ed47', '#a8e88f', '#39c900'],
     }
@@ -59,8 +53,12 @@ export default {
   methods: {
     getTags(model) {
       this.$store.dispatch('contents/initTags', this.contents[model].id)
-      this.tags = JSON.parse(JSON.stringify(this.$store.getters['contents/getTags']))
     }
   },
+  computed: {
+    tags() {
+      return this.$store.getters['contents/getTags']
+    }
+  }
 }
 </script>
