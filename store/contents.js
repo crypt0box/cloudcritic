@@ -28,6 +28,9 @@ export const actions = {
   initComments: firestoreAction(({ bindFirestoreRef }, id) => {
     bindFirestoreRef('comments', contentsRef.doc(id).collection('comment').orderBy('createdAt', 'desc'))
   }),
+  initPopularContents: firestoreAction(({ bindFirestoreRef }) => {
+    bindFirestoreRef('contents', contentsRef.orderBy('totalLike', 'desc').limit(5))
+  }),
   add: firestoreAction((context, {title, author, thumbnailUrl, id}) => {
     contentsRef.doc(id).set({
       title: title,

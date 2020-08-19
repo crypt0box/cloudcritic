@@ -1,6 +1,5 @@
 <template>
   <div>
-  {{ initWords }}
   <wordcloud
     :data="words"
     name-key="name"
@@ -18,13 +17,8 @@ export default {
     return {
       dialog: false,
       myColors: ['#38b508', '#76ed47', '#a8e88f', '#39c900'],
-      words: [],
+      words: JSON.parse(JSON.stringify(this.$store.getters['contents/getTags'])),
     }
   },
-  computed: {
-    initWords() {
-      this.words = JSON.parse(JSON.stringify(this.$store.getters['contents/getTags']))
-    }
-  }
 }
 </script>

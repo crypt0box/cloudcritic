@@ -24,12 +24,7 @@
 </template>
 
 <script>
-import SelectImage from '~/components/SelectImage.vue'
-
 export default {
-  components: {
-    SelectImage,
-  },
   created() {
     this.$store.dispatch('contents/init')
     this.$store.dispatch('auth/onAuth')
