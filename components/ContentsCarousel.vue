@@ -3,6 +3,7 @@
   <v-carousel
     height="400"
     hide-delimiter-background
+    cycle
     v-model="model"
     @change="getTags"
   >
@@ -11,10 +12,12 @@
       :key="content.id"
     >
       <v-sheet
-        height="100%"
+        height="120%"
       >
+        <div class="contents-title text-center">
+          <h2>{{ content.title }}</h2>
+        </div>
         <v-row
-          class="fill-height"
           align="center"
           justify="center"
         >
@@ -22,12 +25,17 @@
             <v-row justify="center">
               <v-img
                 :src="content.thumbnailUrl"
-                maxWidth="100"
-                maxHeight="140"
+                maxWidth="180"
+                maxHeight="240"
+                width="180"
+                height="240"
               />
             </v-row>
           </v-col>
           <v-col cols="6">
+            <div class="popular-tag">
+              <p>人気のタグ</p>
+            </div>
             <div 
               v-for="(tag, index) in tags" 
               :key="tag.id" 
@@ -74,6 +82,16 @@ export default {
 </script>
 
 <style scoped>
+.contents-title {
+  padding: 20px;
+  font-size: 25px;
+}
+.popular-tag {
+  font-size: 20px;
+  margin-bottom: -10px;
+  text-decoration: underline;
+  text-decoration-color: rgb(219, 59, 184);
+}
 .tag-name-text0 {
   color: #00ff00;
   font-size: 32px;

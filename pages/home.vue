@@ -1,28 +1,8 @@
 <template>
-  <div>
+  <div v-if="innerWidth > 480">
     <div
       class="header-img"
       :style="{height: height * 0.7 + 'px'}"
-      v-if="innerWidth > 480"
-    >
-      <div class="header-text">
-        <h1>CloudCritic</h1><br>
-        <h3>「いいね」するだけでブックレビューができるサイトです</h3>
-      </div>
-      <div class="header-form">
-        <v-form>
-          <v-text-field
-            solo
-            label="search"
-            append-icon="mdi-magnify"
-          />
-        </v-form>
-      </div>
-    </div>
-    <div
-      class="header-img"
-      :style="{height: height * 0.4 + 'px'}"
-      v-else
     >
       <div class="header-text">
         <h1>CloudCritic</h1><br>
@@ -41,7 +21,33 @@
     <div>
       <h2>人気のコンテンツ</h2>
       <v-container>
-        <contents-carousel />
+          <contents-carousel />
+      </v-container>
+    </div>
+  </div>
+  <div v-else>
+    <div
+      class="header-img"
+      :style="{height: height * 0.5 + 'px'}"
+    >
+      <div class="header-text">
+        <h1>CloudCritic</h1><br>
+        <h3>「いいね」するだけでブックレビューができるサイトです</h3>
+      </div>
+      <div class="header-form">
+        <v-form>
+          <v-text-field
+            solo
+            label="search"
+            append-icon="mdi-magnify"
+          />
+        </v-form>
+      </div>
+    </div>
+    <div>
+      <h2>人気のコンテンツ</h2>
+      <v-container>
+        <contents-slider />
       </v-container>
     </div>
   </div>
@@ -49,11 +55,13 @@
 
 <script>
 import ContentsCarousel from '~/components/ContentsCarousel'
+import ContentsSlider from '~/components/ContentsSlider'
 
 export default {
   layout: 'home',
   components: {
     ContentsCarousel,
+    ContentsSlider,
   },
   created() {
     if (process.client) {
@@ -97,11 +105,9 @@ export default {
 @media screen and (max-width: 480px) {
   .header-img {
     background-image: url("../static/home_image.jpg");
-    background-size: cover;
+    background-size: auto;
   }
   .header-text {
-    padding: 5%;
-    padding-top: 2%;
     text-align: center;
     color: white;
     text-shadow: 1px 1px 10px gray;
