@@ -18,10 +18,12 @@
         </v-form>
       </div>
     </div>
-    <div>
+    <div class="body-title">
       <h2>人気のコンテンツ</h2>
+    </div>
+    <div>
       <v-container>
-          <contents-carousel />
+        <contents-carousel />
       </v-container>
     </div>
   </div>
@@ -44,8 +46,10 @@
         </v-form>
       </div>
     </div>
-    <div>
+    <div class="body-title">
       <h2>人気のコンテンツ</h2>
+    </div>
+    <div>
       <v-container>
         <contents-slider />
       </v-container>
@@ -99,9 +103,13 @@ export default {
   text-shadow: 1px 1px 10px gray;
 }
 .header-form {
-    padding-left: 5%;
-    padding-right: 5%;
-  }
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.body-title {
+  padding: 1%;
+  padding-left: 5%;
+}
 @media screen and (max-width: 480px) {
   .header-img {
     background-image: url("../static/home_image.jpg");

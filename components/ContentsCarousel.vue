@@ -1,9 +1,11 @@
 <template>
 <div>
   <v-carousel
-    height="400"
     hide-delimiter-background
     cycle
+    light
+    height="400"
+    progress-color="#006400"
     v-model="model"
     @change="getTags"
   >
@@ -12,7 +14,8 @@
       :key="content.id"
     >
       <v-sheet
-        height="120%"
+        height="100%"
+        color="white"
       >
         <div class="contents-title text-center">
           <h2>{{ content.title }}</h2>
@@ -23,6 +26,7 @@
         >
           <v-col cols="6">
             <v-row justify="center">
+              <nuxt-link :to="'content/' + content.id">
               <v-img
                 :src="content.thumbnailUrl"
                 maxWidth="180"
@@ -30,6 +34,7 @@
                 width="180"
                 height="240"
               />
+              </nuxt-link>
             </v-row>
           </v-col>
           <v-col cols="6">
@@ -84,9 +89,11 @@ export default {
 <style scoped>
 .contents-title {
   padding: 20px;
+  color: black;
   font-size: 25px;
 }
 .popular-tag {
+  color: black;
   font-size: 20px;
   margin-bottom: -10px;
   text-decoration: underline;
