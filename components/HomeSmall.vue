@@ -48,7 +48,7 @@
                     align="center"
                     justify="center"
                   >
-                    <nuxt-link :to="'content/' + content.id">
+                    <nuxt-link :to="'../content/' + content.id">
                     <v-img
                       :src="content.thumbnailUrl"
                       maxWidth="180"
