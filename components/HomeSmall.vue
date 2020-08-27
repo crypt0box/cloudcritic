@@ -65,6 +65,35 @@
         </div>
       </v-container>
     </div>
+    <div class="body-title text-center">
+      <h2>CloudCriticとは</h2>
+    </div>
+    <div>
+      <v-row 
+        justify="center"
+        v-for="card in cards"
+        :key="card.id"
+        class="card"
+      >
+        <v-card width="80%">
+          <v-row justify="center">
+            <v-avatar size="125">
+              <v-icon>{{ card.icon }}</v-icon>
+            </v-avatar>
+          </v-row>
+          <v-row justify="center">
+            <v-card-title>
+              {{ card.title }}
+            </v-card-title>
+          </v-row>
+          <v-row justify="center">
+            <v-card-text>
+              {{ card.text }}
+            </v-card-text>
+          </v-row>
+        </v-card>
+      </v-row>
+    </div>
   </div>
 </template>
 
@@ -89,6 +118,18 @@ export default {
       innerWidth: window.innerWidth,
       contents: [],
       model: 0,
+      cards: {
+        first: {
+          icon:'mdi-heart',
+          title: 'test',
+          text: 'test'
+        },
+        second: {
+          icon:'mdi-heart',
+          title: 'test2',
+          text: 'test2'
+        }
+      }
     }
   },
   methods: {
@@ -102,7 +143,7 @@ export default {
 <style scoped>
 .header-img {
   background-image: url("../static/home_image.jpg");
-  background-size: auto;
+  background-size: cover;
 }
 .header-text {
   text-align: center;
@@ -119,5 +160,8 @@ export default {
 }
 .body-content {
   padding-top: 10%;
+}
+.card {
+  padding-bottom: 5%;
 }
 </style>
