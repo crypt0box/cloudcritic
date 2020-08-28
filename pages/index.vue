@@ -3,19 +3,40 @@
     <body>
       <v-container>
         <v-row>
+          <v-btn text>
+            <v-icon left size="30">mdi-crown</v-icon>
+            <h1>ランキング</h1>
+          </v-btn>
+        </v-row>
+        <v-divider />
+        <v-row style="padding-top: 3%;">
           <v-col
             v-for="content in contents"
             :key="content.id"
+            cols="2"
           >
-          <nuxt-link :to="'content/' + content.id">
-            <v-img
-              :src="content.thumbnailUrl"
-              maxWidth="100"
-              maxHeight="140"
-              class="white--text align-end"
+          <v-row>
+            <nuxt-link :to="'content/' + content.id">
+              <v-img
+                :src="content.thumbnailUrl"
+                maxWidth="100"
+                maxHeight="140"
+                width="100"
+                height="140"
+                class="white--text align-end"
+              >
+              </v-img>
+            </nuxt-link>
+          </v-row>
+          <v-row>
+            <v-btn 
+              text
+              class="like-button"
             >
-            </v-img>
-          </nuxt-link>
+              <v-icon left>mdi-thumb-up</v-icon>
+              {{ content.totalLike }}
+            </v-btn>
+          </v-row>
           </v-col>
         </v-row>
       </v-container>
@@ -44,3 +65,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.like-button {
+  width: 100px;
+}
+</style>

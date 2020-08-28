@@ -147,6 +147,8 @@ export default {
 .body-title {
   padding: 1%;
   padding-left: 5%;
+  text-decoration: underline;
+  text-decoration-color: rgb(219, 59, 184);
 }
 .body-content {
   padding-top: 10%;

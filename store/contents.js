@@ -17,7 +17,7 @@ export const mutations = {
 
 export const actions = {
   init: firestoreAction(({ bindFirestoreRef }) => {
-    bindFirestoreRef('contents', contentsRef)
+    bindFirestoreRef('contents', contentsRef.orderBy('totalLike', 'desc'))
   }),
   initContent: firestoreAction(({ bindFirestoreRef }, contentId) => {
     bindFirestoreRef('content', contentsRef.doc(contentId))

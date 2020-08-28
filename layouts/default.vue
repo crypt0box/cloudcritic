@@ -103,25 +103,25 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
+          icon: 'mdi-home',
+          title: 'トップページ',
+          to: '/home'
+        },
+        {
+          icon: 'mdi-magnify',
+          title: '検索',
+          to: '/search'
+        },
+        {
+          icon: 'mdi-crown',
+          title: 'ランキング',
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Register',
-          to: '/register'
+          icon: 'mdi-account',
+          title: 'マイページ',
+          to: '/users/' + this.$store.getters['auth/getUserId']
         },
-        {
-          icon: 'mdi-format-align-justify',
-          title: 'Login',
-          to: '/login'
-        },
-        {
-          icon: 'mdi-amazon',
-          title: 'Contents',
-          to: '/contents'
-        }
       ],
       miniVariant: false,
       right: true,
