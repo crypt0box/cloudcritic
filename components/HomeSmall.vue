@@ -75,15 +75,15 @@
         :key="card.id"
         class="card"
       >
-        <v-card width="80%">
+        <v-card width="80%" style="padding: 2%;">
           <v-row justify="center">
-            <v-avatar size="125">
-              <v-icon>{{ card.icon }}</v-icon>
+            <v-avatar size="80">
+              <v-icon x-large>{{ card.icon }}</v-icon>
             </v-avatar>
           </v-row>
           <v-row justify="center">
             <v-card-title>
-              {{ card.title }}
+              <h3>{{ card.title }}</h3>
             </v-card-title>
           </v-row>
           <v-row justify="center">
@@ -92,6 +92,17 @@
             </v-card-text>
           </v-row>
         </v-card>
+      </v-row>
+    </div>
+    <div 
+      style="padding: 3%;">
+      <v-row justify="center">
+          <v-btn 
+            color="#FFCB00"
+            @click="register"
+          >
+          新規登録してはじめる
+          </v-btn>
       </v-row>
     </div>
   </div>
@@ -120,21 +131,29 @@ export default {
       model: 0,
       cards: {
         first: {
-          icon:'mdi-heart',
-          title: 'test',
-          text: 'test'
+          icon:'mdi-pencil',
+          title: '簡単レビュー',
+          text: '自分の感想を言語化するのを難しく感じたことはありませんか？書籍についたタグに「いいね」するだけで簡単にレビューできます。'
         },
         second: {
-          icon:'mdi-heart',
-          title: 'test2',
-          text: 'test2'
-        }
+          icon:'mdi-cloud',
+          title: 'ワードクラウド',
+          text: 'タグのいいね数に応じてワードクラウドを生成。書籍の評価されているポイントが一目でわかります。'
+        },
+        third: {
+          icon:'mdi-cog',
+          title: 'シンプルなデザイン',
+          text: 'シンプルで無駄のないデザインが直感的な操作を可能にします。レスポンシブ対応のため、スマホでもPCでも使えます。'
+        },
       }
     }
   },
   methods: {
     handleResize () {
       this.height = window.innerHeight
+    },
+    register() {
+      this.$router.push('/register')
     }
   }
 }
