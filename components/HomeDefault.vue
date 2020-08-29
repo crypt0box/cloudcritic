@@ -65,7 +65,8 @@
     <div 
       style="padding: 3%;">
       <v-row justify="center">
-          <v-btn 
+          <v-btn
+            large
             color="#FFCB00"
             @click="register"
           >

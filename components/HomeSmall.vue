@@ -2,7 +2,6 @@
   <div>
     <div
       class="header-img"
-      :style="{height: height * 0.5 + 'px'}"
     >
       <div class="header-text">
         <h1>CloudCritic</h1><br>
@@ -97,7 +96,8 @@
     <div 
       style="padding: 3%;">
       <v-row justify="center">
-          <v-btn 
+          <v-btn
+            large
             color="#FFCB00"
             @click="register"
           >
@@ -111,21 +111,11 @@
 <script>
 export default {
   created() {
-    if (process.client) {
-      window.addEventListener('resize', this.handleResize)
-      this.handleResize()
-    }
     this.$store.dispatch('contents/initPopularContents')
     this.contents = this.$store.getters['contents/getContents']
   },
-  destroyed () {
-    if (process.client) {
-      window.removeEventListener('resize', this.handleResize)
-    }
-  },
   data() {
     return {
-      height: 0,
       innerWidth: window.innerWidth,
       contents: [],
       model: 0,
@@ -149,9 +139,6 @@ export default {
     }
   },
   methods: {
-    handleResize () {
-      this.height = window.innerHeight
-    },
     register() {
       this.$router.push('/register')
     }
@@ -161,16 +148,19 @@ export default {
 
 <style scoped>
 .header-img {
+  height: 350px;
   background-image: url("../static/home_image.jpg");
   background-size: cover;
 }
 .header-text {
+  padding-top: 5%;
   text-align: center;
   color: white;
   text-shadow: 1px 1px 10px gray;
 }
 .header-form {
   padding: 5%;
+  padding-top: 10%;
 }
 .body-title {
   padding: 5%;

@@ -1,8 +1,14 @@
 <template>
-  <div v-if="innerWidth > 480">
+  <div 
+    class="top-page-content"
+    v-if="innerWidth > 480"
+  >
     <home-default />
   </div>
-  <div v-else>
+  <div
+  class="top-page-content"
+    v-else
+  >
     <home-small />
   </div>
 </template>
@@ -24,3 +30,10 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.top-page-content {
+  padding-top: 55px;
+  padding-bottom: 55px;
+}
+</style>
