@@ -13,9 +13,10 @@
           <v-col
             v-for="content in contents"
             :key="content.id"
-            cols="2"
+            cols="6"
+            md="2"
           >
-          <v-row>
+          <v-row justify="center">
             <nuxt-link :to="'content/' + content.id">
               <v-img
                 :src="content.thumbnailUrl"
@@ -23,12 +24,11 @@
                 maxHeight="140"
                 width="100"
                 height="140"
-                class="white--text align-end"
               >
               </v-img>
             </nuxt-link>
           </v-row>
-          <v-row>
+          <v-row justify="center">
             <v-btn 
               text
               class="like-button"
@@ -49,14 +49,6 @@ export default {
   created() {
     this.$store.dispatch('contents/init')
     this.$store.dispatch('auth/onAuth')
-  },
-  methods: {
-    show() {
-      this.$modal.show("modal-content")
-    },
-    hide() {
-      this.$modal.hide("modal-content")
-    },
   },
   computed:{
     contents() {
