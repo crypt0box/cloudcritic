@@ -14,16 +14,38 @@
       <v-col
         v-for="item in $store.getters['contentsAPI/getResults']"
         :key="item.id"
+        cols="12"
       >
       <a @click="register(item)">
-        <v-img
-          v-if="item.volumeInfo.imageLinks != undefined"
-          :src="item.volumeInfo.imageLinks.thumbnail"
-          maxWidth="100"
-          maxHeight="140"
-          class="white--text align-end"
-        >
-        </v-img>
+        <v-card outlined>
+          <v-row style="padding: 1%;">
+            <v-col cols="4" md="1">
+              <div class="content-image">
+                <v-img
+                  v-if="item.volumeInfo.imageLinks != undefined"
+                  :src="item.volumeInfo.imageLinks.thumbnail"
+                  maxWidth="100"
+                  maxHeight="140"
+                  width="100"
+                  height="140"
+                  class="white--text align-end"
+                >
+                </v-img>
+              </div>
+            </v-col>
+            <v-col cols="8" md="11">
+              <div class="content-info">
+                <h4>{{ item.volumeInfo.title }}</h4>
+                <div v-if="item.volumeInfo.authors != undefined">
+                  <p>{{ item.volumeInfo.authors[0] }}</p>
+                </div>
+                <div class="published-date" v-if="item.volumeInfo.publishedDate">
+                  {{ item.volumeInfo.publishedDate.slice(0, 4) }}年
+                </div>
+              </div>
+            </v-col>
+          </v-row>
+        </v-card>
       </a>
       </v-col>
     </v-row>
@@ -36,11 +58,8 @@ export default {
   middleware: 'authenticated',
   data() {
     return {
-      name: ''
+      name: '',
     }
-  },
-  created() {
-    
   },
   methods: {
     search() {
@@ -60,3 +79,20 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.content-image{
+  padding: 0%;
+  padding-left: 0%;
+}
+.content-info{
+  padding: 1%;
+  padding-left: 5%;
+}
+.published-date {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  text-align: end;
+}
+</style>
