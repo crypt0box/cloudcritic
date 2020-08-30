@@ -22,6 +22,16 @@
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
+        <div v-if="$store.getters['auth/getUserId']">
+          <v-list-item :to="'/users/' + $store.getters['auth/getUserId']">
+            <v-list-item-action>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>マイページ</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </div>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar
@@ -42,38 +52,49 @@
       <v-btn icon :to="'/search'" nuxt>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
-      <v-menu v-if="$store.getters['auth/getUserId']">
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            icon
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-avatar size="35">
-              <v-img :src="$store.getters['auth/getUserPhotoUrl']" />
-            </v-avatar>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item>
-            <v-btn 
-              :to="'/users/' + $store.getters['auth/getUserId']"
-              text
-              nuxt
+      <div v-if="$store.getters['auth/getUserId']">
+        <v-menu>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              icon
+              v-bind="attrs"
+              v-on="on"
             >
-            マイページ
+              <v-avatar size="35">
+                <v-img :src="$store.getters['auth/getUserPhotoUrl']" />
+              </v-avatar>
             </v-btn>
-          </v-list-item>
-          <v-list-item>
-            <v-btn 
-              text
-              @click="logout"
-            >
-            ログアウト
-            </v-btn>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+          </template>
+          <v-list>
+            <v-list-item>
+              <v-btn 
+                :to="'/users/' + $store.getters['auth/getUserId']"
+                text
+                nuxt
+              >
+              マイページ
+              </v-btn>
+            </v-list-item>
+            <v-list-item>
+              <v-btn 
+                text
+                @click="logout"
+              >
+              ログアウト
+              </v-btn>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
+      <div v-else>
+        <v-btn
+          outlined
+          color="black"
+          @click="login"
+        >
+        ログイン
+        </v-btn>
+      </div>
     </v-app-bar>
     <v-content>
       <v-container>
@@ -98,6 +119,7 @@
 export default {
   data () {
     return {
+      userId: this.$store.getters['auth/getUserId'],
       clipped: false,
       drawer: false,
       fixed: false,
@@ -117,11 +139,6 @@ export default {
           title: 'ランキング',
           to: '/'
         },
-        {
-          icon: 'mdi-account',
-          title: 'マイページ',
-          to: '/users/' + this.$store.getters['auth/getUserId']
-        },
       ],
       miniVariant: false,
       right: true,
@@ -130,6 +147,9 @@ export default {
     }
   },
   methods: {
+    login() {
+      this.$router.push('/login')
+    },
     logout() {
       this.$store.dispatch('auth/logout')
     }
