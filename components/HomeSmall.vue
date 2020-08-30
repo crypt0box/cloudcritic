@@ -8,11 +8,13 @@
         <h3>「いいね」するだけでブックレビューができるサイトです</h3>
       </div>
       <div class="header-form">
-        <v-form>
+        <v-form @submit.prevent="search">
           <v-text-field
             solo
             label="search"
+            placeholder="作品名または著者名で検索"
             append-icon="mdi-magnify"
+            v-model="name"
           />
         </v-form>
       </div>
@@ -119,6 +121,7 @@ export default {
       innerWidth: window.innerWidth,
       contents: [],
       model: 0,
+      name: '',
       cards: {
         first: {
           icon:'mdi-pencil',
@@ -141,7 +144,11 @@ export default {
   methods: {
     register() {
       this.$router.push('/register')
-    }
+    },
+    search() {
+      this.$store.dispatch('contentsAPI/search', this.name)
+      this.$router.push('/search')
+    },
   }
 }
 </script>
