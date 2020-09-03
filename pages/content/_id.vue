@@ -85,6 +85,9 @@
               <v-icon>mdi-thumb-up</v-icon>
             </v-list-item-icon>
             {{ tag.like }}
+            <v-btn icon @click="searchTag(tag.name)">
+              <v-icon>mdi-tag</v-icon>
+            </v-btn>
             </v-list-item>
           </v-list-item-group>
         </v-col>
@@ -171,6 +174,9 @@ export default {
     },
     removeFavorite() {
       this.$store.dispatch('contents/removeFavorite', this.$route.params.id)
+    },
+    searchTag(tagName) {
+      this.$store.dispatch('contents/searchTag', tagName)
     }
   }
 }
