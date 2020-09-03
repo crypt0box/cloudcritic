@@ -51,7 +51,7 @@
           </v-row>
         </v-col>
         <v-col cols="12" md="6">
-          <v-divider />
+          <v-divider v-if="innerWidth < 480" />
           <br><h3>タグ</h3>
           <edit-tag :tags="tags" />
           <v-chip
@@ -100,7 +100,6 @@
 
 <script>
 import { firestoreAction, firestoreOptions } from 'vuexfire'
-import { mapGetters } from 'vuex'
 import firebase from '~/plugins/firebase'
 import EditTag from '~/components/EditTag.vue'
 import CommentForm from '~/components/CommentForm.vue'
@@ -124,6 +123,7 @@ export default {
       totalLike: 0,
       favorite: [],
       registerFavorite: false,
+      innerWidth: window.innerWidth,
     }
   },
   created() {
