@@ -176,7 +176,7 @@ export default {
       this.$store.dispatch('contents/removeFavorite', this.$route.params.id)
     },
     searchTag(tagName) {
-      this.$store.dispatch('contents/searchTag', tagName)
+      this.$store.dispatch('search/searchTag', tagName)
     }
   }
 }

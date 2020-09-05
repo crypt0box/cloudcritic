@@ -71,7 +71,8 @@ export default {
         contentId: this.$route.params.id,
         tag: {
           name: this.tagName,
-          like: 0
+          like: 0,
+          contentId: this.$route.params.id
         }
       })
       this.tagName = ''

@@ -59,14 +59,6 @@ export const actions = {
       like: firebase.firestore.FieldValue.increment(1)
     })
   }),
-  searchTag: firestoreAction((context, tagName) => {
-    db.collectionGroup('tags').where('name', '==', tagName)
-      .get().then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          console.log(doc.id, '=>', doc.data())
-        })
-      })
-  }),
   addFavorite: firestoreAction((context, contentId) => {
     const user = firebase.auth().currentUser
     userRef.doc(user.uid).set({
