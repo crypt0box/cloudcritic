@@ -23,6 +23,8 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="8">
+        <h2>お気に入り</h2>
+        <v-divider />
         <favorite-card />
       </v-col>
     </v-row>
