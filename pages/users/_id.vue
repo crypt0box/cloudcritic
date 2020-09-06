@@ -9,7 +9,10 @@
                 <v-avatar
                   size="60"
                 >
-                <v-img :src="$store.getters['auth/getUserPhotoUrl']" />
+                <v-img
+                  v-if="$store.getters['auth/getUserPhotoUrl']"
+                  :src="$store.getters['auth/getUserPhotoUrl']"
+                />
                 </v-avatar>
                 <v-card-text class="text-center">
                   <h3>{{ $store.getters['auth/getUserName'] }}</h3>

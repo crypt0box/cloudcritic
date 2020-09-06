@@ -53,7 +53,7 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
       <div v-if="$store.getters['auth/getUserId']">
-        <v-menu>
+        <v-menu v-if="$store.getters['auth/getUserPhotoUrl']">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               icon
@@ -61,7 +61,9 @@
               v-on="on"
             >
               <v-avatar size="35">
-                <v-img :src="$store.getters['auth/getUserPhotoUrl']" />
+                <v-img
+                  :src="$store.getters['auth/getUserPhotoUrl']"
+                />
               </v-avatar>
             </v-btn>
           </template>

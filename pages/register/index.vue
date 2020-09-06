@@ -249,7 +249,7 @@ export default {
         .then((userObject) => this.createPhotoURL(userObject))
         .then((userObject) => this.setPublicUserData(userObject))
         .then((userObject) => this.setPrivateUserData(userObject))
-        .then((userObject) => this.setLocalUserData(userObject))
+        .then((userObject) => this.setLocalUserData(userObject).then(this.$router.push('/')))
         .catch((error) => this.onRejectted(error))
     },
     // ** Google認証を行う関数
@@ -304,7 +304,7 @@ export default {
         .then((userObject) => this.createPhotoURL(userObject))
         .then((userObject) => this.setPublicUserData(userObject))
         .then((userObject) => this.setPrivateUserData(userObject))
-        .then((userObject) => this.setLocalUserData(userObject))
+        .then((userObject) => this.setLocalUserData(userObject).then(this.$router.push('/')))
         .catch((error) => this.onRejectted(error))
     },
     github() {
@@ -356,7 +356,7 @@ export default {
         .then((userObject) => this.createPhotoURL(userObject))
         .then((userObject) => this.setPublicUserData(userObject))
         .then((userObject) => this.setPrivateUserData(userObject))
-        .then((userObject) => this.setLocalUserData(userObject))
+        .then((userObject) => this.setLocalUserData(userObject).then(this.$router.push('/')))
         .catch((error) => this.onRejectted(error))
     },
     onRejectted(error) {
@@ -446,7 +446,6 @@ export default {
               localStorage.setItem('displayName', doc.data().displayName)
               console.log('ログインに成功しました')
               this.isLoginModalActive = false
-              location.reload()
               resolve(userObject)
             }
           })
