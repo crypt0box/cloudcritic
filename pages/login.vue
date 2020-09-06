@@ -34,15 +34,16 @@
           <div>
             <v-text-field
               v-model="email"
+              :rules="emailRules"
               autofocus
               dense
               height="48px"
               outlined
               placeholder="メールアドレス"
             ></v-text-field>
-
             <v-text-field
               v-model="password"
+              :rules="passwordRules"
               :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
               :type="showPassword ? 'text' : 'password'"
               dense
@@ -138,6 +139,15 @@ export default {
       email: '',
       password: '',
       showPassword: false,
+      emailRules: [
+        v => !!v || "メールアドレスは必須項目です。",
+        v => (v && v.length <= 128) || "メールアドレスは128文字以内で入力してください。",
+        v => /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || "メールアドレスの形式が正しくありません。"
+      ],
+      passwordRules: [
+        v => !!v || "パスワードは必須項目です。",
+        v => (v && v.length <= 32) || "パスワードは32文字以内で入力してください。"
+      ],
     }
   },
   methods: {
@@ -147,6 +157,7 @@ export default {
       .then(() => {this.$router.push('/')})
       .catch((error) => {
         console.log('ログインに失敗したよ', error)
+        alert('メールアドレスもしくはパスワードが間違っています')
       });
     },
     // テストユーザーとしてログイン
@@ -158,7 +169,7 @@ export default {
       });
     },
     // 新規会員登録
-    twtwitter() {
+    twitter() {
       // 認証
       const auth = () => {
         return new Promise((resolve, reject) => {

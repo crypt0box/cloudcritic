@@ -34,6 +34,7 @@
           <div>
             <v-text-field
               v-model="email"
+              :rules="emailRules"
               autofocus
               dense
               height="48px"
@@ -43,6 +44,7 @@
 
             <v-text-field
               v-model="password"
+              :rules="passwordRules"
               :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
               :type="showPassword ? 'text' : 'password'"
               dense
@@ -138,6 +140,15 @@ export default {
       email: '',
       password: '',
       showPassword: false,
+      emailRules: [
+        v => !!v || "メールアドレスは必須項目です。",
+        v => (v && v.length <= 128) || "メールアドレスは128文字以内で入力してください。",
+        v => /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || "メールアドレスの形式が正しくありません。"
+      ],
+      passwordRules: [
+        v => !!v || "パスワードは必須項目です。",
+        v => (v && v.length <= 32) || "パスワードは32文字以内で入力してください。"
+      ],
     }
   },
   methods: {
@@ -163,6 +174,7 @@ export default {
             })
             .catch((error) => {
               console.log('登録に失敗しました', error)
+              alert('項目を正しく入力してください\nまたは既に登録されたメールアドレスです')
             })
         })
       }
@@ -193,8 +205,8 @@ export default {
         .then((userObject) => this.createPhotoURL(userObject))
         .then((userObject) => this.setPublicUserData(userObject))
         .then((userObject) => this.setPrivateUserData(userObject))
-        .then((userObject) => this.setLocalUserData(userObject))
-        .catch(this.$router.push('register/RegisterUserInfo'))
+        .then((userObject) => this.setLocalUserData(userObject).then(this.$router.push('register/RegisterUserInfo')))
+        .catch()
     },
     twitter() {
       // 認証
