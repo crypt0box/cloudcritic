@@ -121,7 +121,6 @@ export default {
       }
       Promise.resolve()
       .then(this.$router.push('/'))
-      .then(this.reload())
     },
   }
 }
