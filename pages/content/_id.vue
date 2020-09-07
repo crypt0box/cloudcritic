@@ -69,8 +69,9 @@
             :resizable="true"
             :adaptive="true"
           >
+            <v-card :height="modalHeight">
             <word-cloud />
-            <div class="modal-close-button">
+            <v-card-actions>
               <v-btn 
                 outlined
                 block
@@ -79,7 +80,8 @@
               >
               閉じる
               </v-btn>
-            </div>
+            </v-card-actions>
+            </v-card>
           </modal>
           <v-list-item-group 
           >
@@ -137,7 +139,7 @@ export default {
       favorite: [],
       registerFavorite: false,
       innerWidth: window.innerWidth,
-      modalHeight: window.innerHeight
+      modalHeight: window.innerHeight * 0.8
     }
   },
   created() {
@@ -199,6 +201,5 @@ export default {
 <style scoped>
 .modal-close-button {
   padding: 5%;
-  padding-top: 10%;
 }
 </style>
