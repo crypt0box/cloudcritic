@@ -65,11 +65,21 @@
           </v-chip>
           <modal 
             name="modal-wordcloud"
-            :scrollable="true"
+            :height="modalHeight"
             :resizable="true"
             :adaptive="true"
           >
             <word-cloud />
+            <div class="modal-close-button">
+              <v-btn 
+                outlined
+                block
+                color="success"
+                @click="hideWordcloudModal"
+              >
+              閉じる
+              </v-btn>
+            </div>
           </modal>
           <v-list-item-group 
           >
@@ -127,6 +137,7 @@ export default {
       favorite: [],
       registerFavorite: false,
       innerWidth: window.innerWidth,
+      modalHeight: window.innerHeight
     }
   },
   created() {
@@ -160,6 +171,9 @@ export default {
     showWordcloudModal() {
       this.$modal.show('modal-wordcloud')
     },
+    hideWordcloudModal() {
+      this.$modal.hide('modal-wordcloud')
+    },
     countTotalLike() {
       this.$store.dispatch('contents/updateTotalLike', this.$route.params.id)
     },
@@ -181,3 +195,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.modal-close-button {
+  padding: 5%;
+  padding-top: 10%;
+}
+</style>
