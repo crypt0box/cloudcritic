@@ -69,19 +69,15 @@
             :resizable="true"
             :adaptive="true"
           >
-            <v-card :height="modalHeight">
+          <div>
+            <v-btn 
+              icon
+              @click="hideWordcloudModal"
+            >
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </div>
             <word-cloud />
-            <v-card-actions>
-              <v-btn 
-                outlined
-                block
-                color="success"
-                @click="hideWordcloudModal"
-              >
-              閉じる
-              </v-btn>
-            </v-card-actions>
-            </v-card>
           </modal>
           <v-list-item-group 
           >
@@ -197,9 +193,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.modal-close-button {
-  padding: 5%;
-}
-</style>
