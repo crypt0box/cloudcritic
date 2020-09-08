@@ -84,9 +84,8 @@
             <v-list-item
               v-for="tag in tags"
               :key="tag.index"
-              @click="countLike(tag.id); countTotalLike()"
             >
-            <v-list-item-content>
+            <v-list-item-content @click="countLike(tag.id); countTotalLike()">
               {{ tag.name }}
             </v-list-item-content>
             <v-list-item-icon>

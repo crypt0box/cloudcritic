@@ -13,7 +13,7 @@
             <v-list-item-title>
               <h3>{{ comment.displayName }}</h3>{{comment.createdAt.toDate().toLocaleString()}}
             </v-list-item-title>
-            <v-list-item-subtitle class="text--primary subheading">{{comment.comment}}</v-list-item-subtitle>
+            <p>{{comment.comment}}</p>
           </v-list-item-content>
           <v-list-item-action
             v-if="comment.uid == userId"
