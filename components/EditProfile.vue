@@ -54,7 +54,7 @@
                 placeholder="ユーザー名"
               />
             </div>
-            <div class="login-btn pb-8">
+            <div class="pb-8">
               <v-btn
                 class="fill-width"
                 color="#FFCB00"
@@ -65,6 +65,19 @@
                 @click="updateUserInfo"
               >
                 更新
+              </v-btn>
+            </div>
+            <div class="pb-8">
+              <v-btn
+                class="fill-width"
+                color="success"
+                outlined
+                depressed
+                height="48px"
+                tile
+                @click="dialog = false"
+              >
+                キャンセル
               </v-btn>
             </div>
           </div>
