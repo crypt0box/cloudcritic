@@ -39,7 +39,6 @@
 <script>
 import firebase from '~/plugins/firebase'
 import EditComment from '~/components/EditComment.vue'
-
 export default {
   components: {
     EditComment

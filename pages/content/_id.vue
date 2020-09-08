@@ -101,7 +101,9 @@
         </v-col>
       </v-row>
       <v-divider/>
+      <v-row>
       <br><comment-form />
+      </v-row>
       <v-col cols="12">
         <comment />
       </v-col>
