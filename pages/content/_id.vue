@@ -17,7 +17,7 @@
           </v-row>
           <v-row>
             <v-col>
-              <comment-form />
+              <comment-button />
               <v-btn
                 class="ma-2"
                 tile
@@ -101,7 +101,7 @@
         </v-col>
       </v-row>
       <v-divider/>
-      <br><h3>コメント</h3>
+      <br><comment-form />
       <v-col cols="12">
         <comment />
       </v-col>
@@ -113,9 +113,10 @@
 import { firestoreAction, firestoreOptions } from 'vuexfire'
 import firebase from '~/plugins/firebase'
 import EditTag from '~/components/EditTag.vue'
-import CommentForm from '~/components/CommentForm.vue'
+import CommentButton from '~/components/CommentButton.vue'
 import WordCloud from '~/components/WordCloud.vue'
 import Comment from '~/components/Comment.vue'
+import CommentForm from '~/components/CommentForm.vue'
 
 export default {
   middleware: 'authenticated',
@@ -124,6 +125,7 @@ export default {
     CommentForm,
     WordCloud,
     Comment,
+    CommentButton,
   },
   data() {
     return {

@@ -1,15 +1,16 @@
 <template>
   <v-dialog v-model="dialog">
     <template v-slot:activator="{ on, attrs }">
-      <div class="comment-button">
-        <v-btn
-          text
-          v-bind="attrs"
-          v-on="on"
-        >
-          <h3>コメントする</h3>
-        </v-btn>
-      </div>
+      <v-btn
+        class="ma-2"
+        tile
+        outlined
+        color="success"
+        v-bind="attrs"
+        v-on="on"
+      >
+        <v-icon center>mdi-pencil</v-icon>
+      </v-btn>
     </template>
     <v-card>
       <v-card-title class="headline">コメント</v-card-title>
@@ -68,10 +69,3 @@ import firebase from '~/plugins/firebase'
     },
   }
 </script>
-
-<style scoped>
-.comment-button{
-  position: absolute;
-  left: 1%;
-}
-</style>
