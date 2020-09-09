@@ -71,8 +71,8 @@ import firebase from '~/plugins/firebase'
 
 <style scoped>
 .comment-button{
-  position: absolute;
-  left: 3%;
+  position: relative;
+  left: 0;
   padding-top: 1%;
 }
 </style>
