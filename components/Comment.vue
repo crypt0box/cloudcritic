@@ -1,6 +1,5 @@
 <template>
   <v-row>
-  <v-col>
     <v-list three-line>
       <template v-for="(comment, index) in comments">
         <v-list-item
@@ -15,24 +14,26 @@
             </v-list-item-title>
             <p>{{comment.comment}}</p>
           </v-list-item-content>
-          <v-list-item-action
-            v-if="comment.uid == userId"
-          >
-            <v-list-item-icon>
-              <edit-comment　
-                :commentId="comment.id"
-                :comment="comment.comment" 
-              />
-              <v-btn icon @click="removeComment(comment.id)">
-                <v-icon>mdi-delete</v-icon>
-              </v-btn>
-            </v-list-item-icon>
-          </v-list-item-action>
+          <v-list-item-action-text>
+            <div 
+              class="comment-actions"
+              v-if="comment.uid == userId"
+            >
+              <v-list-item-icon>
+                <edit-comment　
+                  :commentId="comment.id"
+                  :comment="comment.comment" 
+                />
+                <v-btn icon @click="removeComment(comment.id)">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
+              </v-list-item-icon>
+            </div>
+          </v-list-item-action-text>
         </v-list-item>
         <v-divider :key="comment.id"></v-divider>
       </template>
     </v-list>
-  </v-col>
 </v-row>
 </template>
 
@@ -63,3 +64,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.comment-actions {
+  position: relative;
+  left: 50%;
+  bottom: 50%;
+}
+</style>
