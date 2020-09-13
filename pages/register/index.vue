@@ -108,14 +108,14 @@
                 outlined
                 style="border-color:#979797;"
                 tile
-                @click="github"
+                @click="yahoo"
               >
                 <img
                   class="button-logo-img mr-4"
-                  src="~/static/github.png"
+                  src="~/static/yahoo-icon.svg"
                   style="height:24px;"
                 />
-                githubでログイン
+                Yahooでログイン
               </v-btn>
             </div>
             <v-divider></v-divider>
@@ -247,7 +247,7 @@ export default {
           userObject.displayName = user.name
           userObject.profile = user.description
           userObject.screenName = user.screen_name
-          userObject.email = user.email
+          userObject.email = null
           userObject.isNewUser = result.additionalUserInfo.isNewUser
           userObject.providerId = result.additionalUserInfo.providerId
           // ** TODO - firestoreに登録
@@ -319,10 +319,10 @@ export default {
         .then((userObject) => this.setLocalUserData(userObject).then(this.$router.push('/')))
         .catch((error) => this.onRejectted(error))
     },
-    github() {
+    yahoo() {
       const auth = () => {
         return new Promise((resolve, reject) => {
-          const authUI = new firebase.auth.GithubAuthProvider()
+          const authUI = new firebase.auth.OAuthProvider('yahoo.com')
           // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
           firebase
             .auth()
@@ -343,7 +343,7 @@ export default {
       // ユーザー情報登録
       const getAccountData = (result) => {
         return new Promise((resolve, reject) => {
-          // This gives you a GitHub Access Token.
+          // This gives you a Yahoo Access Token.
           let userObject = {}
           let user = result.user
           userObject.token = result.credential.accessToken
@@ -388,7 +388,7 @@ export default {
       }
       if (
         (obj.providerId.indexOf('twitter') != -1 ||
-          obj.providerId.indexOf('github') != -1) &&
+          obj.providerId.indexOf('yahoo') != -1) &&
         obj.isNewUser
       ) {
         // ** プロフィールが存在して、trueじゃないときにオブジェクトに代入する
