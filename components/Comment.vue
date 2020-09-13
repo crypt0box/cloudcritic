@@ -1,5 +1,6 @@
 <template>
   <v-row>
+    <div class="comment-display">
     <v-list three-line>
       <template v-for="(comment, index) in comments">
         <v-list-item
@@ -34,6 +35,7 @@
         <v-divider :key="comment.id"></v-divider>
       </template>
     </v-list>
+    </div>
 </v-row>
 </template>
 
@@ -66,6 +68,9 @@ export default {
 </script>
 
 <style scoped>
+.comment-display {
+  width: 100%;
+}
 .comment-actions {
   position: relative;
   left: 50%;
