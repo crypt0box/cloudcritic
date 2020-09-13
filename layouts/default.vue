@@ -40,7 +40,7 @@
       app
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <nuxt-link :to="'/home'">
+      <nuxt-link :to="'/'">
         <v-avatar :tile="true" width="180" height="80">
           <img  
             src="~/static/cloudcritic_logo.png"
