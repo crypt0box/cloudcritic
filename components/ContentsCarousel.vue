@@ -71,6 +71,7 @@ export default {
   },
   created() {
     this.$store.dispatch('contents/initPopularContents')
+    this.$store.dispatch('contents/initTags', 'NyOEDwAAQBAJ')
     this.contents = this.$store.getters['contents/getContents']
   },
   methods: {
