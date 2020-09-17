@@ -90,7 +90,7 @@ export default {
   padding-left: 5%;
 }
 .published-date {
-  position: absolute;
+  position: relative;
   bottom: 10%;
   width: 100%;
   text-align: end;
