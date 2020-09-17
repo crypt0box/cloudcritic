@@ -169,33 +169,33 @@ export default {
             .auth()
             .createUserWithEmailAndPassword(this.email, this.password)
             .then((result) => {
-              console.log(result)
-              resolve(result)
+              console.log(result);
+              resolve(result);
             })
             .catch((error) => {
-              console.log('登録に失敗しました', error)
-              alert('項目を正しく入力してください\nまたは既に登録されたメールアドレスです')
+              console.log('登録に失敗しました', error);
+              alert('項目を正しく入力してください\nまたは既に登録されたメールアドレスです');
             })
         })
       }
       // ユーザー情報登録
       const getAccountData = (result) => {
         return new Promise((resolve, reject) => {
-          let userObject = {}
-          let user = result.user
-          userObject.token = 'token'
-          userObject.refreshToken = user.refreshToken
-          userObject.uid = user.uid
-          userObject.displayName = user.displayName
-          userObject.photoURL = user.photoURL
-          userObject.uid = user.uid
-          userObject.email = user.email // null
-          userObject.isNewUser = result.additionalUserInfo.isNewUser
-          userObject.providerId = result.additionalUserInfo.providerId
+          let userObject = {};
+          let user = result.user;
+          userObject.token = 'token';
+          userObject.refreshToken = user.refreshToken;
+          userObject.uid = user.uid;
+          userObject.displayName = user.displayName;
+          userObject.photoURL = user.photoURL;
+          userObject.uid = user.uid;
+          userObject.email = user.email; // null
+          userObject.isNewUser = result.additionalUserInfo.isNewUser;
+          userObject.providerId = result.additionalUserInfo.providerId;
           // userObject.profile = result.additionalUserInfo.profile.bio
           // userObject.screenName = result.additionalUserInfo.profile.login
           // ** TODO - firestoreに登録
-          resolve(userObject)
+          resolve(userObject);
         })
       }
       Promise.resolve()
@@ -212,21 +212,21 @@ export default {
       // 認証
       const auth = () => {
         return new Promise((resolve, reject) => {
-          const authUI = new firebase.auth.TwitterAuthProvider()
+          const authUI = new firebase.auth.TwitterAuthProvider();
           // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
           firebase
             .auth()
             .signInWithPopup(authUI)
             .then((result) => {
-              resolve(result)
+              resolve(result);
             })
             .catch((error) => {
               // Handle Errors here.
-              const errorCode = error.code
-              const errorMessage = error.message
-              const email = error.email
-              const credential = error.credential
-              reject(error)
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              const email = error.email;
+              const credential = error.credential;
+              reject(error);
             })
         })
       }
@@ -234,24 +234,24 @@ export default {
       const getAccountData = (result) => {
         return new Promise((resolve, reject) => {
           // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
-          let userObject = {}
-          let user = result.additionalUserInfo.profile
-          userObject.token = result.credential.accessToken
-          userObject.secret = result.credential.secret
-          userObject.uid = result.user.uid
-          userObject.refreshToken = result.user.refreshToken
+          let userObject = {};
+          let user = result.additionalUserInfo.profile;
+          userObject.token = result.credential.accessToken;
+          userObject.secret = result.credential.secret;
+          userObject.uid = result.user.uid;
+          userObject.refreshToken = result.user.refreshToken;
           userObject.photoURL = user.profile_image_url_https.replace(
             '_normal',
             '_400x400'
-          )
-          userObject.displayName = user.name
-          userObject.profile = user.description
-          userObject.screenName = user.screen_name
-          userObject.email = null
-          userObject.isNewUser = result.additionalUserInfo.isNewUser
-          userObject.providerId = result.additionalUserInfo.providerId
+          );
+          userObject.displayName = user.name;
+          userObject.profile = user.description;
+          userObject.screenName = user.screen_name;
+          userObject.email = null;
+          userObject.isNewUser = result.additionalUserInfo.isNewUser;
+          userObject.providerId = result.additionalUserInfo.providerId;
           // ** TODO - firestoreに登録
-          resolve(userObject)
+          resolve(userObject);
         })
       }
       Promise.resolve()
@@ -269,21 +269,21 @@ export default {
       // ** ② Google認証
       const auth = () => {
         return new Promise((resolve, reject) => {
-          const authUI = new firebase.auth.GoogleAuthProvider()
+          const authUI = new firebase.auth.GoogleAuthProvider();
           // This gives you a the Google OAuth 1.0 Access Token and Secret.
           firebase
             .auth()
             .signInWithPopup(authUI)
             .then((result) => {
-              resolve(result)
+              resolve(result);
             })
             .catch((error) => {
               // Handle Errors here.
-              const errorCode = error.code
-              const errorMessage = error.message
-              const email = error.email
-              const credential = error.credential
-              reject(error)
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              const email = error.email;
+              const credential = error.credential;
+              reject(error);
             })
         })
       }
@@ -291,21 +291,21 @@ export default {
       const getAccountData = (result) => {
         return new Promise((resolve, reject) => {
           // This gives you a Google Access Token.
-          let userObject = {}
-          let user = result.user
-          userObject.token = result.credential.accessToken
-          userObject.refreshToken = user.refreshToken
-          userObject.uid = user.uid
-          userObject.displayName = user.displayName
-          userObject.photoURL = user.photoURL
-          userObject.uid = user.uid
-          userObject.email = user.email // null
-          userObject.isNewUser = result.additionalUserInfo.isNewUser
-          userObject.providerId = result.additionalUserInfo.providerId
+          let userObject = {};
+          let user = result.user;
+          userObject.token = result.credential.accessToken;
+          userObject.refreshToken = user.refreshToken;
+          userObject.uid = user.uid;
+          userObject.displayName = user.displayName;
+          userObject.photoURL = user.photoURL;
+          userObject.uid = user.uid;
+          userObject.email = user.email; // null
+          userObject.isNewUser = result.additionalUserInfo.isNewUser;
+          userObject.providerId = result.additionalUserInfo.providerId;
           // userObject.profile = result.additionalUserInfo.profile.bio // null
           // userObject.screenName = result.additionalUserInfo.profile.login // null
           // ** TODO - firestoreに登録
-          resolve(userObject)
+          resolve(userObject);
         })
       }
       // ** 同期的に順番に処理を実行する
@@ -322,21 +322,21 @@ export default {
     yahoo() {
       const auth = () => {
         return new Promise((resolve, reject) => {
-          const authUI = new firebase.auth.OAuthProvider('yahoo.com')
+          const authUI = new firebase.auth.OAuthProvider('yahoo.com');
           // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
           firebase
             .auth()
             .signInWithPopup(authUI)
             .then((result) => {
-              resolve(result)
+              resolve(result);
             })
             .catch((error) => {
               // Handle Errors here.
-              const errorCode = error.code
-              const errorMessage = error.message
-              const email = error.email
-              const credential = error.credential
-              reject(error)
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              const email = error.email;
+              const credential = error.credential;
+              reject(error);
             })
         })
       }
@@ -344,21 +344,21 @@ export default {
       const getAccountData = (result) => {
         return new Promise((resolve, reject) => {
           // This gives you a Yahoo Access Token.
-          let userObject = {}
-          let user = result.user
-          userObject.token = result.credential.accessToken
-          userObject.refreshToken = user.refreshToken
-          userObject.uid = user.uid
-          userObject.displayName = user.displayName
-          userObject.photoURL = user.photoURL
-          userObject.uid = user.uid
-          userObject.email = user.email
-          userObject.isNewUser = result.additionalUserInfo.isNewUser
-          userObject.providerId = result.additionalUserInfo.providerId
-          userObject.profile = result.additionalUserInfo.profile.bio
-          userObject.screenName = result.additionalUserInfo.profile.login
+          let userObject = {};
+          let user = result.user;
+          userObject.token = result.credential.accessToken;
+          userObject.refreshToken = user.refreshToken;
+          userObject.uid = user.uid;
+          userObject.displayName = user.displayName;
+          userObject.photoURL = user.photoURL;
+          userObject.uid = user.uid;
+          userObject.email = user.email;
+          userObject.isNewUser = result.additionalUserInfo.isNewUser;
+          userObject.providerId = result.additionalUserInfo.providerId;
+          userObject.profile = result.additionalUserInfo.profile.bio;
+          userObject.screenName = result.additionalUserInfo.profile.login;
           // ** TODO - firestoreに登録
-          resolve(userObject)
+          resolve(userObject);
         })
       }
       Promise.resolve()
@@ -372,19 +372,19 @@ export default {
         .catch((error) => this.onRejectted(error))
     },
     onRejectted(error) {
-      console.log('ログインに失敗しました', error)
-      this.isLoginModalActive = false
+      console.log('ログインに失敗しました', error);
+      this.isLoginModalActive = false;
     },
     createPublicObj(obj) {
-      let publicObj = {}
-      publicObj.uid = obj.uid
-      publicObj.providerId = obj.providerId
-      publicObj.isNewUser = obj.isNewUser
-      publicObj.photoURL = obj.photoURL
-      publicObj.displayName = obj.displayName
+      let publicObj = {};
+      publicObj.uid = obj.uid;
+      publicObj.providerId = obj.providerId;
+      publicObj.isNewUser = obj.isNewUser;
+      publicObj.photoURL = obj.photoURL;
+      publicObj.displayName = obj.displayName;
       if (obj.isNewUser) {
-        publicObj.photoURL = obj.photoURL
-        publicObj.displayName = obj.displayName
+        publicObj.photoURL = obj.photoURL;
+        publicObj.displayName = obj.displayName;
       }
       if (
         (obj.providerId.indexOf('twitter') != -1 ||
@@ -392,19 +392,19 @@ export default {
         obj.isNewUser
       ) {
         // ** プロフィールが存在して、trueじゃないときにオブジェクトに代入する
-        publicObj.profile = obj.profile
-        publicObj.screenName = obj.screenName
+        publicObj.profile = obj.profile;
+        publicObj.screenName = obj.screenName;
       }
       return publicObj
     },
     createPrivateObj(obj) {
-      let privateObj = {}
-      privateObj.uid = obj.uid
-      privateObj.providerId = obj.providerId
-      privateObj.isNewUser = obj.isNewUser
-      privateObj.email = obj.email
-      privateObj.token = obj.token
-      privateObj.refreshToken = obj.refreshToken
+      let privateObj = {};
+      privateObj.uid = obj.uid;
+      privateObj.providerId = obj.providerId;
+      privateObj.isNewUser = obj.isNewUser;
+      privateObj.email = obj.email;
+      privateObj.token = obj.token;
+      privateObj.refreshToken = obj.refreshToken;
       return privateObj
     },
     // ** ① 認証状態を明示的にセットする
@@ -414,19 +414,19 @@ export default {
           .auth()
           .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
           .then((result) => {
-            resolve()
+            resolve();
           })
       })
     },
     // ** ⑤ 公開可能なユーザー情報をFirestoreに登録
     setPublicUserData(userObject) {
       return new Promise((resolve, reject) => {
-        let publicUser = firestore.collection('users').doc(userObject.uid)
+        let publicUser = firestore.collection('users').doc(userObject.uid);
         // ** usersに登録するObjのみを登録する
         publicUser
           .set(this.createPublicObj(userObject), { merge: true })
           .then((result) => {
-            resolve(userObject)
+            resolve(userObject);
           })
       })
     },
@@ -440,7 +440,7 @@ export default {
         privateUsers
           .set(this.createPrivateObj(userObject), { merge: true })
           .then((result) => {
-            resolve(userObject)
+            resolve(userObject);
           })
       })
     },
@@ -452,17 +452,17 @@ export default {
           .get()
           .then((doc) => {
             if (doc.exists) {
-              localStorage.setItem('photoURL', doc.data().photoURL)
-              localStorage.setItem('uid', userObject.uid)
-              localStorage.setItem('token', userObject.token)
-              localStorage.setItem('displayName', doc.data().displayName)
-              console.log('ログインに成功しました')
-              this.isLoginModalActive = false
-              resolve(userObject)
+              localStorage.setItem('photoURL', doc.data().photoURL);
+              localStorage.setItem('uid', userObject.uid);
+              localStorage.setItem('token', userObject.token);
+              localStorage.setItem('displayName', doc.data().displayName);
+              console.log('ログインに成功しました');
+              this.isLoginModalActive = false;
+              resolve(userObject);
             }
           })
           .catch((error) => {
-            console.log('Error getting document:', error)
+            console.log('Error getting document:', error);
           })
       })
     },
@@ -470,32 +470,32 @@ export default {
     createPhotoURL(userObject) {
       return new Promise((resolve, reject) => {
         // This can be downloaded directly:
-        let url = userObject.photoURL
-        let xhr = new XMLHttpRequest()
-        xhr.responseType = 'blob'
+        let url = userObject.photoURL;
+        let xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
         xhr.onload = function(event) {
-          let blob = xhr.response
-          let storageRef = storage.ref()
+          let blob = xhr.response;
+          let storageRef = storage.ref();
           let mountainsRef = storageRef.child(
             `user/${userObject.uid}/image.jpg`
-          )
-          let uploadTask = mountainsRef.put(blob)
+          );
+          let uploadTask = mountainsRef.put(blob);
           uploadTask.then((snapshot) => {
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-              console.log(downloadURL)
+              console.log(downloadURL);
               // ** firestorageに登録したURLを登録するオブジェクトに代入
-              userObject.photoURL = downloadURL
-              resolve(userObject)
+              userObject.photoURL = downloadURL;
+              resolve(userObject);
             })
           })
         }
         xhr.open('GET', url)
         xhr.onerror = function(e) {
           // クロスドメインでひっかかる場合は無視する
-          console.log('ooooooops!!cros!!')
-          resolve(userObject)
+          console.log('ooooooops!!cros!!');
+          resolve(userObject);
         }
-        xhr.send()
+        xhr.send();
       })
     }
   }

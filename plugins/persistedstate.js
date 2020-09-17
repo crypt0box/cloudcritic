@@ -6,6 +6,6 @@ export default ({ store }) => {
         createPersistedState({
             key: 'cloudcritic-user',
             paths: ['auth']
-        })(store)
+        })(store);
     })
 }

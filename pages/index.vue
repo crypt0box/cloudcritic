@@ -47,12 +47,12 @@
 <script>
 export default {
   created() {
-    this.$store.dispatch('contents/init')
-    this.$store.dispatch('auth/onAuth')
+    this.$store.dispatch('contents/init');
+    this.$store.dispatch('auth/onAuth');
   },
   computed:{
     contents() {
-      return this.$store.getters['contents/getContents']
+      return this.$store.getters['contents/getContents'];
     },
   }
 }

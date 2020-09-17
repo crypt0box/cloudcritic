@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     onFileChange(e) {
-      console.log(e)
+      console.log(e);
       if (e) {
         this.createImage(e);
         this.uploadedFile = e
@@ -93,14 +93,14 @@ export default {
       reader.readAsDataURL(file);
     },
     updateUserInfo() {
-      const file = this.uploadedFile
-      const uid = this.$store.getters['auth/getUserId']
+      const file = this.uploadedFile;
+      const uid = this.$store.getters['auth/getUserId'];
       this.$store.dispatch('auth/updateDisplayName', {
         uid: uid,
         displayName: this.displayName,       
-      })
+      });
       if (file) {
-        const storageRef = firebase.storage().ref('user/' + uid + '/image.jpg')
+        const storageRef = firebase.storage().ref('user/' + uid + '/image.jpg');
         // 画像をStorageにアップロード
         storageRef.put(file).then(() => {
           // アップロードした画像のURLを取得
@@ -110,7 +110,7 @@ export default {
                 uid: uid, photoUrl: url
               })
           }).catch((error) => {
-              console.log('エラー', error)
+              console.log('エラー', error);
           })
         })
       } else {
@@ -120,7 +120,7 @@ export default {
         })
       }
       Promise.resolve()
-      .then(this.$router.push('/'))
+      .then(this.$router.push('/'));
     },
   }
 }

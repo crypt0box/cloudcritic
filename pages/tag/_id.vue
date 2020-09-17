@@ -44,8 +44,8 @@
 <script>
 import firebase from '~/plugins/firebase'
 
-const db = firebase.firestore()
-const contentsRef = db.collection('contents')
+const db = firebase.firestore();
+const contentsRef = db.collection('contents');
 
 export default {
   data() {
@@ -57,13 +57,13 @@ export default {
     this.$store.getters['search/getContents'].forEach(element => {
       contentsRef.doc(element.contentId).get()
       .then(doc => {
-        this.thumbnailUrl.push(doc.data().thumbnailUrl)
-      })
+        this.thumbnailUrl.push(doc.data().thumbnailUrl);
+      });
     });
   },
   computed:{
     contents() {
-      return this.$store.getters['search/getContents']
+      return this.$store.getters['search/getContents'];
     },
   }
 }

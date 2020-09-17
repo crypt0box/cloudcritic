@@ -142,17 +142,17 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('contents/initContent', this.$route.params.id)
-    this.$store.dispatch('contents/initTags', this.$route.params.id)
-    this.$store.dispatch('contents/initComments', this.$route.params.id)
-    this.$store.dispatch('auth/onAuth')
+    this.$store.dispatch('contents/initContent', this.$route.params.id);
+    this.$store.dispatch('contents/initTags', this.$route.params.id);
+    this.$store.dispatch('contents/initComments', this.$route.params.id);
+    this.$store.dispatch('auth/onAuth');
   },
   mounted() {
-    const favorite = this.$store.getters['auth/getFavorite']
+    const favorite = this.$store.getters['auth/getFavorite'];
     if (favorite) {
       favorite.forEach(e => {
         if (e === this.$route.params.id) {
-          this.registerFavorite = true
+          this.registerFavorite = true;
         }
       })
     }
@@ -160,23 +160,23 @@ export default {
   computed: {
     content() {
       if (this.$store.getters['contents/getContent']) {
-        this.title = this.$store.getters['contents/getContent'].title
-        this.author = this.$store.getters['contents/getContent'].author
-        this.thumbnailUrl = this.$store.getters['contents/getContent'].thumbnailUrl
-        this.totalLike = this.$store.getters['contents/getContent'].totalLike
-        this.tags = this.$store.getters['contents/getTags']
+        this.title = this.$store.getters['contents/getContent'].title;
+        this.author = this.$store.getters['contents/getContent'].author;
+        this.thumbnailUrl = this.$store.getters['contents/getContent'].thumbnailUrl;
+        this.totalLike = this.$store.getters['contents/getContent'].totalLike;
+        this.tags = this.$store.getters['contents/getTags'];
       }
     },
   },
   methods: {
     showWordcloudModal() {
-      this.$modal.show('modal-wordcloud')
+      this.$modal.show('modal-wordcloud');
     },
     hideWordcloudModal() {
-      this.$modal.hide('modal-wordcloud')
+      this.$modal.hide('modal-wordcloud');
     },
     countTotalLike() {
-      this.$store.dispatch('contents/updateTotalLike', this.$route.params.id)
+      this.$store.dispatch('contents/updateTotalLike', this.$route.params.id);
     },
     countLike(id) {
       this.$store.dispatch('contents/updateLike', {
@@ -185,13 +185,13 @@ export default {
       })
     },
     addFavorite() {
-      this.$store.dispatch('contents/addFavorite', this.$route.params.id)
+      this.$store.dispatch('contents/addFavorite', this.$route.params.id);
     },
     removeFavorite() {
-      this.$store.dispatch('contents/removeFavorite', this.$route.params.id)
+      this.$store.dispatch('contents/removeFavorite', this.$route.params.id);
     },
     searchTag(tagName) {
-      this.$store.dispatch('search/searchTag', tagName)
+      this.$store.dispatch('search/searchTag', tagName);
     }
   }
 }

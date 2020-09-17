@@ -126,7 +126,7 @@ export default {
         displayName: this.displayName,       
       })
       if (file) {
-        const storageRef = firebase.storage().ref('user/' + uid + '/image.jpg')
+        const storageRef = firebase.storage().ref('user/' + uid + '/image.jpg');
         // 画像をStorageにアップロード
         storageRef.put(file).then(() => {
           // アップロードした画像のURLを取得
@@ -136,7 +136,7 @@ export default {
                 uid: uid, photoUrl: url
               })
           }).catch((error) => {
-              console.log('エラー', error)
+              console.log('エラー', error);
           })
         })
       } else {

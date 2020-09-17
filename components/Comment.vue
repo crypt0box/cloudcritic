@@ -61,7 +61,7 @@ export default {
   },
   computed: {
     userId() {
-      return this.$store.getters['auth/getUserId']
+      return this.$store.getters['auth/getUserId'];
     }
   }
 }

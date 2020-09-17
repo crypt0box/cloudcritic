@@ -143,11 +143,11 @@ export default {
   },
   methods: {
     register() {
-      this.$router.push('/register')
+      this.$router.push('/register');
     },
     search() {
-      this.$store.dispatch('contentsAPI/search', this.name)
-      this.$router.push('/search')
+      this.$store.dispatch('contentsAPI/search', this.name);
+      this.$router.push('/search');
     },
   }
 }

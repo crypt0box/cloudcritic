@@ -63,11 +63,11 @@ export default {
   },
   methods: {
     search() {
-      this.$store.dispatch('contentsAPI/search', this.name)
+      this.$store.dispatch('contentsAPI/search', this.name);
     },
     register(item) {
       if (item.volumeInfo.authors) {
-        this.author = item.volumeInfo.authors[0]
+        this.author = item.volumeInfo.authors[0];
       }
       this.$store.dispatch('contents/add', {
         title: item.volumeInfo.title || '',

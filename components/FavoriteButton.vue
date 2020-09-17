@@ -40,10 +40,10 @@ export default {
   },
   methods: {
     addFavorite() {
-      this.$store.dispatch('contents/addFavorite', this.contentId)
+      this.$store.dispatch('contents/addFavorite', this.contentId);
     },
     removeFavorite() {
-      this.$store.dispatch('contents/removeFavorite', this.contentId)
+      this.$store.dispatch('contents/removeFavorite', this.contentId);
     }
   }
 }

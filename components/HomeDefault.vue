@@ -88,13 +88,13 @@ export default {
   },
   created() {
     if (process.client) {
-      window.addEventListener('resize', this.handleResize)
-      this.handleResize()
+      window.addEventListener('resize', this.handleResize);
+      this.handleResize();
     }
   },
   destroyed () {
     if (process.client) {
-      window.removeEventListener('resize', this.handleResize)
+      window.removeEventListener('resize', this.handleResize);
     }
   },
   data() {
@@ -125,14 +125,14 @@ export default {
   },
   methods: {
     handleResize () {
-      this.height = window.innerHeight
+      this.height = window.innerHeight;
     },
     register() {
-      this.$router.push('/register')
+      this.$router.push('/register');
     },
     search() {
-      this.$store.dispatch('contentsAPI/search', this.name)
-      this.$router.push('/search')
+      this.$store.dispatch('contentsAPI/search', this.name);
+      this.$router.push('/search');
     },
   }
 }

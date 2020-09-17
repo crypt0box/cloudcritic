@@ -70,18 +70,18 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('contents/initPopularContents')
-    this.$store.dispatch('contents/initTags', 'NyOEDwAAQBAJ')
-    this.contents = this.$store.getters['contents/getContents']
+    this.$store.dispatch('contents/initPopularContents');
+    this.$store.dispatch('contents/initTags', 'NyOEDwAAQBAJ');
+    this.contents = this.$store.getters['contents/getContents'];
   },
   methods: {
     getTags(model) {
-      this.$store.dispatch('contents/initTags', this.contents[model].id)
+      this.$store.dispatch('contents/initTags', this.contents[model].id);
     }
   },
   computed: {
     tags() {
-      return this.$store.getters['contents/getTags'].slice(0, 5)
+      return this.$store.getters['contents/getTags'].slice(0, 5);
     }
   }
 }

@@ -45,10 +45,10 @@ import EditProfile from '~/components/EditProfile.vue'
       EditProfile
     },
     validate ({ params }) {
-      return /^([a-zA-Z0-9]{28})$/.test(params.id)
+      return /^([a-zA-Z0-9]{28})$/.test(params.id);
     },
     created() {
-      this.$store.dispatch('auth/onAuth')
+      this.$store.dispatch('auth/onAuth');
     }
   }
 </script>

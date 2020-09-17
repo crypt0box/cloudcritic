@@ -50,19 +50,19 @@ export default {
     FavoriteButton
   },
   created() {
-    this.$store.dispatch('contents/init')
+    this.$store.dispatch('contents/init');
   },
   methods: {
     countTotalLike(contentId) {
-      this.$store.dispatch('contents/updateTotalLike', contentId)
+      this.$store.dispatch('contents/updateTotalLike', contentId);
     },
   },
   computed: {
     filterContents() {
-      const favorite = this.$store.getters['auth/getFavorite']
+      const favorite = this.$store.getters['auth/getFavorite'];
       if (favorite) {
         return this.$store.getters['contents/getContents']
-        .filter(content => favorite.includes(content.id))
+        .filter(content => favorite.includes(content.id));
       }
     },
   },
