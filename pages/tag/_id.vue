@@ -8,15 +8,15 @@
         <v-divider />
         <v-row style="padding-top: 3%;">
           <v-col
-            v-for="(content, index) in contents"
-            :key="content.id"
+            v-for="content in contents"
+            :key="content.index"
             cols="6"
             md="2"
           >
           <v-row justify="center">
             <nuxt-link :to="'../content/' + content.contentId">
               <v-img
-                :src="thumbnailUrl[index]"
+                :src="'http://books.google.com/books/content?id=' + content.contentId + '&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'"
                 maxWidth="100"
                 maxHeight="140"
                 width="100"
@@ -48,21 +48,9 @@ const db = firebase.firestore();
 const contentsRef = db.collection('contents');
 
 export default {
-  data() {
-    return {
-      thumbnailUrl: []
-    }
-  },
-  created() {
-    this.$store.getters['search/getContents'].forEach(element => {
-      contentsRef.doc(element.contentId).get()
-      .then(doc => {
-        this.thumbnailUrl.push(doc.data().thumbnailUrl);
-      });
-    });
-  },
   computed:{
     contents() {
+      console.log(this.$store.getters['search/getContents']);
       return this.$store.getters['search/getContents'];
     },
   }
