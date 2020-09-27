@@ -11,8 +11,8 @@ https://cloud-critic.web.app/home<br>
 ・PCとスマホに対応しています<br>
 ・ワンクリックでゲストログインできます<br>
 
-・このアプリの紹介記事を書きました！<br>
-[未経験が３か月でブックレビューサイトを作ってみた](https://qiita.com/cryptobox/items/f5f661470e480c4cc3fc#%E3%83%96%E3%83%83%E3%82%AF%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%82%B5%E3%82%A4%E3%83%88cloudcritic)
+https://qiita.com/cryptobox/items/f5f661470e480c4cc3fc#%E3%83%96%E3%83%83%E3%82%AF%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%82%B5%E3%82%A4%E3%83%88cloudcritic<br>
+・このアプリの紹介記事を書きました！
 
 ## 使用した技術
 
