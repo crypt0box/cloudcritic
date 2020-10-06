@@ -9,36 +9,38 @@
           </v-btn>
         </v-row>
         <v-divider />
-        <v-row style="padding-top: 3%;">
-          <v-col
-            v-for="content in contents"
-            :key="content.id"
-            cols="6"
-            md="2"
-          >
-          <v-row justify="center">
-            <nuxt-link :to="'content/' + content.id">
-              <v-img
-                :src="content.thumbnailUrl"
-                maxWidth="100"
-                maxHeight="140"
-                width="100"
-                height="140"
-              >
-              </v-img>
-            </nuxt-link>
-          </v-row>
-          <v-row justify="center">
-            <v-btn 
-              text
-              class="like-button"
+        <div class="content-list">
+          <v-row>
+            <v-col
+              v-for="content in contents"
+              :key="content.id"
+              cols="6"
+              md="2"
             >
-              <v-icon left>mdi-thumb-up</v-icon>
-              {{ content.totalLike }}
-            </v-btn>
+            <v-row justify="center">
+              <nuxt-link :to="'content/' + content.id">
+                <v-img
+                  :src="content.thumbnailUrl"
+                  maxWidth="100"
+                  maxHeight="140"
+                  width="100"
+                  height="140"
+                >
+                </v-img>
+              </nuxt-link>
+            </v-row>
+            <v-row justify="center">
+              <v-btn 
+                text
+                class="like-button"
+              >
+                <v-icon left>mdi-thumb-up</v-icon>
+                {{ content.totalLike }}
+              </v-btn>
+            </v-row>
+            </v-col>
           </v-row>
-          </v-col>
-        </v-row>
+        </div>
       </v-container>
     </body>
   </section>
@@ -61,5 +63,8 @@ export default {
 <style scoped>
 .like-button {
   width: 100px;
+}
+.content-list {
+  padding-top: 3%;
 }
 </style>
