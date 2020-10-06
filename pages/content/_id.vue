@@ -148,6 +148,7 @@ export default {
     this.$store.dispatch('auth/onAuth');
   },
   mounted() {
+    // ユーザーがコンテンツをお気に入りしているかチェック
     const favorite = this.$store.getters['auth/getFavorite'];
     if (favorite) {
       favorite.forEach(e => {
