@@ -111,8 +111,6 @@
 </template>
 
 <script>
-import { firestoreAction, firestoreOptions } from 'vuexfire'
-import firebase from '~/plugins/firebase'
 import EditTag from '~/components/EditTag.vue'
 import CommentButton from '~/components/CommentButton.vue'
 import WordCloud from '~/components/WordCloud.vue'

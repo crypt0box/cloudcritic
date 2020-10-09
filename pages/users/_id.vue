@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12" md="4">
-        <v-card class="mx-auto fill-width">
+        <v-card class="mx-auto">
           <div class="px-6 py-8">
             <div class="mx-auto">
               <v-row justify="center">
