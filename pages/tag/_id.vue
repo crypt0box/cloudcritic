@@ -6,7 +6,7 @@
           <h1>タグ：{{ contents[0].name }}</h1>
         </v-row>
         <v-divider />
-        <v-row style="padding-top: 3%;">
+        <v-row class="contents-row">
           <v-col
             v-for="content in contents"
             :key="content.index"
@@ -42,15 +42,9 @@
 </template>
 
 <script>
-import firebase from '~/plugins/firebase'
-
-const db = firebase.firestore();
-const contentsRef = db.collection('contents');
-
 export default {
   computed:{
     contents() {
-      console.log(this.$store.getters['search/getContents']);
       return this.$store.getters['search/getContents'];
     },
   }
@@ -58,6 +52,9 @@ export default {
 </script>
 
 <style scoped>
+.contents-row {
+  padding-top: 3%;
+}
 .like-button {
   width: 100px;
 }
