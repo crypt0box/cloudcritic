@@ -10,7 +10,7 @@
       </v-card-title>
       <v-divider> </v-divider>
       <div class="px-6 py-8">
-        <div style="max-width:344px" class="mx-auto">
+        <div class="mx-auto test-user-login">
           <div>
             <v-btn
               class="fill-width text-capitalize"
@@ -466,6 +466,9 @@ export default {
 <style scoped>
 .fill-width {
   width: 100%;
+}
+.test-user-login {
+  max-width: 334px;
 }
 .link-caption {
   text-decoration: none;
