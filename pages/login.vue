@@ -72,10 +72,9 @@
           <div class="pt-6">
             <div>
               <v-btn
-                class="fill-width mb-5 text-capitalize"
+                class="fill-width mb-5 text-capitalize login-btn"
                 height="48px"
                 outlined
-                style="border-color:#979797;"
                 tile
                 @click="google"
               >
@@ -87,10 +86,9 @@
                 Googleでログイン
               </v-btn>
               <v-btn
-                class="fill-width mb-5 text-capitalize"
+                class="fill-width mb-5 text-capitalize login-btn"
                 height="48px"
                 outlined
-                style="border-color:#979797;"
                 tile
                 @click="twitter"
               >
@@ -102,10 +100,9 @@
                 Twitterでログイン
               </v-btn>
               <v-btn
-                class="fill-width mb-5 text-capitalize"
+                class="fill-width mb-5 text-capitalize login-btn"
                 height="48px"
                 outlined
-                style="border-color:#979797;"
                 tile
                 @click="yahoo"
               >
@@ -469,6 +466,9 @@ export default {
 }
 .test-user-login {
   max-width: 334px;
+}
+.login-btn {
+  border-color: #979797;
 }
 .link-caption {
   text-decoration: none;
