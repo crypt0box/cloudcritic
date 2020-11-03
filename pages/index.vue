@@ -30,13 +30,10 @@
               </nuxt-link>
             </v-row>
             <v-row justify="center">
-              <v-btn 
-                text
-                class="like-button"
-              >
+              <div class="like-number">
                 <v-icon left>mdi-thumb-up</v-icon>
                 {{ content.totalLike }}
-              </v-btn>
+              </div>
             </v-row>
             </v-col>
           </v-row>
@@ -61,8 +58,8 @@ export default {
 </script>
 
 <style scoped>
-.like-button {
-  width: 100px;
+.like-number {
+  padding-top: 5%;
 }
 .content-list {
   padding-top: 3%;
