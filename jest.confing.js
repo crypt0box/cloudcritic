@@ -1,7 +1,7 @@
 module.exports = {
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/$1',
-    '^~/(.*)$': '<rootDir>/$1',
+    '^@/(.*)$': 'cloudcritic/$1',
+    '^~/(.*)$': 'cloudcritic/$1',
     '^vue$': 'vue/dist/vue.common.js'
   },
   moduleFileExtensions: ['js', 'vue', 'json'],
@@ -11,7 +11,7 @@ module.exports = {
   },
   'collectCoverage': true,
   'collectCoverageFrom': [
-    '<rootDir>/components/**/*.vue',
-    '<rootDir>/pages/**/*.vue'
+    'cloudcritic/components/**/*.vue',
+    'cloudcritic/pages/**/*.vue'
   ]
 }
