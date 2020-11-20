@@ -11,9 +11,6 @@ https://cloud-critic.web.app/home<br>
 ・PCとスマホに対応しています<br>
 ・ワンクリックでゲストログインできます<br>
 
-https://qiita.com/cryptobox/items/f5f661470e480c4cc3fc<br>
-・このアプリの紹介記事を書きました！
-
 ## 使用した技術
 
 - Nuxt.js（フロントエンド）
