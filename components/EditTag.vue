@@ -67,15 +67,19 @@ export default {
   },
   methods: {
     addTag() {
-      this.$store.dispatch('contents/addTag', {
-        contentId: this.$route.params.id,
-        tag: {
-          name: this.tagName,
-          like: 0,
-          contentId: this.$route.params.id
-        }
-      })
-      this.tagName = ''
+      if (this.tagName.match(/^\s+$/) || this.tagName == '') {
+        alert('タグ名を入力してください');
+      } else {
+        this.$store.dispatch('contents/addTag', {
+          contentId: this.$route.params.id,
+          tag: {
+            name: this.tagName,
+            like: 0,
+            contentId: this.$route.params.id
+          }
+        })
+        this.tagName = ''
+      }
     },
     removeTag(tagId) {
       this.$store.dispatch('contents/removeTag', {
