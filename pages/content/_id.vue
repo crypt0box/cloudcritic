@@ -89,7 +89,9 @@
               {{ tag.name }}
             </v-list-item-content>
             <v-list-item-icon>
+            <v-btn icon @click="countLike(tag.id); countTotalLike()">
               <v-icon>mdi-thumb-up</v-icon>
+            </v-btn>
             </v-list-item-icon>
             {{ tag.like }}
             <v-btn icon @click="searchTag(tag.name)">
