@@ -38,3 +38,6 @@ https://cloud-critic.web.app/home<br>
 - お気に入り登録
 - 総合いいねランキング
 - ワードクラウド
+
+## ER図
+![er](https://user-images.githubusercontent.com/50011163/103986917-ef9ba580-51ce-11eb-9cad-fe2cbd83c95f.png)
