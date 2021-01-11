@@ -1,6 +1,6 @@
 # cloudcritic
 
-![HOME](https://user-images.githubusercontent.com/50011163/94356781-3c9ab680-00cd-11eb-8eac-0172daaf67e9.jpg)
+![book](https://user-images.githubusercontent.com/50011163/104151892-7942b180-5421-11eb-962b-fee7450c64e0.JPG)
 
 自分の感想を言語化するのを難しく感じたことはありませんか？<br>
 CloudCriticは「いいね」するだけで簡単にブックレビューができるサイトです。
