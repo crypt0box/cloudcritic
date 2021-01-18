@@ -11,7 +11,7 @@ https://cloud-critic.web.app/home<br>
 ・PCとスマホに対応しています<br>
 ・ワンクリックでゲストログインできます<br>
 <br>
-https://qiita.com/cryptobox/items/f5f661470e480c4cc3fc
+https://qiita.com/cryptobox/items/f5f661470e480c4cc3fc<br>
 ・上記リンクはQiitaの解説記事になります<br>
 ## 使用した技術
 
