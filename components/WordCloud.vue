@@ -24,7 +24,7 @@ export default {
       rotate: {from: 0, to: 0, numOfOrientation: 0 },
       margin: {top: 50, right: 50, bottom: 50, left: 50 },
       fontSize: [20, 40],
-      myColors: ['#38b508', '#76ed47', '#a8e88f', '#39c900'],
+      myColors: ['#ff8000', '#ff952b', '#ffaa55', '#ffbf80'],
       words: JSON.parse(JSON.stringify(this.$store.getters['contents/getTags'])),
     }
   },
