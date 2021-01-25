@@ -35,7 +35,6 @@
             <v-text-field
               v-model="email"
               :rules="emailRules"
-              autofocus
               dense
               height="48px"
               outlined
